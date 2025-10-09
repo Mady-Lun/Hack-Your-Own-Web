@@ -1,0 +1,31 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+
+# Logs
+*.log
+logs/
+
+# Environment variables
+.env
+.env.*
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Testing / type check
+.pytest_cache/
+.mypy_cache/
+.dmypy.json
+
+# Optional: Python packaging artifacts
+build/
+dist/
+*.egg-info/
