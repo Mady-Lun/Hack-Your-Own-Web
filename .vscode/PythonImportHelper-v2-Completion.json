@@ -1,0 +1,1233 @@
+[
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "op",
+        "importPath": "alembic",
+        "description": "alembic",
+        "isExtraImport": true,
+        "detail": "alembic",
+        "documentation": {}
+    },
+    {
+        "label": "op",
+        "importPath": "alembic",
+        "description": "alembic",
+        "isExtraImport": true,
+        "detail": "alembic",
+        "documentation": {}
+    },
+    {
+        "label": "op",
+        "importPath": "alembic",
+        "description": "alembic",
+        "isExtraImport": true,
+        "detail": "alembic",
+        "documentation": {}
+    },
+    {
+        "label": "op",
+        "importPath": "alembic",
+        "description": "alembic",
+        "isExtraImport": true,
+        "detail": "alembic",
+        "documentation": {}
+    },
+    {
+        "label": "op",
+        "importPath": "alembic",
+        "description": "alembic",
+        "isExtraImport": true,
+        "detail": "alembic",
+        "documentation": {}
+    },
+    {
+        "label": "op",
+        "importPath": "alembic",
+        "description": "alembic",
+        "isExtraImport": true,
+        "detail": "alembic",
+        "documentation": {}
+    },
+    {
+        "label": "op",
+        "importPath": "alembic",
+        "description": "alembic",
+        "isExtraImport": true,
+        "detail": "alembic",
+        "documentation": {}
+    },
+    {
+        "label": "op",
+        "importPath": "alembic",
+        "description": "alembic",
+        "isExtraImport": true,
+        "detail": "alembic",
+        "documentation": {}
+    },
+    {
+        "label": "op",
+        "importPath": "alembic",
+        "description": "alembic",
+        "isExtraImport": true,
+        "detail": "alembic",
+        "documentation": {}
+    },
+    {
+        "label": "context",
+        "importPath": "alembic",
+        "description": "alembic",
+        "isExtraImport": true,
+        "detail": "alembic",
+        "documentation": {}
+    },
+    {
+        "label": "sqlalchemy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "pool",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "text",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "sqlmodel",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sqlmodel",
+        "description": "sqlmodel",
+        "detail": "sqlmodel",
+        "documentation": {}
+    },
+    {
+        "label": "SQLModel",
+        "importPath": "sqlmodel",
+        "description": "sqlmodel",
+        "isExtraImport": true,
+        "detail": "sqlmodel",
+        "documentation": {}
+    },
+    {
+        "label": "create_engine",
+        "importPath": "sqlmodel",
+        "description": "sqlmodel",
+        "isExtraImport": true,
+        "detail": "sqlmodel",
+        "documentation": {}
+    },
+    {
+        "label": "select",
+        "importPath": "sqlmodel",
+        "description": "sqlmodel",
+        "isExtraImport": true,
+        "detail": "sqlmodel",
+        "documentation": {}
+    },
+    {
+        "label": "delete",
+        "importPath": "sqlmodel",
+        "description": "sqlmodel",
+        "isExtraImport": true,
+        "detail": "sqlmodel",
+        "documentation": {}
+    },
+    {
+        "label": "SQLModel",
+        "importPath": "sqlmodel",
+        "description": "sqlmodel",
+        "isExtraImport": true,
+        "detail": "sqlmodel",
+        "documentation": {}
+    },
+    {
+        "label": "Field",
+        "importPath": "sqlmodel",
+        "description": "sqlmodel",
+        "isExtraImport": true,
+        "detail": "sqlmodel",
+        "documentation": {}
+    },
+    {
+        "label": "Relationship",
+        "importPath": "sqlmodel",
+        "description": "sqlmodel",
+        "isExtraImport": true,
+        "detail": "sqlmodel",
+        "documentation": {}
+    },
+    {
+        "label": "postgresql",
+        "importPath": "sqlalchemy.dialects",
+        "description": "sqlalchemy.dialects",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.dialects",
+        "documentation": {}
+    },
+    {
+        "label": "asyncio",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "asyncio",
+        "description": "asyncio",
+        "detail": "asyncio",
+        "documentation": {}
+    },
+    {
+        "label": "fileConfig",
+        "importPath": "logging.config",
+        "description": "logging.config",
+        "isExtraImport": true,
+        "detail": "logging.config",
+        "documentation": {}
+    },
+    {
+        "label": "Connection",
+        "importPath": "sqlalchemy.engine",
+        "description": "sqlalchemy.engine",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.engine",
+        "documentation": {}
+    },
+    {
+        "label": "async_engine_from_config",
+        "importPath": "sqlalchemy.ext.asyncio",
+        "description": "sqlalchemy.ext.asyncio",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.ext.asyncio",
+        "documentation": {}
+    },
+    {
+        "label": "AsyncEngine",
+        "importPath": "sqlalchemy.ext.asyncio",
+        "description": "sqlalchemy.ext.asyncio",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.ext.asyncio",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "app.models.user",
+        "description": "app.models.user",
+        "isExtraImport": true,
+        "detail": "app.models.user",
+        "documentation": {}
+    },
+    {
+        "label": "Config",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "Config",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "MailConfig",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "status",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "status",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Request",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "AsyncSession",
+        "importPath": "sqlmodel.ext.asyncio.session",
+        "description": "sqlmodel.ext.asyncio.session",
+        "isExtraImport": true,
+        "detail": "sqlmodel.ext.asyncio.session",
+        "documentation": {}
+    },
+    {
+        "label": "AsyncSession",
+        "importPath": "sqlmodel.ext.asyncio.session",
+        "description": "sqlmodel.ext.asyncio.session",
+        "isExtraImport": true,
+        "detail": "sqlmodel.ext.asyncio.session",
+        "documentation": {}
+    },
+    {
+        "label": "get_session",
+        "importPath": "app.core.db",
+        "description": "app.core.db",
+        "isExtraImport": true,
+        "detail": "app.core.db",
+        "documentation": {}
+    },
+    {
+        "label": "async_engine",
+        "importPath": "app.core.db",
+        "description": "app.core.db",
+        "isExtraImport": true,
+        "detail": "app.core.db",
+        "documentation": {}
+    },
+    {
+        "label": "BaseSettings",
+        "importPath": "pydantic_settings",
+        "description": "pydantic_settings",
+        "isExtraImport": true,
+        "detail": "pydantic_settings",
+        "documentation": {}
+    },
+    {
+        "label": "SettingsConfigDict",
+        "importPath": "pydantic_settings",
+        "description": "pydantic_settings",
+        "isExtraImport": true,
+        "detail": "pydantic_settings",
+        "documentation": {}
+    },
+    {
+        "label": "sessionmaker",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "FastMail",
+        "importPath": "fastapi_mail",
+        "description": "fastapi_mail",
+        "isExtraImport": true,
+        "detail": "fastapi_mail",
+        "documentation": {}
+    },
+    {
+        "label": "MessageSchema",
+        "importPath": "fastapi_mail",
+        "description": "fastapi_mail",
+        "isExtraImport": true,
+        "detail": "fastapi_mail",
+        "documentation": {}
+    },
+    {
+        "label": "MessageType",
+        "importPath": "fastapi_mail",
+        "description": "fastapi_mail",
+        "isExtraImport": true,
+        "detail": "fastapi_mail",
+        "documentation": {}
+    },
+    {
+        "label": "ConnectionConfig",
+        "importPath": "fastapi_mail",
+        "description": "fastapi_mail",
+        "isExtraImport": true,
+        "detail": "fastapi_mail",
+        "documentation": {}
+    },
+    {
+        "label": "CryptContext",
+        "importPath": "passlib.context",
+        "description": "passlib.context",
+        "isExtraImport": true,
+        "detail": "passlib.context",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "JSONResponse",
+        "importPath": "fastapi.responses",
+        "description": "fastapi.responses",
+        "isExtraImport": true,
+        "detail": "fastapi.responses",
+        "documentation": {}
+    },
+    {
+        "label": "random,",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random.",
+        "description": "random.",
+        "detail": "random.",
+        "documentation": {}
+    },
+    {
+        "label": "send_email",
+        "importPath": "app.core.email",
+        "description": "app.core.email",
+        "isExtraImport": true,
+        "detail": "app.core.email",
+        "documentation": {}
+    },
+    {
+        "label": "jwt",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "jwt",
+        "description": "jwt",
+        "detail": "jwt",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "Field",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "EmailStr",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "secrets",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "secrets",
+        "description": "secrets",
+        "detail": "secrets",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "auth_router",
+        "importPath": "app.api.v1.auth",
+        "description": "app.api.v1.auth",
+        "isExtraImport": true,
+        "detail": "app.api.v1.auth",
+        "documentation": {}
+    },
+    {
+        "label": "upgrade",
+        "kind": 2,
+        "importPath": "backend.alembic.versions.001630e9bead_add_password_hash",
+        "description": "backend.alembic.versions.001630e9bead_add_password_hash",
+        "peekOfCode": "def upgrade() -> None:\n    \"\"\"Upgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.add_column('users', sa.Column('password_hash', sqlmodel.sql.sqltypes.AutoString(), nullable=False))\n    # ### end Alembic commands ###\ndef downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_column('users', 'password_hash')\n    # ### end Alembic commands ###",
+        "detail": "backend.alembic.versions.001630e9bead_add_password_hash",
+        "documentation": {}
+    },
+    {
+        "label": "downgrade",
+        "kind": 2,
+        "importPath": "backend.alembic.versions.001630e9bead_add_password_hash",
+        "description": "backend.alembic.versions.001630e9bead_add_password_hash",
+        "peekOfCode": "def downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_column('users', 'password_hash')\n    # ### end Alembic commands ###",
+        "detail": "backend.alembic.versions.001630e9bead_add_password_hash",
+        "documentation": {}
+    },
+    {
+        "label": "upgrade",
+        "kind": 2,
+        "importPath": "backend.alembic.versions.2777c59927b2_add_the_verification_code_and_the_reset_",
+        "description": "backend.alembic.versions.2777c59927b2_add_the_verification_code_and_the_reset_",
+        "peekOfCode": "def upgrade() -> None:\n    \"\"\"Upgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.add_column('users', sa.Column('verification_code', sqlmodel.sql.sqltypes.AutoString(), nullable=True))\n    op.add_column('users', sa.Column('verification_code_expires_at', sa.DateTime(), nullable=True))\n    op.add_column('users', sa.Column('reset_code', sqlmodel.sql.sqltypes.AutoString(), nullable=True))\n    op.add_column('users', sa.Column('reset_code_expires_at', sa.DateTime(), nullable=True))\n    # ### end Alembic commands ###\ndef downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"",
+        "detail": "backend.alembic.versions.2777c59927b2_add_the_verification_code_and_the_reset_",
+        "documentation": {}
+    },
+    {
+        "label": "downgrade",
+        "kind": 2,
+        "importPath": "backend.alembic.versions.2777c59927b2_add_the_verification_code_and_the_reset_",
+        "description": "backend.alembic.versions.2777c59927b2_add_the_verification_code_and_the_reset_",
+        "peekOfCode": "def downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_column('users', 'reset_code_expires_at')\n    op.drop_column('users', 'reset_code')\n    op.drop_column('users', 'verification_code_expires_at')\n    op.drop_column('users', 'verification_code')\n    # ### end Alembic commands ###",
+        "detail": "backend.alembic.versions.2777c59927b2_add_the_verification_code_and_the_reset_",
+        "documentation": {}
+    },
+    {
+        "label": "upgrade",
+        "kind": 2,
+        "importPath": "backend.alembic.versions.2cf55e0ae374_set_last_name_as_optional",
+        "description": "backend.alembic.versions.2cf55e0ae374_set_last_name_as_optional",
+        "peekOfCode": "def upgrade() -> None:\n    \"\"\"Upgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.alter_column('users', 'last_name',\n               existing_type=sa.VARCHAR(),\n               nullable=True)\n    # ### end Alembic commands ###\ndef downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###",
+        "detail": "backend.alembic.versions.2cf55e0ae374_set_last_name_as_optional",
+        "documentation": {}
+    },
+    {
+        "label": "downgrade",
+        "kind": 2,
+        "importPath": "backend.alembic.versions.2cf55e0ae374_set_last_name_as_optional",
+        "description": "backend.alembic.versions.2cf55e0ae374_set_last_name_as_optional",
+        "peekOfCode": "def downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.alter_column('users', 'last_name',\n               existing_type=sa.VARCHAR(),\n               nullable=False)\n    # ### end Alembic commands ###",
+        "detail": "backend.alembic.versions.2cf55e0ae374_set_last_name_as_optional",
+        "documentation": {}
+    },
+    {
+        "label": "upgrade",
+        "kind": 2,
+        "importPath": "backend.alembic.versions.5ae0550c18b4_fix_the_refreshtoken_and_user_",
+        "description": "backend.alembic.versions.5ae0550c18b4_fix_the_refreshtoken_and_user_",
+        "peekOfCode": "def upgrade() -> None:\n    \"\"\"Upgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.create_foreign_key(None, 'refresh_tokens', 'users', ['user_id'], ['id'])\n    # ### end Alembic commands ###\ndef downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_constraint(None, 'refresh_tokens', type_='foreignkey')\n    # ### end Alembic commands ###",
+        "detail": "backend.alembic.versions.5ae0550c18b4_fix_the_refreshtoken_and_user_",
+        "documentation": {}
+    },
+    {
+        "label": "downgrade",
+        "kind": 2,
+        "importPath": "backend.alembic.versions.5ae0550c18b4_fix_the_refreshtoken_and_user_",
+        "description": "backend.alembic.versions.5ae0550c18b4_fix_the_refreshtoken_and_user_",
+        "peekOfCode": "def downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_constraint(None, 'refresh_tokens', type_='foreignkey')\n    # ### end Alembic commands ###",
+        "detail": "backend.alembic.versions.5ae0550c18b4_fix_the_refreshtoken_and_user_",
+        "documentation": {}
+    },
+    {
+        "label": "upgrade",
+        "kind": 2,
+        "importPath": "backend.alembic.versions.60cade7625d8_add_firstname_and_lastname_field",
+        "description": "backend.alembic.versions.60cade7625d8_add_firstname_and_lastname_field",
+        "peekOfCode": "def upgrade() -> None:\n    \"\"\"Upgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.add_column('users', sa.Column('first_name', sqlmodel.sql.sqltypes.AutoString(), nullable=False))\n    op.add_column('users', sa.Column('last_name', sqlmodel.sql.sqltypes.AutoString(), nullable=False))\n    # ### end Alembic commands ###\ndef downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_column('users', 'last_name')",
+        "detail": "backend.alembic.versions.60cade7625d8_add_firstname_and_lastname_field",
+        "documentation": {}
+    },
+    {
+        "label": "downgrade",
+        "kind": 2,
+        "importPath": "backend.alembic.versions.60cade7625d8_add_firstname_and_lastname_field",
+        "description": "backend.alembic.versions.60cade7625d8_add_firstname_and_lastname_field",
+        "peekOfCode": "def downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_column('users', 'last_name')\n    op.drop_column('users', 'first_name')\n    # ### end Alembic commands ###",
+        "detail": "backend.alembic.versions.60cade7625d8_add_firstname_and_lastname_field",
+        "documentation": {}
+    },
+    {
+        "label": "upgrade",
+        "kind": 2,
+        "importPath": "backend.alembic.versions.656b94509927_remove_reset_code_and_its_expiration_",
+        "description": "backend.alembic.versions.656b94509927_remove_reset_code_and_its_expiration_",
+        "peekOfCode": "def upgrade() -> None:\n    \"\"\"Upgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_column('users', 'reset_code_expires_at')\n    op.drop_column('users', 'reset_code')\n    # ### end Alembic commands ###\ndef downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.add_column('users', sa.Column('reset_code', sa.VARCHAR(), autoincrement=False, nullable=True))",
+        "detail": "backend.alembic.versions.656b94509927_remove_reset_code_and_its_expiration_",
+        "documentation": {}
+    },
+    {
+        "label": "downgrade",
+        "kind": 2,
+        "importPath": "backend.alembic.versions.656b94509927_remove_reset_code_and_its_expiration_",
+        "description": "backend.alembic.versions.656b94509927_remove_reset_code_and_its_expiration_",
+        "peekOfCode": "def downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.add_column('users', sa.Column('reset_code', sa.VARCHAR(), autoincrement=False, nullable=True))\n    op.add_column('users', sa.Column('reset_code_expires_at', postgresql.TIMESTAMP(), autoincrement=False, nullable=True))\n    # ### end Alembic commands ###",
+        "detail": "backend.alembic.versions.656b94509927_remove_reset_code_and_its_expiration_",
+        "documentation": {}
+    },
+    {
+        "label": "upgrade",
+        "kind": 2,
+        "importPath": "backend.alembic.versions.72b4e0ea9059_init",
+        "description": "backend.alembic.versions.72b4e0ea9059_init",
+        "peekOfCode": "def upgrade() -> None:\n    \"\"\"Upgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.create_table('users',\n    sa.Column('id', sa.Integer(), nullable=False),\n    sa.Column('email', sqlmodel.sql.sqltypes.AutoString(), nullable=False),\n    sa.Column('is_verified', sa.Boolean(), nullable=False),\n    sa.Column('created_at', sa.DateTime(), nullable=False),\n    sa.Column('updated_at', sa.DateTime(), nullable=False),\n    sa.PrimaryKeyConstraint('id')",
+        "detail": "backend.alembic.versions.72b4e0ea9059_init",
+        "documentation": {}
+    },
+    {
+        "label": "downgrade",
+        "kind": 2,
+        "importPath": "backend.alembic.versions.72b4e0ea9059_init",
+        "description": "backend.alembic.versions.72b4e0ea9059_init",
+        "peekOfCode": "def downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_index(op.f('ix_users_email'), table_name='users')\n    op.drop_table('users')\n    # ### end Alembic commands ###",
+        "detail": "backend.alembic.versions.72b4e0ea9059_init",
+        "documentation": {}
+    },
+    {
+        "label": "upgrade",
+        "kind": 2,
+        "importPath": "backend.alembic.versions.badc1dd6ae5e_add_refreshtoken_model",
+        "description": "backend.alembic.versions.badc1dd6ae5e_add_refreshtoken_model",
+        "peekOfCode": "def upgrade() -> None:\n    \"\"\"Upgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.create_table('refresh_tokens',\n    sa.Column('id', sa.Integer(), nullable=False),\n    sa.Column('token', sqlmodel.sql.sqltypes.AutoString(), nullable=False),\n    sa.Column('user_id', sa.Integer(), nullable=False),\n    sa.Column('created_at', sa.DateTime(), nullable=False),\n    sa.Column('expires_at', sa.DateTime(), nullable=False),\n    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),",
+        "detail": "backend.alembic.versions.badc1dd6ae5e_add_refreshtoken_model",
+        "documentation": {}
+    },
+    {
+        "label": "downgrade",
+        "kind": 2,
+        "importPath": "backend.alembic.versions.badc1dd6ae5e_add_refreshtoken_model",
+        "description": "backend.alembic.versions.badc1dd6ae5e_add_refreshtoken_model",
+        "peekOfCode": "def downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_index(op.f('ix_refresh_tokens_token'), table_name='refresh_tokens')\n    op.drop_table('refresh_tokens')\n    # ### end Alembic commands ###",
+        "detail": "backend.alembic.versions.badc1dd6ae5e_add_refreshtoken_model",
+        "documentation": {}
+    },
+    {
+        "label": "upgrade",
+        "kind": 2,
+        "importPath": "backend.alembic.versions.cb9056b6b59f_fix_the_ondelete_cascade_for_the_",
+        "description": "backend.alembic.versions.cb9056b6b59f_fix_the_ondelete_cascade_for_the_",
+        "peekOfCode": "def upgrade() -> None:\n    \"\"\"Upgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_constraint(op.f('refresh_tokens_user_id_fkey'), 'refresh_tokens', type_='foreignkey')\n    # ### end Alembic commands ###\ndef downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.create_foreign_key(op.f('refresh_tokens_user_id_fkey'), 'refresh_tokens', 'users', ['user_id'], ['id'])\n    # ### end Alembic commands ###",
+        "detail": "backend.alembic.versions.cb9056b6b59f_fix_the_ondelete_cascade_for_the_",
+        "documentation": {}
+    },
+    {
+        "label": "downgrade",
+        "kind": 2,
+        "importPath": "backend.alembic.versions.cb9056b6b59f_fix_the_ondelete_cascade_for_the_",
+        "description": "backend.alembic.versions.cb9056b6b59f_fix_the_ondelete_cascade_for_the_",
+        "peekOfCode": "def downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.create_foreign_key(op.f('refresh_tokens_user_id_fkey'), 'refresh_tokens', 'users', ['user_id'], ['id'])\n    # ### end Alembic commands ###",
+        "detail": "backend.alembic.versions.cb9056b6b59f_fix_the_ondelete_cascade_for_the_",
+        "documentation": {}
+    },
+    {
+        "label": "run_migrations_offline",
+        "kind": 2,
+        "importPath": "backend.alembic.env",
+        "description": "backend.alembic.env",
+        "peekOfCode": "def run_migrations_offline() -> None:\n    \"\"\"Run migrations in 'offline' mode.\n    This configures the context with just a URL\n    and not an Engine, though an Engine is acceptable\n    here as well.  By skipping the Engine creation\n    we don't even need a DBAPI to be available.\n    Calls to context.execute() here emit the given string to the\n    script output.\n    \"\"\"\n    url = config.get_main_option(\"sqlalchemy.url\")",
+        "detail": "backend.alembic.env",
+        "documentation": {}
+    },
+    {
+        "label": "do_run_migrations",
+        "kind": 2,
+        "importPath": "backend.alembic.env",
+        "description": "backend.alembic.env",
+        "peekOfCode": "def do_run_migrations(connection: Connection) -> None:\n    context.configure(connection=connection, target_metadata=target_metadata)\n    with context.begin_transaction():\n        context.run_migrations()\nasync def run_async_migrations() -> None:\n    \"\"\"In this scenario we need to create an Engine\n    and associate a connection with the context.\n    \"\"\"\n    connectable = async_engine_from_config(\n        config.get_section(config.config_ini_section, {}),",
+        "detail": "backend.alembic.env",
+        "documentation": {}
+    },
+    {
+        "label": "run_migrations_online",
+        "kind": 2,
+        "importPath": "backend.alembic.env",
+        "description": "backend.alembic.env",
+        "peekOfCode": "def run_migrations_online() -> None:\n    \"\"\"Run migrations in 'online' mode.\"\"\"\n    asyncio.run(run_async_migrations())\nif context.is_offline_mode():\n    run_migrations_offline()\nelse:\n    run_migrations_online()",
+        "detail": "backend.alembic.env",
+        "documentation": {}
+    },
+    {
+        "label": "database_url",
+        "kind": 5,
+        "importPath": "backend.alembic.env",
+        "description": "backend.alembic.env",
+        "peekOfCode": "database_url = Config.DATABASE_URL \n# this is the Alembic Config object, which provides\n# access to the values within the .ini file in use.\nconfig = context.config\nconfig.set_main_option('sqlalchemy.url', database_url)\n# Interpret the config file for Python logging.\n# This line sets up loggers basically.\nif config.config_file_name is not None:\n    fileConfig(config.config_file_name)\n# add your model's MetaData object here",
+        "detail": "backend.alembic.env",
+        "documentation": {}
+    },
+    {
+        "label": "config",
+        "kind": 5,
+        "importPath": "backend.alembic.env",
+        "description": "backend.alembic.env",
+        "peekOfCode": "config = context.config\nconfig.set_main_option('sqlalchemy.url', database_url)\n# Interpret the config file for Python logging.\n# This line sets up loggers basically.\nif config.config_file_name is not None:\n    fileConfig(config.config_file_name)\n# add your model's MetaData object here\n# for 'autogenerate' support\n# from myapp import mymodel\n# target_metadata = mymodel.Base.metadata",
+        "detail": "backend.alembic.env",
+        "documentation": {}
+    },
+    {
+        "label": "target_metadata",
+        "kind": 5,
+        "importPath": "backend.alembic.env",
+        "description": "backend.alembic.env",
+        "peekOfCode": "target_metadata = SQLModel.metadata\n# other values from the config, defined by the needs of env.py,\n# can be acquired:\n# my_important_option = config.get_main_option(\"my_important_option\")\n# ... etc.\ndef run_migrations_offline() -> None:\n    \"\"\"Run migrations in 'offline' mode.\n    This configures the context with just a URL\n    and not an Engine, though an Engine is acceptable\n    here as well.  By skipping the Engine creation",
+        "detail": "backend.alembic.env",
+        "documentation": {}
+    },
+    {
+        "label": "get_profile",
+        "kind": 2,
+        "importPath": "backend.app.api.v1.auth",
+        "description": "backend.app.api.v1.auth",
+        "peekOfCode": "def get_profile(user = Depends(get_current_user)):\n    return {\"user\": user}\nauth_router = router\n# from fastapi import FastAPI, Header\n# from typing import Optional\n# from pydantic import BaseModel\n# app = FastAPI()\n# @app.get(\"/\")\n# async def read_root():\n#     return {",
+        "detail": "backend.app.api.v1.auth",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "kind": 5,
+        "importPath": "backend.app.api.v1.auth",
+        "description": "backend.app.api.v1.auth",
+        "peekOfCode": "router = APIRouter()\n@router.get(\"/ping\")\nasync def ping():\n    return {\n        \"message\": \"pong\"\n    }\n@router.post(\"/sign-up\", status_code=status.HTTP_201_CREATED)\nasync def sign_up(data: UserSignUp, response: Response, session: AsyncSession = Depends(get_session)):\n    return await sign_up_crud(data, response, session)\n@router.post(\"/verify\", status_code=status.HTTP_200_OK)",
+        "detail": "backend.app.api.v1.auth",
+        "documentation": {}
+    },
+    {
+        "label": "auth_router",
+        "kind": 5,
+        "importPath": "backend.app.api.v1.auth",
+        "description": "backend.app.api.v1.auth",
+        "peekOfCode": "auth_router = router\n# from fastapi import FastAPI, Header\n# from typing import Optional\n# from pydantic import BaseModel\n# app = FastAPI()\n# @app.get(\"/\")\n# async def read_root():\n#     return {\n#         \"message\": \"Hello, World!\"\n#     }",
+        "detail": "backend.app.api.v1.auth",
+        "documentation": {}
+    },
+    {
+        "label": "Settings",
+        "kind": 6,
+        "importPath": "backend.app.core.config",
+        "description": "backend.app.core.config",
+        "peekOfCode": "class Settings(BaseSettings):\n    ENV: str\n    DATABASE_URL: str\n    JWT_SECRET: str\n    JWT_ALGORITHM: str\n    ACCESS_TOKEN_EXPIRE_MINUTES: int\n    REFRESH_TOKEN_EXPIRE_DAYS: int\n    model_config = SettingsConfigDict(\n        env_file=\".env\",\n        extra=\"ignore\",",
+        "detail": "backend.app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "AppSettings",
+        "kind": 6,
+        "importPath": "backend.app.core.config",
+        "description": "backend.app.core.config",
+        "peekOfCode": "class AppSettings(BaseSettings):\n    APP_NAME: str\n    model_config = SettingsConfigDict(\n        env_file=\".env\",\n        extra=\"ignore\",\n    )\nclass MailSettings(BaseSettings):\n    MAIL_USERNAME: str\n    MAIL_PASSWORD: str\n    MAIL_FROM: str",
+        "detail": "backend.app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "MailSettings",
+        "kind": 6,
+        "importPath": "backend.app.core.config",
+        "description": "backend.app.core.config",
+        "peekOfCode": "class MailSettings(BaseSettings):\n    MAIL_USERNAME: str\n    MAIL_PASSWORD: str\n    MAIL_FROM: str\n    MAIL_FROM_NAME: str\n    MAIL_PORT: str\n    MAIL_SERVER: str\n    MAIL_STARTTLS: bool\n    MAIL_SSL_TLS: bool\n    MAIL_DEBUG: bool",
+        "detail": "backend.app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "Config",
+        "kind": 5,
+        "importPath": "backend.app.core.config",
+        "description": "backend.app.core.config",
+        "peekOfCode": "Config = Settings()\nAppConfig = AppSettings()\nMailConfig = MailSettings()",
+        "detail": "backend.app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "kind": 5,
+        "importPath": "backend.app.core.config",
+        "description": "backend.app.core.config",
+        "peekOfCode": "AppConfig = AppSettings()\nMailConfig = MailSettings()",
+        "detail": "backend.app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "MailConfig",
+        "kind": 5,
+        "importPath": "backend.app.core.config",
+        "description": "backend.app.core.config",
+        "peekOfCode": "MailConfig = MailSettings()",
+        "detail": "backend.app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "async_engine",
+        "kind": 5,
+        "importPath": "backend.app.core.db",
+        "description": "backend.app.core.db",
+        "peekOfCode": "async_engine = AsyncEngine(\n    create_engine(\n        url=Config.DATABASE_URL,\n    )\n)\nAsyncSessionLocal = sessionmaker(\n    bind=async_engine,\n    class_=AsyncSession,\n    expire_on_commit=False\n)",
+        "detail": "backend.app.core.db",
+        "documentation": {}
+    },
+    {
+        "label": "AsyncSessionLocal",
+        "kind": 5,
+        "importPath": "backend.app.core.db",
+        "description": "backend.app.core.db",
+        "peekOfCode": "AsyncSessionLocal = sessionmaker(\n    bind=async_engine,\n    class_=AsyncSession,\n    expire_on_commit=False\n)\nasync def get_session() -> AsyncSession:\n    async with AsyncSessionLocal() as session:\n        yield session",
+        "detail": "backend.app.core.db",
+        "documentation": {}
+    },
+    {
+        "label": "conf",
+        "kind": 5,
+        "importPath": "backend.app.core.email",
+        "description": "backend.app.core.email",
+        "peekOfCode": "conf = ConnectionConfig(\n    MAIL_USERNAME = MailConfig.MAIL_USERNAME,\n    MAIL_PASSWORD = MailConfig.MAIL_PASSWORD,\n    MAIL_FROM = MailConfig.MAIL_FROM,\n    MAIL_FROM_NAME = MailConfig.MAIL_FROM_NAME,\n    MAIL_PORT = MailConfig.MAIL_PORT,\n    MAIL_SERVER = MailConfig.MAIL_SERVER,\n    MAIL_STARTTLS = MailConfig.MAIL_STARTTLS,\n    MAIL_SSL_TLS = MailConfig.MAIL_SSL_TLS,\n    MAIL_DEBUG = MailConfig.MAIL_DEBUG,",
+        "detail": "backend.app.core.email",
+        "documentation": {}
+    },
+    {
+        "label": "fm",
+        "kind": 5,
+        "importPath": "backend.app.core.email",
+        "description": "backend.app.core.email",
+        "peekOfCode": "fm = FastMail(conf)\nasync def send_email(recipients: list, subject: str, template_name: str, context: dict):\n    message = MessageSchema(\n        subject=subject,\n        recipients=recipients,\n        template_body=context,\n        subtype=MessageType.html\n    )\n    await fm.send_message(message, template_name=template_name)",
+        "detail": "backend.app.core.email",
+        "documentation": {}
+    },
+    {
+        "label": "pwd_context",
+        "kind": 5,
+        "importPath": "backend.app.core.security",
+        "description": "backend.app.core.security",
+        "peekOfCode": "pwd_context = CryptContext(\n    schemes=[\"argon2\"],\n    deprecated=\"auto\"\n)\nasync def get_password_hash(password: str) -> str:\n    return pwd_context.hash(password) \nasync def verify_password(plain_password: str, hashed_password: str) -> bool:\n    return pwd_context.verify(plain_password, hashed_password)\nasync def revoke_session_token(response):\n    response.set_cookie(",
+        "detail": "backend.app.core.security",
+        "documentation": {}
+    },
+    {
+        "label": "verify_verification",
+        "kind": 2,
+        "importPath": "backend.app.middleware.auth_middleware",
+        "description": "backend.app.middleware.auth_middleware",
+        "peekOfCode": "def verify_verification(cookie_name: str = \"verificationToken\"):\n    async def dependency(request: Request):\n        token = request.cookies.get(cookie_name)\n        if not token:\n            raise HTTPException(\n                status_code=status.HTTP_401_UNAUTHORIZED,\n                detail=\"Not authenticated\"\n            )\n        return await validation_token(token)\n    return dependency",
+        "detail": "backend.app.middleware.auth_middleware",
+        "documentation": {}
+    },
+    {
+        "label": "RefreshToken",
+        "kind": 6,
+        "importPath": "backend.app.models.user",
+        "description": "backend.app.models.user",
+        "peekOfCode": "class RefreshToken(SQLModel, table=True):\n    __tablename__ = \"refresh_tokens\"\n    id: int = Field(default=None, primary_key=True)\n    token: str = Field(index=True, nullable=False, unique=True)\n    user_id: int = Field(foreign_key=\"users.id\", nullable=False)\n    created_at: datetime = Field(default_factory=datetime.utcnow, nullable=False)\n    expires_at: datetime = Field(nullable=False)\n    user: \"User\" = Relationship(back_populates=\"refresh_tokens\")\nclass User(SQLModel, table=True):\n    __tablename__ = \"users\"",
+        "detail": "backend.app.models.user",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "kind": 6,
+        "importPath": "backend.app.models.user",
+        "description": "backend.app.models.user",
+        "peekOfCode": "class User(SQLModel, table=True):\n    __tablename__ = \"users\"\n    id: int = Field(default=None, primary_key=True)\n    first_name: str = Field(nullable=False)\n    last_name: str = Field(nullable=True)\n    email: str = Field(index=True, nullable=False)\n    password_hash: str = Field(exclude=True, nullable=False)\n    is_verified: bool = Field(default=False)\n    verification_code: str = Field(default=None, nullable=True)\n    verification_code_expires_at: datetime = Field(default=None, nullable=True)",
+        "detail": "backend.app.models.user",
+        "documentation": {}
+    },
+    {
+        "label": "UserModel",
+        "kind": 6,
+        "importPath": "backend.app.schemas.user",
+        "description": "backend.app.schemas.user",
+        "peekOfCode": "class UserModel(BaseModel):\n    id: int\n    first_name: str\n    last_name: Optional[str] = None\n    email: EmailStr\n    is_verified: bool\n    created_at: datetime\n    updated_at: datetime\nclass UserSignUp(BaseModel):\n    first_name: str = Field(..., description=\"The first name of the user\")",
+        "detail": "backend.app.schemas.user",
+        "documentation": {}
+    },
+    {
+        "label": "UserSignUp",
+        "kind": 6,
+        "importPath": "backend.app.schemas.user",
+        "description": "backend.app.schemas.user",
+        "peekOfCode": "class UserSignUp(BaseModel):\n    first_name: str = Field(..., description=\"The first name of the user\")\n    last_name: Optional[str] = Field(None, description=\"The last name of the user\")\n    email: EmailStr = Field(..., description=\"The email address of the user\")\n    password: str = Field(..., min_length=6, description=\"The password for the user account\")\nclass UserVerify(BaseModel):\n    verification_code: str = Field(\n        ...,\n        description=\"The verification code sent to the user's email\",\n        pattern=r'^\\d{6}$'  # Ensures exactly 6 digits",
+        "detail": "backend.app.schemas.user",
+        "documentation": {}
+    },
+    {
+        "label": "UserVerify",
+        "kind": 6,
+        "importPath": "backend.app.schemas.user",
+        "description": "backend.app.schemas.user",
+        "peekOfCode": "class UserVerify(BaseModel):\n    verification_code: str = Field(\n        ...,\n        description=\"The verification code sent to the user's email\",\n        pattern=r'^\\d{6}$'  # Ensures exactly 6 digits\n    )\nclass UserLogin(BaseModel):\n    email: EmailStr = Field(..., description=\"The email address of the user\")\n    password: str = Field(..., description=\"The password for the user account\")\nclass UserPasswordResetRequest(BaseModel):",
+        "detail": "backend.app.schemas.user",
+        "documentation": {}
+    },
+    {
+        "label": "UserLogin",
+        "kind": 6,
+        "importPath": "backend.app.schemas.user",
+        "description": "backend.app.schemas.user",
+        "peekOfCode": "class UserLogin(BaseModel):\n    email: EmailStr = Field(..., description=\"The email address of the user\")\n    password: str = Field(..., description=\"The password for the user account\")\nclass UserPasswordResetRequest(BaseModel):\n    email: EmailStr = Field(..., description=\"The email address of the user\")\nclass UserPasswordReset(BaseModel):\n    new_password: str = Field(..., min_length=6, description=\"The new password for the user account\")",
+        "detail": "backend.app.schemas.user",
+        "documentation": {}
+    },
+    {
+        "label": "UserPasswordResetRequest",
+        "kind": 6,
+        "importPath": "backend.app.schemas.user",
+        "description": "backend.app.schemas.user",
+        "peekOfCode": "class UserPasswordResetRequest(BaseModel):\n    email: EmailStr = Field(..., description=\"The email address of the user\")\nclass UserPasswordReset(BaseModel):\n    new_password: str = Field(..., min_length=6, description=\"The new password for the user account\")",
+        "detail": "backend.app.schemas.user",
+        "documentation": {}
+    },
+    {
+        "label": "UserPasswordReset",
+        "kind": 6,
+        "importPath": "backend.app.schemas.user",
+        "description": "backend.app.schemas.user",
+        "peekOfCode": "class UserPasswordReset(BaseModel):\n    new_password: str = Field(..., min_length=6, description=\"The new password for the user account\")",
+        "detail": "backend.app.schemas.user",
+        "documentation": {}
+    },
+    {
+        "label": "logger",
+        "kind": 5,
+        "importPath": "backend.app.utils.logger",
+        "description": "backend.app.utils.logger",
+        "peekOfCode": "logger = logging.getLogger()\n# create formatter\nformatter = logging.Formatter(\n    fmt=\"%(asctime)s - %(levelname)s - %(message)s\",\n)\n# create handlers\nstream_handler = logging.StreamHandler(sys.stdout)\nfile_handler = logging.FileHandler(\"app.log\")\n# set formatters\nstream_handler.setFormatter(formatter)",
+        "detail": "backend.app.utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "formatter",
+        "kind": 5,
+        "importPath": "backend.app.utils.logger",
+        "description": "backend.app.utils.logger",
+        "peekOfCode": "formatter = logging.Formatter(\n    fmt=\"%(asctime)s - %(levelname)s - %(message)s\",\n)\n# create handlers\nstream_handler = logging.StreamHandler(sys.stdout)\nfile_handler = logging.FileHandler(\"app.log\")\n# set formatters\nstream_handler.setFormatter(formatter)\nfile_handler.setFormatter(formatter)\n# add handlers to the logger",
+        "detail": "backend.app.utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "stream_handler",
+        "kind": 5,
+        "importPath": "backend.app.utils.logger",
+        "description": "backend.app.utils.logger",
+        "peekOfCode": "stream_handler = logging.StreamHandler(sys.stdout)\nfile_handler = logging.FileHandler(\"app.log\")\n# set formatters\nstream_handler.setFormatter(formatter)\nfile_handler.setFormatter(formatter)\n# add handlers to the logger\nlogger.handlers = [stream_handler, file_handler]\n# set log-level\nlogger.setLevel(logging.INFO)\n# Silence watchfiles spam",
+        "detail": "backend.app.utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "file_handler",
+        "kind": 5,
+        "importPath": "backend.app.utils.logger",
+        "description": "backend.app.utils.logger",
+        "peekOfCode": "file_handler = logging.FileHandler(\"app.log\")\n# set formatters\nstream_handler.setFormatter(formatter)\nfile_handler.setFormatter(formatter)\n# add handlers to the logger\nlogger.handlers = [stream_handler, file_handler]\n# set log-level\nlogger.setLevel(logging.INFO)\n# Silence watchfiles spam\nlogging.getLogger(\"watchfiles\").propagate = False",
+        "detail": "backend.app.utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "logger.handlers",
+        "kind": 5,
+        "importPath": "backend.app.utils.logger",
+        "description": "backend.app.utils.logger",
+        "peekOfCode": "logger.handlers = [stream_handler, file_handler]\n# set log-level\nlogger.setLevel(logging.INFO)\n# Silence watchfiles spam\nlogging.getLogger(\"watchfiles\").propagate = False",
+        "detail": "backend.app.utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "logging.getLogger(\"watchfiles\").propagate",
+        "kind": 5,
+        "importPath": "backend.app.utils.logger",
+        "description": "backend.app.utils.logger",
+        "peekOfCode": "logging.getLogger(\"watchfiles\").propagate = False",
+        "detail": "backend.app.utils.logger",
+        "documentation": {}
+    },
+    {
+        "label": "version",
+        "kind": 5,
+        "importPath": "backend.main",
+        "description": "backend.main",
+        "peekOfCode": "version = \"v1\"\napp = FastAPI(\n    version=version,\n)\n# origins = [\n#     \"http://localhost:8000\",  # your frontend\n#     \"http://127.0.0.1:8000\",\n# ]\n# app.add_middleware(\n#     CORSMiddleware,",
+        "detail": "backend.main",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "backend.main",
+        "description": "backend.main",
+        "peekOfCode": "app = FastAPI(\n    version=version,\n)\n# origins = [\n#     \"http://localhost:8000\",  # your frontend\n#     \"http://127.0.0.1:8000\",\n# ]\n# app.add_middleware(\n#     CORSMiddleware,\n#     allow_origins=origins,",
+        "detail": "backend.main",
+        "documentation": {}
+    }
+]
