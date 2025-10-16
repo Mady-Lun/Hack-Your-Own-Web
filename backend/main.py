@@ -5,6 +5,8 @@ sys.path.append(str(Path(__file__).parent))
 
 from fastapi import FastAPI
 from app.api.v1.auth import auth_router
+from app.api.v1.scan import scan_router
+from app.api.v1.test_celery import router as test_celery_router
 from app.core.db import async_engine
 from sqlalchemy import text
 # from fastapi.middleware.cors import CORSMiddleware
@@ -12,6 +14,8 @@ from sqlalchemy import text
 
 version = "v1"
 app = FastAPI(
+    title="Hack Your Own Web API",
+    description="Security scanning platform API with OWASP ZAP integration",
     version=version,
 )
 
@@ -28,7 +32,25 @@ app = FastAPI(
 #     allow_headers=["*"],
 # )
 
-app.include_router(auth_router, prefix=f"/api/{version}/auth", tags=["auth"])
+# Include routers
+app.include_router(auth_router, prefix=f"/api/{version}/auth", tags=["Authentication"])
+app.include_router(scan_router, prefix=f"/api/{version}/scans", tags=["Security Scans"])
+app.include_router(test_celery_router, prefix=f"/api/{version}/test-celery", tags=["Celery Testing"])
+
+
+@app.get("/")
+async def root():
+    return {
+        "message": "Hack Your Own Web API",
+        "version": version,
+        "docs": "/docs",
+        "health": "/health"
+    }
+
+
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy"}
 
 
 @app.on_event("startup")
