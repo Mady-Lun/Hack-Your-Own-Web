@@ -1,10 +1,13 @@
 import time
-from typing import Dict, Any, Optional, List, Callable
+from typing import Dict, Any, Optional, List, Callable, TYPE_CHECKING
 from zapv2 import ZAPv2
 import docker
 from docker.errors import NotFound, APIError
 from app.utils.logger import logger
 from app.core.config import ZAPConfig
+
+if TYPE_CHECKING:
+    from docker.models.containers import Container
 
 
 class ZAPScanner:
@@ -24,8 +27,16 @@ class ZAPScanner:
         self.zap_port = zap_port
         self.zap_api_key = zap_api_key
         self.use_docker = use_docker
-        self.docker_container = None
-        self.zap = None
+        self.docker_container: Optional["Container"] = None
+        self.zap: Optional[ZAPv2] = None
+
+    def _ensure_zap_initialized(self) -> ZAPv2:
+        """Ensure ZAP instance is initialized, raise exception if not."""
+        if self.zap is None:
+            raise RuntimeError(
+                "ZAP instance not initialized. Call start_zap_instance() first."
+            )
+        return self.zap
 
     def start_zap_instance(self) -> bool:
         """Start a ZAP instance (Docker or connect to existing)"""
@@ -107,7 +118,7 @@ class ZAPScanner:
             self.stop_zap_instance()
             return False
 
-    def stop_zap_instance(self):
+    def stop_zap_instance(self) -> None:
         """Stop ZAP instance"""
         try:
             if self.docker_container:
@@ -127,14 +138,15 @@ class ZAPScanner:
         Run spider scan to discover URLs
         Returns: scan_id
         """
+        zap = self._ensure_zap_initialized()
         logger.info(f"Starting spider scan for {target_url}")
 
         # Start spider
-        scan_id = self.zap.spider.scan(target_url, maxchildren=None, recurse=True)
+        scan_id = zap.spider.scan(target_url, maxchildren=None, recurse=True)
 
         # Monitor progress
-        while int(self.zap.spider.status(scan_id)) < 100:
-            progress = int(self.zap.spider.status(scan_id))
+        while int(zap.spider.status(scan_id)) < 100:
+            progress = int(zap.spider.status(scan_id))
             if progress_callback:
                 progress_callback(progress, f"Spidering: {progress}%")
             time.sleep(2)
@@ -146,16 +158,17 @@ class ZAPScanner:
         self,
         target_url: str,
         progress_callback: Optional[Callable[[int, str], None]] = None
-    ):
+    ) -> None:
         """Wait for passive scan to complete"""
+        zap = self._ensure_zap_initialized()
         logger.info(f"Running passive scan for {target_url}")
 
         # Access the URL to trigger passive scan
-        self.zap.core.access_url(target_url, followredirects=True)
+        zap.core.access_url(target_url, followredirects=True)
 
         # Wait for passive scan to complete
-        while int(self.zap.pscan.records_to_scan) > 0:
-            remaining = int(self.zap.pscan.records_to_scan)
+        while int(zap.pscan.records_to_scan) > 0:
+            remaining = int(zap.pscan.records_to_scan)
             if progress_callback:
                 progress_callback(0, f"Passive scan: {remaining} records remaining")
             time.sleep(2)
@@ -171,14 +184,15 @@ class ZAPScanner:
         Run active scan
         Returns: scan_id
         """
+        zap = self._ensure_zap_initialized()
         logger.info(f"Starting active scan for {target_url}")
 
         # Start active scan
-        scan_id = self.zap.ascan.scan(target_url)
+        scan_id = zap.ascan.scan(target_url)
 
         # Monitor progress
-        while int(self.zap.ascan.status(scan_id)) < 100:
-            progress = int(self.zap.ascan.status(scan_id))
+        while int(zap.ascan.status(scan_id)) < 100:
+            progress = int(zap.ascan.status(scan_id))
             if progress_callback:
                 progress_callback(progress, f"Active scanning: {progress}%")
             time.sleep(5)
@@ -188,11 +202,12 @@ class ZAPScanner:
 
     def get_alerts(self, base_url: Optional[str] = None) -> List[Dict[str, Any]]:
         """Get all alerts from ZAP"""
+        zap = self._ensure_zap_initialized()
         try:
             if base_url:
-                alerts = self.zap.core.alerts(baseurl=base_url)
+                alerts = zap.core.alerts(baseurl=base_url)
             else:
-                alerts = self.zap.core.alerts()
+                alerts = zap.core.alerts()
             return alerts
         except Exception as e:
             logger.error(f"Failed to get alerts: {e}")
