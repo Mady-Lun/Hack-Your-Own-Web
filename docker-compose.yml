@@ -101,7 +101,7 @@ services:
       - hyow-network
     restart: unless-stopped
 
-  # Flower - Celery monitoring (Optional)
+  # Flower - Celery monitoring 
   flower:
     build:
       context: ./backend
