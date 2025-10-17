@@ -18,13 +18,11 @@ def test_multiplication_task():
 
     base_url = "http://localhost:8000/api/v1/test-celery"
 
-    print("=" * 60)
     print("Testing Celery Background Task Processing")
-    print("=" * 60)
     print()
 
     # Step 1: Start the task
-    print("Starting multiplication task (7 x 8 with 10 seconds processing)...")
+    print("Starting multiplication task: 7 x 8 with 10 seconds processing")
     try:
         response = requests.post(
             f"{base_url}/multiply",
@@ -38,22 +36,19 @@ def test_multiplication_task():
         task_data = response.json()
 
         task_id = task_data["task_id"]
-        print(f"Task started successfully!")
-        print(f"   Task ID: {task_id}")
-        print(f"   Status: {task_data['status']}")
+        print(f"Task started - ID: {task_id}")
         print()
 
     except requests.exceptions.ConnectionError:
         print("ERROR: Could not connect to the API server.")
-        print("   Make sure the FastAPI app is running on http://localhost:8000")
+        print("Make sure the FastAPI app is running on http://localhost:8000")
         return
     except Exception as e:
         print(f"ERROR starting task: {e}")
         return
 
     # Step 2: Monitor task progress
-    print("Monitoring task progress...")
-    print("-" * 60)
+    print("Processing...")
 
     while True:
         try:
@@ -64,42 +59,31 @@ def test_multiplication_task():
             state = status_data["state"]
 
             if state == "PENDING":
-                print("Task is pending (waiting in queue)...")
+                print("Waiting in queue...")
 
             elif state == "PROGRESS":
                 info = status_data.get("info", {})
-                current = info.get("current", 0)
-                total = info.get("total", 0)
-                status_msg = info.get("status", "Processing...")
                 progress = info.get("progress_percent", 0)
+                status_msg = info.get("status", "Processing...")
 
-                # Create progress bar
-                bar_length = 30
-                filled = int(bar_length * progress / 100)
-                bar = "#" * filled + "-" * (bar_length - filled)
-
-                print(f"\r   [{bar}] {progress}% - {status_msg}", end="", flush=True)
+                print(f"\r{progress}% - {status_msg}", end="", flush=True)
 
             elif state == "SUCCESS":
                 print("\n")
-                print("Task completed successfully!")
                 result = status_data.get("result", {})
-                print("-" * 60)
-                print(f"   Result: {result.get('x')} x {result.get('y')} = {result.get('result')}")
-                print(f"   Message: {result.get('message')}")
-                print(f"   Processing time: {result.get('processing_time_seconds')} seconds")
-                print("-" * 60)
+                print(f"Result: {result.get('x')} x {result.get('y')} = {result.get('result')}")
+                print(f"Processing time: {result.get('processing_time_seconds')} seconds")
                 break
 
             elif state == "FAILURE":
                 print("\n")
                 print("Task failed!")
                 info = status_data.get("info", {})
-                print(f"   Error: {info}")
+                print(f"Error: {info}")
                 break
 
             else:
-                print(f"   Unknown state: {state}")
+                print(f"Unknown state: {state}")
 
             time.sleep(1)
 
@@ -108,9 +92,7 @@ def test_multiplication_task():
             break
 
     print()
-    print("=" * 60)
     print("Test completed!")
-    print("=" * 60)
 
 
 if __name__ == "__main__":

@@ -10,12 +10,6 @@ from app.tasks.test_tasks import multiply_with_sleep
 router = APIRouter()
 
 
-@router.get("/health")
-def health_check():
-    """Simple health check to verify the router is working"""
-    return {"status": "ok", "message": "Test Celery router is working"}
-
-
 class MultiplyRequest(BaseModel):
     x: int = Field(..., description="First number to multiply")
     y: int = Field(..., description="Second number to multiply")
@@ -39,10 +33,6 @@ class TaskStatusResponse(BaseModel):
 def start_multiplication_task(request: MultiplyRequest):
     """
     Start a background multiplication task with sleep delay.
-
-    This endpoint demonstrates Celery's background task processing.
-    It will multiply two numbers after sleeping for the specified duration,
-    updating progress along the way.
     """
     try:
         task = multiply_with_sleep.apply_async(
@@ -68,9 +58,6 @@ def start_multiplication_task(request: MultiplyRequest):
 def get_task_status(task_id: str):
     """
     Get the status of a background task.
-
-    Returns the current state (PENDING, PROGRESS, SUCCESS, FAILURE)
-    and any available result or progress information.
     """
     task_result = AsyncResult(task_id, app=celery_app)
 
@@ -100,34 +87,3 @@ def get_task_status(task_id: str):
         }
 
     return response
-
-
-@router.get("/result/{task_id}")
-def get_task_result(task_id: str):
-    """
-    Get the final result of a completed task.
-    Raises an error if the task is not yet complete.
-    """
-    task_result = AsyncResult(task_id, app=celery_app)
-
-    if not task_result.ready():
-        raise HTTPException(
-            status_code=202,
-            detail={
-                "message": "Task is still processing",
-                "state": task_result.state,
-                "info": task_result.info if task_result.state == 'PROGRESS' else None
-            }
-        )
-
-    if task_result.failed():
-        raise HTTPException(
-            status_code=500,
-            detail={"message": "Task failed", "error": str(task_result.info)}
-        )
-
-    return {
-        "task_id": task_id,
-        "state": task_result.state,
-        "result": task_result.result
-    }
