@@ -1,38 +1,38 @@
-from sqlmodel import SQLModel, Field, Relationship
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey
+from sqlalchemy.orm import relationship, declarative_base
 from datetime import datetime
-from typing import List
 
+Base = declarative_base()
 
-class RefreshToken(SQLModel, table=True):
+class RefreshToken(Base):
     __tablename__ = "refresh_tokens"
-    id: int = Field(default=None, primary_key=True)
-    token: str = Field(index=True, nullable=False, unique=True)
-    user_id: int = Field(foreign_key="users.id", nullable=False)
-    created_at: datetime = Field(default_factory=datetime.utcnow, nullable=False)
-    expires_at: datetime = Field(nullable=False)
-    user: "User" = Relationship(back_populates="refresh_tokens")
+    id= Column(Integer, primary_key=True, index=True)
+    token= Column(String, nullable=False, unique=True, index=True)
+    user_id= Column(Integer, ForeignKey("users.id"), nullable=False)
+    created_at= Column(DateTime, default=datetime.utcnow, nullable=False)
+    expires_at= Column(DateTime, nullable=False)
+
+    # relationship
+    user = relationship("User", back_populates="refresh_tokens")
 
 
-class User(SQLModel, table=True):
+class User(Base):
     __tablename__ = "users"
-    id: int = Field(default=None, primary_key=True)
-    first_name: str = Field(nullable=False)
-    last_name: str = Field(nullable=True)
-    email: str = Field(index=True, nullable=False)
-    password_hash: str = Field(exclude=True, nullable=False)
-    is_verified: bool = Field(default=False)
-    verification_code: str = Field(default=None, nullable=True)
-    verification_code_expires_at: datetime = Field(default=None, nullable=True)
-    created_at: datetime = Field(default_factory=datetime.utcnow, nullable=False)
-    updated_at: datetime = Field(default_factory=datetime.utcnow, nullable=False)
-    refresh_tokens: List[RefreshToken] = Relationship(
+    id= Column(Integer, primary_key=True, index=True)
+    first_name= Column(String, nullable=False)
+    last_name= Column(String, nullable=True)
+    email= Column(String, unique=True, index=True, nullable=False)
+    password_hash= Column(String, nullable=False)
+    is_verified= Column(Boolean, default=False)
+    verification_code= Column(String, nullable=True)
+    verification_code_expires_at= Column(DateTime, nullable=True)
+    created_at= Column(DateTime, default=datetime.utcnow, nullable=False)
+    updated_at= Column(DateTime, default=datetime.utcnow, nullable=False)
+
+    # relationships
+    refresh_tokens = relationship(
+        "RefreshToken",
         back_populates="user",
-        sa_relationship_kwargs={
-            "cascade": "all, delete-orphan",
-            "passive_deletes": True,
-        },
+        cascade="all, delete-orphan",
+        passive_deletes=True,
     )
-
-
-def __repr__(self):
-    return f"<User {self.email}>"
