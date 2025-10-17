@@ -1,8 +1,8 @@
 from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey
-from sqlalchemy.orm import relationship, declarative_base
+from sqlalchemy.orm import relationship
 from datetime import datetime
+from .base import Base
 
-Base = declarative_base()
 
 class RefreshToken(Base):
     __tablename__ = "refresh_tokens"
@@ -32,6 +32,13 @@ class User(Base):
     # relationships
     refresh_tokens = relationship(
         "RefreshToken",
+        back_populates="user",
+        cascade="all, delete-orphan",
+        passive_deletes=True,
+    )
+
+    sites = relationship(
+        "Site",
         back_populates="user",
         cascade="all, delete-orphan",
         passive_deletes=True,

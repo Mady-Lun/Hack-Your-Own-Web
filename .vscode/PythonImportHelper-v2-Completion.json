@@ -16,150 +16,6 @@
         "documentation": {}
     },
     {
-        "label": "Sequence",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Union",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Sequence",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Union",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Sequence",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Union",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Sequence",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Union",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Sequence",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Union",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Sequence",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Union",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Sequence",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Union",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Sequence",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Union",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Sequence",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "Union",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
-        "documentation": {}
-    },
-    {
         "label": "AsyncGenerator",
         "importPath": "typing",
         "description": "typing",
@@ -181,78 +37,6 @@
         "description": "typing",
         "isExtraImport": true,
         "detail": "typing",
-        "documentation": {}
-    },
-    {
-        "label": "op",
-        "importPath": "alembic",
-        "description": "alembic",
-        "isExtraImport": true,
-        "detail": "alembic",
-        "documentation": {}
-    },
-    {
-        "label": "op",
-        "importPath": "alembic",
-        "description": "alembic",
-        "isExtraImport": true,
-        "detail": "alembic",
-        "documentation": {}
-    },
-    {
-        "label": "op",
-        "importPath": "alembic",
-        "description": "alembic",
-        "isExtraImport": true,
-        "detail": "alembic",
-        "documentation": {}
-    },
-    {
-        "label": "op",
-        "importPath": "alembic",
-        "description": "alembic",
-        "isExtraImport": true,
-        "detail": "alembic",
-        "documentation": {}
-    },
-    {
-        "label": "op",
-        "importPath": "alembic",
-        "description": "alembic",
-        "isExtraImport": true,
-        "detail": "alembic",
-        "documentation": {}
-    },
-    {
-        "label": "op",
-        "importPath": "alembic",
-        "description": "alembic",
-        "isExtraImport": true,
-        "detail": "alembic",
-        "documentation": {}
-    },
-    {
-        "label": "op",
-        "importPath": "alembic",
-        "description": "alembic",
-        "isExtraImport": true,
-        "detail": "alembic",
-        "documentation": {}
-    },
-    {
-        "label": "op",
-        "importPath": "alembic",
-        "description": "alembic",
-        "isExtraImport": true,
-        "detail": "alembic",
-        "documentation": {}
-    },
-    {
-        "label": "op",
-        "importPath": "alembic",
-        "description": "alembic",
-        "isExtraImport": true,
-        "detail": "alembic",
         "documentation": {}
     },
     {
@@ -353,6 +137,54 @@
         "documentation": {}
     },
     {
+        "label": "Column",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Integer",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "String",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Boolean",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "DateTime",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "ForeignKey",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
         "label": "text",
         "importPath": "sqlalchemy",
         "description": "sqlalchemy",
@@ -367,30 +199,6 @@
         "importPath": "sqlmodel",
         "description": "sqlmodel",
         "detail": "sqlmodel",
-        "documentation": {}
-    },
-    {
-        "label": "SQLModel",
-        "importPath": "sqlmodel",
-        "description": "sqlmodel",
-        "isExtraImport": true,
-        "detail": "sqlmodel",
-        "documentation": {}
-    },
-    {
-        "label": "postgresql",
-        "importPath": "sqlalchemy.dialects",
-        "description": "sqlalchemy.dialects",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.dialects",
-        "documentation": {}
-    },
-    {
-        "label": "postgresql",
-        "importPath": "sqlalchemy.dialects",
-        "description": "sqlalchemy.dialects",
-        "isExtraImport": true,
-        "detail": "sqlalchemy.dialects",
         "documentation": {}
     },
     {
@@ -443,14 +251,6 @@
         "documentation": {}
     },
     {
-        "label": "User",
-        "importPath": "app.models.user",
-        "description": "app.models.user",
-        "isExtraImport": true,
-        "detail": "app.models.user",
-        "documentation": {}
-    },
-    {
         "label": "Config",
         "importPath": "app.core.config",
         "description": "app.core.config",
@@ -480,6 +280,14 @@
         "description": "app.core.config",
         "isExtraImport": true,
         "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "Base",
+        "importPath": "app.models",
+        "description": "app.models",
+        "isExtraImport": true,
+        "detail": "app.models",
         "documentation": {}
     },
     {
@@ -635,6 +443,14 @@
         "documentation": {}
     },
     {
+        "label": "declarative_base",
+        "importPath": "sqlalchemy.orm",
+        "description": "sqlalchemy.orm",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.orm",
+        "documentation": {}
+    },
+    {
         "label": "relationship",
         "importPath": "sqlalchemy.orm",
         "description": "sqlalchemy.orm",
@@ -643,7 +459,7 @@
         "documentation": {}
     },
     {
-        "label": "declarative_base",
+        "label": "relationship",
         "importPath": "sqlalchemy.orm",
         "description": "sqlalchemy.orm",
         "isExtraImport": true,
@@ -716,6 +532,14 @@
     },
     {
         "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
         "importPath": "datetime",
         "description": "datetime",
         "isExtraImport": true,
@@ -866,181 +690,19 @@
     {
         "label": "upgrade",
         "kind": 2,
-        "importPath": "backend.alembic.versions.001630e9bead_add_password_hash",
-        "description": "backend.alembic.versions.001630e9bead_add_password_hash",
-        "peekOfCode": "def upgrade() -> None:\n    \"\"\"Upgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.add_column('users', sa.Column('password_hash', sqlmodel.sql.sqltypes.AutoString(), nullable=False))\n    # ### end Alembic commands ###\ndef downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_column('users', 'password_hash')\n    # ### end Alembic commands ###",
-        "detail": "backend.alembic.versions.001630e9bead_add_password_hash",
+        "importPath": "backend.alembic.versions.4e45bd14838d_fix_and_initial_migration_after_",
+        "description": "backend.alembic.versions.4e45bd14838d_fix_and_initial_migration_after_",
+        "peekOfCode": "def upgrade() -> None:\n    \"\"\"Upgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.create_table('users',\n    sa.Column('id', sa.Integer(), nullable=False),\n    sa.Column('first_name', sa.String(), nullable=False),\n    sa.Column('last_name', sa.String(), nullable=True),\n    sa.Column('email', sa.String(), nullable=False),\n    sa.Column('password_hash', sa.String(), nullable=False),\n    sa.Column('is_verified', sa.Boolean(), nullable=True),",
+        "detail": "backend.alembic.versions.4e45bd14838d_fix_and_initial_migration_after_",
         "documentation": {}
     },
     {
         "label": "downgrade",
         "kind": 2,
-        "importPath": "backend.alembic.versions.001630e9bead_add_password_hash",
-        "description": "backend.alembic.versions.001630e9bead_add_password_hash",
-        "peekOfCode": "def downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_column('users', 'password_hash')\n    # ### end Alembic commands ###",
-        "detail": "backend.alembic.versions.001630e9bead_add_password_hash",
-        "documentation": {}
-    },
-    {
-        "label": "upgrade",
-        "kind": 2,
-        "importPath": "backend.alembic.versions.2777c59927b2_add_the_verification_code_and_the_reset_",
-        "description": "backend.alembic.versions.2777c59927b2_add_the_verification_code_and_the_reset_",
-        "peekOfCode": "def upgrade() -> None:\n    \"\"\"Upgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.add_column('users', sa.Column('verification_code', sqlmodel.sql.sqltypes.AutoString(), nullable=True))\n    op.add_column('users', sa.Column('verification_code_expires_at', sa.DateTime(), nullable=True))\n    op.add_column('users', sa.Column('reset_code', sqlmodel.sql.sqltypes.AutoString(), nullable=True))\n    op.add_column('users', sa.Column('reset_code_expires_at', sa.DateTime(), nullable=True))\n    # ### end Alembic commands ###\ndef downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"",
-        "detail": "backend.alembic.versions.2777c59927b2_add_the_verification_code_and_the_reset_",
-        "documentation": {}
-    },
-    {
-        "label": "downgrade",
-        "kind": 2,
-        "importPath": "backend.alembic.versions.2777c59927b2_add_the_verification_code_and_the_reset_",
-        "description": "backend.alembic.versions.2777c59927b2_add_the_verification_code_and_the_reset_",
-        "peekOfCode": "def downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_column('users', 'reset_code_expires_at')\n    op.drop_column('users', 'reset_code')\n    op.drop_column('users', 'verification_code_expires_at')\n    op.drop_column('users', 'verification_code')\n    # ### end Alembic commands ###",
-        "detail": "backend.alembic.versions.2777c59927b2_add_the_verification_code_and_the_reset_",
-        "documentation": {}
-    },
-    {
-        "label": "upgrade",
-        "kind": 2,
-        "importPath": "backend.alembic.versions.2cf55e0ae374_set_last_name_as_optional",
-        "description": "backend.alembic.versions.2cf55e0ae374_set_last_name_as_optional",
-        "peekOfCode": "def upgrade() -> None:\n    \"\"\"Upgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.alter_column('users', 'last_name',\n               existing_type=sa.VARCHAR(),\n               nullable=True)\n    # ### end Alembic commands ###\ndef downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###",
-        "detail": "backend.alembic.versions.2cf55e0ae374_set_last_name_as_optional",
-        "documentation": {}
-    },
-    {
-        "label": "downgrade",
-        "kind": 2,
-        "importPath": "backend.alembic.versions.2cf55e0ae374_set_last_name_as_optional",
-        "description": "backend.alembic.versions.2cf55e0ae374_set_last_name_as_optional",
-        "peekOfCode": "def downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.alter_column('users', 'last_name',\n               existing_type=sa.VARCHAR(),\n               nullable=False)\n    # ### end Alembic commands ###",
-        "detail": "backend.alembic.versions.2cf55e0ae374_set_last_name_as_optional",
-        "documentation": {}
-    },
-    {
-        "label": "upgrade",
-        "kind": 2,
-        "importPath": "backend.alembic.versions.4ff17b668021_change_orm_to_sqlalchemy",
-        "description": "backend.alembic.versions.4ff17b668021_change_orm_to_sqlalchemy",
-        "peekOfCode": "def upgrade() -> None:\n    \"\"\"Upgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_index(op.f('ix_refresh_tokens_token'), table_name='refresh_tokens')\n    op.drop_table('refresh_tokens')\n    op.drop_index(op.f('ix_users_email'), table_name='users')\n    op.drop_table('users')\n    # ### end Alembic commands ###\ndef downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"",
-        "detail": "backend.alembic.versions.4ff17b668021_change_orm_to_sqlalchemy",
-        "documentation": {}
-    },
-    {
-        "label": "downgrade",
-        "kind": 2,
-        "importPath": "backend.alembic.versions.4ff17b668021_change_orm_to_sqlalchemy",
-        "description": "backend.alembic.versions.4ff17b668021_change_orm_to_sqlalchemy",
-        "peekOfCode": "def downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.create_table('users',\n    sa.Column('id', sa.INTEGER(), server_default=sa.text(\"nextval('users_id_seq'::regclass)\"), autoincrement=True, nullable=False),\n    sa.Column('email', sa.VARCHAR(), autoincrement=False, nullable=False),\n    sa.Column('is_verified', sa.BOOLEAN(), autoincrement=False, nullable=False),\n    sa.Column('created_at', postgresql.TIMESTAMP(), autoincrement=False, nullable=False),\n    sa.Column('updated_at', postgresql.TIMESTAMP(), autoincrement=False, nullable=False),\n    sa.Column('password_hash', sa.VARCHAR(), autoincrement=False, nullable=False),",
-        "detail": "backend.alembic.versions.4ff17b668021_change_orm_to_sqlalchemy",
-        "documentation": {}
-    },
-    {
-        "label": "upgrade",
-        "kind": 2,
-        "importPath": "backend.alembic.versions.5ae0550c18b4_fix_the_refreshtoken_and_user_",
-        "description": "backend.alembic.versions.5ae0550c18b4_fix_the_refreshtoken_and_user_",
-        "peekOfCode": "def upgrade() -> None:\n    \"\"\"Upgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.create_foreign_key(None, 'refresh_tokens', 'users', ['user_id'], ['id'])\n    # ### end Alembic commands ###\ndef downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_constraint(None, 'refresh_tokens', type_='foreignkey')\n    # ### end Alembic commands ###",
-        "detail": "backend.alembic.versions.5ae0550c18b4_fix_the_refreshtoken_and_user_",
-        "documentation": {}
-    },
-    {
-        "label": "downgrade",
-        "kind": 2,
-        "importPath": "backend.alembic.versions.5ae0550c18b4_fix_the_refreshtoken_and_user_",
-        "description": "backend.alembic.versions.5ae0550c18b4_fix_the_refreshtoken_and_user_",
-        "peekOfCode": "def downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_constraint(None, 'refresh_tokens', type_='foreignkey')\n    # ### end Alembic commands ###",
-        "detail": "backend.alembic.versions.5ae0550c18b4_fix_the_refreshtoken_and_user_",
-        "documentation": {}
-    },
-    {
-        "label": "upgrade",
-        "kind": 2,
-        "importPath": "backend.alembic.versions.60cade7625d8_add_firstname_and_lastname_field",
-        "description": "backend.alembic.versions.60cade7625d8_add_firstname_and_lastname_field",
-        "peekOfCode": "def upgrade() -> None:\n    \"\"\"Upgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.add_column('users', sa.Column('first_name', sqlmodel.sql.sqltypes.AutoString(), nullable=False))\n    op.add_column('users', sa.Column('last_name', sqlmodel.sql.sqltypes.AutoString(), nullable=False))\n    # ### end Alembic commands ###\ndef downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_column('users', 'last_name')",
-        "detail": "backend.alembic.versions.60cade7625d8_add_firstname_and_lastname_field",
-        "documentation": {}
-    },
-    {
-        "label": "downgrade",
-        "kind": 2,
-        "importPath": "backend.alembic.versions.60cade7625d8_add_firstname_and_lastname_field",
-        "description": "backend.alembic.versions.60cade7625d8_add_firstname_and_lastname_field",
-        "peekOfCode": "def downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_column('users', 'last_name')\n    op.drop_column('users', 'first_name')\n    # ### end Alembic commands ###",
-        "detail": "backend.alembic.versions.60cade7625d8_add_firstname_and_lastname_field",
-        "documentation": {}
-    },
-    {
-        "label": "upgrade",
-        "kind": 2,
-        "importPath": "backend.alembic.versions.656b94509927_remove_reset_code_and_its_expiration_",
-        "description": "backend.alembic.versions.656b94509927_remove_reset_code_and_its_expiration_",
-        "peekOfCode": "def upgrade() -> None:\n    \"\"\"Upgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_column('users', 'reset_code_expires_at')\n    op.drop_column('users', 'reset_code')\n    # ### end Alembic commands ###\ndef downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.add_column('users', sa.Column('reset_code', sa.VARCHAR(), autoincrement=False, nullable=True))",
-        "detail": "backend.alembic.versions.656b94509927_remove_reset_code_and_its_expiration_",
-        "documentation": {}
-    },
-    {
-        "label": "downgrade",
-        "kind": 2,
-        "importPath": "backend.alembic.versions.656b94509927_remove_reset_code_and_its_expiration_",
-        "description": "backend.alembic.versions.656b94509927_remove_reset_code_and_its_expiration_",
-        "peekOfCode": "def downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.add_column('users', sa.Column('reset_code', sa.VARCHAR(), autoincrement=False, nullable=True))\n    op.add_column('users', sa.Column('reset_code_expires_at', postgresql.TIMESTAMP(), autoincrement=False, nullable=True))\n    # ### end Alembic commands ###",
-        "detail": "backend.alembic.versions.656b94509927_remove_reset_code_and_its_expiration_",
-        "documentation": {}
-    },
-    {
-        "label": "upgrade",
-        "kind": 2,
-        "importPath": "backend.alembic.versions.72b4e0ea9059_init",
-        "description": "backend.alembic.versions.72b4e0ea9059_init",
-        "peekOfCode": "def upgrade() -> None:\n    \"\"\"Upgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.create_table('users',\n    sa.Column('id', sa.Integer(), nullable=False),\n    sa.Column('email', sqlmodel.sql.sqltypes.AutoString(), nullable=False),\n    sa.Column('is_verified', sa.Boolean(), nullable=False),\n    sa.Column('created_at', sa.DateTime(), nullable=False),\n    sa.Column('updated_at', sa.DateTime(), nullable=False),\n    sa.PrimaryKeyConstraint('id')",
-        "detail": "backend.alembic.versions.72b4e0ea9059_init",
-        "documentation": {}
-    },
-    {
-        "label": "downgrade",
-        "kind": 2,
-        "importPath": "backend.alembic.versions.72b4e0ea9059_init",
-        "description": "backend.alembic.versions.72b4e0ea9059_init",
-        "peekOfCode": "def downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_index(op.f('ix_users_email'), table_name='users')\n    op.drop_table('users')\n    # ### end Alembic commands ###",
-        "detail": "backend.alembic.versions.72b4e0ea9059_init",
-        "documentation": {}
-    },
-    {
-        "label": "upgrade",
-        "kind": 2,
-        "importPath": "backend.alembic.versions.badc1dd6ae5e_add_refreshtoken_model",
-        "description": "backend.alembic.versions.badc1dd6ae5e_add_refreshtoken_model",
-        "peekOfCode": "def upgrade() -> None:\n    \"\"\"Upgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.create_table('refresh_tokens',\n    sa.Column('id', sa.Integer(), nullable=False),\n    sa.Column('token', sqlmodel.sql.sqltypes.AutoString(), nullable=False),\n    sa.Column('user_id', sa.Integer(), nullable=False),\n    sa.Column('created_at', sa.DateTime(), nullable=False),\n    sa.Column('expires_at', sa.DateTime(), nullable=False),\n    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),",
-        "detail": "backend.alembic.versions.badc1dd6ae5e_add_refreshtoken_model",
-        "documentation": {}
-    },
-    {
-        "label": "downgrade",
-        "kind": 2,
-        "importPath": "backend.alembic.versions.badc1dd6ae5e_add_refreshtoken_model",
-        "description": "backend.alembic.versions.badc1dd6ae5e_add_refreshtoken_model",
-        "peekOfCode": "def downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_index(op.f('ix_refresh_tokens_token'), table_name='refresh_tokens')\n    op.drop_table('refresh_tokens')\n    # ### end Alembic commands ###",
-        "detail": "backend.alembic.versions.badc1dd6ae5e_add_refreshtoken_model",
-        "documentation": {}
-    },
-    {
-        "label": "upgrade",
-        "kind": 2,
-        "importPath": "backend.alembic.versions.cb9056b6b59f_fix_the_ondelete_cascade_for_the_",
-        "description": "backend.alembic.versions.cb9056b6b59f_fix_the_ondelete_cascade_for_the_",
-        "peekOfCode": "def upgrade() -> None:\n    \"\"\"Upgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_constraint(op.f('refresh_tokens_user_id_fkey'), 'refresh_tokens', type_='foreignkey')\n    # ### end Alembic commands ###\ndef downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.create_foreign_key(op.f('refresh_tokens_user_id_fkey'), 'refresh_tokens', 'users', ['user_id'], ['id'])\n    # ### end Alembic commands ###",
-        "detail": "backend.alembic.versions.cb9056b6b59f_fix_the_ondelete_cascade_for_the_",
-        "documentation": {}
-    },
-    {
-        "label": "downgrade",
-        "kind": 2,
-        "importPath": "backend.alembic.versions.cb9056b6b59f_fix_the_ondelete_cascade_for_the_",
-        "description": "backend.alembic.versions.cb9056b6b59f_fix_the_ondelete_cascade_for_the_",
-        "peekOfCode": "def downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.create_foreign_key(op.f('refresh_tokens_user_id_fkey'), 'refresh_tokens', 'users', ['user_id'], ['id'])\n    # ### end Alembic commands ###",
-        "detail": "backend.alembic.versions.cb9056b6b59f_fix_the_ondelete_cascade_for_the_",
+        "importPath": "backend.alembic.versions.4e45bd14838d_fix_and_initial_migration_after_",
+        "description": "backend.alembic.versions.4e45bd14838d_fix_and_initial_migration_after_",
+        "peekOfCode": "def downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_index(op.f('ix_sites_id'), table_name='sites')\n    op.drop_index(op.f('ix_sites_domain'), table_name='sites')\n    op.drop_table('sites')\n    op.drop_index(op.f('ix_refresh_tokens_token'), table_name='refresh_tokens')\n    op.drop_index(op.f('ix_refresh_tokens_id'), table_name='refresh_tokens')\n    op.drop_table('refresh_tokens')\n    op.drop_index(op.f('ix_users_id'), table_name='users')",
+        "detail": "backend.alembic.versions.4e45bd14838d_fix_and_initial_migration_after_",
         "documentation": {}
     },
     {
@@ -1093,7 +755,7 @@
         "kind": 5,
         "importPath": "backend.alembic.env",
         "description": "backend.alembic.env",
-        "peekOfCode": "target_metadata = SQLModel.metadata\n# other values from the config, defined by the needs of env.py,\n# can be acquired:\n# my_important_option = config.get_main_option(\"my_important_option\")\n# ... etc.\ndef run_migrations_offline() -> None:\n    \"\"\"Run migrations in 'offline' mode.\n    This configures the context with just a URL\n    and not an Engine, though an Engine is acceptable\n    here as well.  By skipping the Engine creation",
+        "peekOfCode": "target_metadata = Base.metadata\n# other values from the config, defined by the needs of env.py,\n# can be acquired:\n# my_important_option = config.get_main_option(\"my_important_option\")\n# ... etc.\ndef run_migrations_offline() -> None:\n    \"\"\"Run migrations in 'offline' mode.\n    This configures the context with just a URL\n    and not an Engine, though an Engine is acceptable\n    here as well.  By skipping the Engine creation",
         "detail": "backend.alembic.env",
         "documentation": {}
     },
@@ -1233,6 +895,24 @@
         "documentation": {}
     },
     {
+        "label": "Base",
+        "kind": 5,
+        "importPath": "backend.app.models.base",
+        "description": "backend.app.models.base",
+        "peekOfCode": "Base = declarative_base()",
+        "detail": "backend.app.models.base",
+        "documentation": {}
+    },
+    {
+        "label": "Site",
+        "kind": 6,
+        "importPath": "backend.app.models.site",
+        "description": "backend.app.models.site",
+        "peekOfCode": "class Site(Base):\n    __tablename__ = \"sites\"\n    id = Column(Integer, primary_key=True, index=True)\n    domain = Column(String, nullable=False, unique=True, index=True)\n    verification_token = Column(String, nullable=False, unique=True)\n    is_verified = Column(Boolean, default=False)\n    verified_at = Column(DateTime, nullable=False)\n    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)\n    user_id = Column(Integer, ForeignKey(\"users.id\"), nullable=False)\n    # relationships",
+        "detail": "backend.app.models.site",
+        "documentation": {}
+    },
+    {
         "label": "RefreshToken",
         "kind": 6,
         "importPath": "backend.app.models.user",
@@ -1247,15 +927,6 @@
         "importPath": "backend.app.models.user",
         "description": "backend.app.models.user",
         "peekOfCode": "class User(Base):\n    __tablename__ = \"users\"\n    id= Column(Integer, primary_key=True, index=True)\n    first_name= Column(String, nullable=False)\n    last_name= Column(String, nullable=True)\n    email= Column(String, unique=True, index=True, nullable=False)\n    password_hash= Column(String, nullable=False)\n    is_verified= Column(Boolean, default=False)\n    verification_code= Column(String, nullable=True)\n    verification_code_expires_at= Column(DateTime, nullable=True)",
-        "detail": "backend.app.models.user",
-        "documentation": {}
-    },
-    {
-        "label": "Base",
-        "kind": 5,
-        "importPath": "backend.app.models.user",
-        "description": "backend.app.models.user",
-        "peekOfCode": "Base = declarative_base()\nclass RefreshToken(Base):\n    __tablename__ = \"refresh_tokens\"\n    id= Column(Integer, primary_key=True, index=True)\n    token= Column(String, nullable=False, unique=True, index=True)\n    user_id= Column(Integer, ForeignKey(\"users.id\"), nullable=False)\n    created_at= Column(DateTime, default=datetime.utcnow, nullable=False)\n    expires_at= Column(DateTime, nullable=False)\n    # relationship\n    user = relationship(\"User\", back_populates=\"refresh_tokens\")",
         "detail": "backend.app.models.user",
         "documentation": {}
     },
