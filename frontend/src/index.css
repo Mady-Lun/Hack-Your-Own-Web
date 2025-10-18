@@ -1,68 +1,183 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
+@layer base {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    --background: 220 17% 97%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 193 95% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 15% 95%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 220 15% 95%;
+    --muted-foreground: 220 9% 46%;
+
+    --accent: 193 70% 92%;
+    --accent-foreground: 193 95% 35%;
+
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 193 95% 45%;
+
+    --radius: 0.5rem;
+
+    /* Severity colors */
+    --severity-low: 142 71% 45%;
+    --severity-medium: 38 92% 50%;
+    --severity-high: 25 95% 53%;
+    --severity-critical: 0 85% 60%;
+
+    /* Status colors */
+    --status-pending: 45 93% 47%;
+    --status-running: 217 91% 60%;
+    --status-completed: 142 71% 45%;
+    --status-failed: 0 85% 60%;
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(193 95% 45%), hsl(217 91% 60%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(220 15% 98%));
+    
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 hsl(220 13% 91% / 0.3);
+    --shadow-md: 0 4px 6px -1px hsl(220 13% 91% / 0.5);
+    --shadow-lg: 0 10px 15px -3px hsl(220 13% 91% / 0.5);
+    --shadow-glow: 0 0 20px hsl(193 95% 45% / 0.3);
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 193 95% 45%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 15% 95%;
+    --sidebar-accent-foreground: 193 95% 35%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 193 95% 45%;
   }
-  a:hover {
-    color: #747bff;
+
+  .dark {
+    --background: 222 47% 7%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 10%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 10%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 193 95% 55%;
+    --primary-foreground: 222 47% 7%;
+
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 193 50% 25%;
+    --accent-foreground: 193 95% 75%;
+
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 193 95% 55%;
+
+    /* Severity colors - adjusted for dark mode */
+    --severity-low: 142 71% 55%;
+    --severity-medium: 38 92% 60%;
+    --severity-high: 25 95% 63%;
+    --severity-critical: 0 85% 70%;
+
+    /* Status colors */
+    --status-pending: 45 93% 57%;
+    --status-running: 217 91% 70%;
+    --status-completed: 142 71% 55%;
+    --status-failed: 0 85% 70%;
+
+    /* Gradients for dark mode */
+    --gradient-primary: linear-gradient(135deg, hsl(193 95% 55%), hsl(217 91% 70%));
+    --gradient-card: linear-gradient(145deg, hsl(222 47% 10%), hsl(222 47% 13%));
+    
+    /* Shadows for dark mode */
+    --shadow-sm: 0 1px 2px 0 hsl(0 0% 0% / 0.3);
+    --shadow-md: 0 4px 6px -1px hsl(0 0% 0% / 0.5);
+    --shadow-lg: 0 10px 15px -3px hsl(0 0% 0% / 0.5);
+    --shadow-glow: 0 0 30px hsl(193 95% 55% / 0.4);
+
+    --sidebar-background: 222 47% 10%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 193 95% 55%;
+    --sidebar-primary-foreground: 222 47% 7%;
+    --sidebar-accent: 217 33% 17%;
+    --sidebar-accent-foreground: 193 95% 75%;
+    --sidebar-border: 217 33% 17%;
+    --sidebar-ring: 193 95% 55%;
   }
-  button {
-    background-color: #f9f9f9;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Code/Evidence styling */
+  .code-block {
+    @apply font-mono text-sm bg-muted p-3 rounded-md border overflow-x-auto;
+  }
+
+  /* Severity badges */
+  .severity-low {
+    @apply bg-[hsl(var(--severity-low)/0.15)] text-[hsl(var(--severity-low))] border border-[hsl(var(--severity-low)/0.3)];
+  }
+  
+  .severity-medium {
+    @apply bg-[hsl(var(--severity-medium)/0.15)] text-[hsl(var(--severity-medium))] border border-[hsl(var(--severity-medium)/0.3)];
+  }
+  
+  .severity-high {
+    @apply bg-[hsl(var(--severity-high)/0.15)] text-[hsl(var(--severity-high))] border border-[hsl(var(--severity-high)/0.3)];
+  }
+  
+  .severity-critical {
+    @apply bg-[hsl(var(--severity-critical)/0.15)] text-[hsl(var(--severity-critical))] border border-[hsl(var(--severity-critical)/0.3)];
+  }
+
+  /* Status badges */
+  .status-pending {
+    @apply bg-[hsl(var(--status-pending)/0.15)] text-[hsl(var(--status-pending))] border border-[hsl(var(--status-pending)/0.3)];
+  }
+  
+  .status-running {
+    @apply bg-[hsl(var(--status-running)/0.15)] text-[hsl(var(--status-running))] border border-[hsl(var(--status-running)/0.3)];
+  }
+  
+  .status-completed {
+    @apply bg-[hsl(var(--status-completed)/0.15)] text-[hsl(var(--status-completed))] border border-[hsl(var(--status-completed)/0.3)];
+  }
+  
+  .status-failed {
+    @apply bg-[hsl(var(--status-failed)/0.15)] text-[hsl(var(--status-failed))] border border-[hsl(var(--status-failed)/0.3)];
   }
 }
