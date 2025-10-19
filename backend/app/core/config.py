@@ -1,15 +1,22 @@
+import os
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+ENV_FILE = os.getenv("ENV_FILE", ".env.prod")
+
 class Settings(BaseSettings):
-    ENV: str
+    ENV: str = "development"
+    DEBUG: bool = True
     DATABASE_URL: str
+    CELERY_BROKER_URL: str
+    CELERY_RESULT_BACKEND: str
+
     JWT_SECRET: str
     JWT_ALGORITHM: str
     ACCESS_TOKEN_EXPIRE_MINUTES: int
     REFRESH_TOKEN_EXPIRE_DAYS: int
 
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=ENV_FILE,
         extra="ignore",
     )
 
@@ -19,7 +26,7 @@ class AppSettings(BaseSettings):
 
 
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=ENV_FILE,
         extra="ignore",
     )
 
@@ -38,7 +45,7 @@ class MailSettings(BaseSettings):
 
 
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=ENV_FILE,
         extra="ignore",
     )
 

@@ -71,3 +71,8 @@ async def generate_verification_token(response, user_data: dict, key: str = "ver
 
     return verification_token
     
+
+async def generate_domain_verification_token() -> str:
+    domain_verification_token = secrets.token_urlsafe(24)
+    expires_at = datetime.utcnow() + timedelta(hours=24)
+    return domain_verification_token, expires_at

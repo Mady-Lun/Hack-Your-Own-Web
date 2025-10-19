@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from ..models.user import User, RefreshToken
 from ..core.security import get_password_hash, verify_password, revoke_token, revoke_session_token
-from sqlmodel import select, delete
+from sqlalchemy import select, delete
 from  ..utils.logger import logger
 from fastapi.responses import JSONResponse
 import random, string
@@ -430,10 +430,10 @@ async def reset_password_crud(data, response, user_cookie, session):
         )
 
 
-async def logout_crud(response, user_cookie, session):
+async def logout_crud(response, user, session):
     logger.info("Account logout endpoint hit")
     try:
-        user_id = int(user_cookie['user']['id'])
+        user_id = user.id
 
         # Delete refresh tokens directly
         await session.execute(

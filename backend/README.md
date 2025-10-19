@@ -36,17 +36,17 @@ To allow developers to run security scans safely and learn about web vulnerabili
 
 * **Backend API**: FastAPI async endpoints for managing users, scans, and results.
 * **Database**: PostgreSQL for storing users, scan jobs, and results.
-* **Worker / Background Tasks**: Celery or RQ to execute long-running scan jobs asynchronously.
+* **Worker / Background Tasks**: Celery to execute long-running scan jobs asynchronously.
 * **Cache / Broker**: Redis for task queue and caching.
 
 ## Tech Stack
 
-* Python 3.11+
-* FastAPI (async backend)
-* SQLModel / SQLAlchemy + Alembic (DB + migrations)
-* Celery or RQ + Redis (background tasks)
-* PostgreSQL (data)
-* Docker & Docker Compose (for dev and deployment)
+* **Language**: Python 3.11+
+* **Framework**: FastAPI (async backend)
+* **Database**: PostgreSQL (data)
+* **ORM**: SQLAlchemy (async) + Alembic (DB + migrations)
+* **Task Queue**: Celery + Redis (background tasks)
+* **Container**: Docker & Docker Compose (for dev and deployment)
 
 ## Getting Started (Developer setup)
 
@@ -56,15 +56,23 @@ To allow developers to run security scans safely and learn about web vulnerabili
 * Python 3.11+
 
 ### Environment Variables (.env)
+Copy the .env.example into two different files to backend root folder:
+* First file: "**.env.dev**" - for development.
+* Second file: "**.env.prod**" - for production.
 
 ```
 # Settings
 ENV=development
-DATABASE_URL=changeme
+DEBUG=True
 JWT_SECRET=changeme_supersecret
 JWT_ALGORITHM=HS256
 ACCESS_TOKEN_EXPIRE_MINUTES=30
 REFRESH_TOKEN_EXPIRE_DAYS=18
+
+# DB
+DATABASE_URL=changeme
+CELERY_BROKER_URL=redis://redis:6379/0
+CELERY_RESULT_BACKEND=redis://redis:6379/0
 
 # MAIL
 MAIL_USERNAME=changeme
@@ -84,22 +92,19 @@ APP_NAME="Hack Your Own Web"
 
 ### Local Development
 ```bash
+# Clone the Repository
+git clone https://github.com/Mady-Lun/Hack-Your-Own-Web
+
 # Navigate to your project folder
-cd backend
-# Install virtual environment
-python3 -m ven venv
-# Activate virtual environment
-    ## For Linux/Mac:
-        source venv/bin/activate
-    ## For Window:
-        venv\Scripts\activate
-# Install necessary libraries from requirements.txt
-pip install -r requirements.txt 
-# Run migrations
-alembic upgrate head
-# Run server for development
-fastapi dev main.py
+cd Hack-Your-Own-Web/backend
+
+# Build and Start the Containers
+docker-compose up --build
 ```
+**This will start:**
+* FastAPI backend (api)
+* Redis (redis)
+* Celery worker (instace for each worker)
 
 ## Background Tasks & Long-running Scans
 
