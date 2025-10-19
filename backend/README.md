@@ -99,7 +99,7 @@ git clone https://github.com/Mady-Lun/Hack-Your-Own-Web
 cd Hack-Your-Own-Web/backend
 
 # Build and Start the Containers
-docker-compose up --build
+docker compose up --build
 ```
 **This will start:**
 * FastAPI backend (api)
