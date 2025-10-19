@@ -16,6 +16,86 @@
         "documentation": {}
     },
     {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Sequence",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Union",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
         "label": "AsyncGenerator",
         "importPath": "typing",
         "description": "typing",
@@ -37,6 +117,46 @@
         "description": "typing",
         "isExtraImport": true,
         "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "op",
+        "importPath": "alembic",
+        "description": "alembic",
+        "isExtraImport": true,
+        "detail": "alembic",
+        "documentation": {}
+    },
+    {
+        "label": "op",
+        "importPath": "alembic",
+        "description": "alembic",
+        "isExtraImport": true,
+        "detail": "alembic",
+        "documentation": {}
+    },
+    {
+        "label": "op",
+        "importPath": "alembic",
+        "description": "alembic",
+        "isExtraImport": true,
+        "detail": "alembic",
+        "documentation": {}
+    },
+    {
+        "label": "op",
+        "importPath": "alembic",
+        "description": "alembic",
+        "isExtraImport": true,
+        "detail": "alembic",
+        "documentation": {}
+    },
+    {
+        "label": "op",
+        "importPath": "alembic",
+        "description": "alembic",
+        "isExtraImport": true,
+        "detail": "alembic",
         "documentation": {}
     },
     {
@@ -73,6 +193,22 @@
         "documentation": {}
     },
     {
+        "label": "create_engine",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "select",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
         "label": "select",
         "importPath": "sqlalchemy",
         "description": "sqlalchemy",
@@ -89,47 +225,7 @@
         "documentation": {}
     },
     {
-        "label": "Column",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
-        "label": "Integer",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
-        "label": "String",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
-        "label": "Boolean",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
-        "label": "DateTime",
-        "importPath": "sqlalchemy",
-        "description": "sqlalchemy",
-        "isExtraImport": true,
-        "detail": "sqlalchemy",
-        "documentation": {}
-    },
-    {
-        "label": "ForeignKey",
+        "label": "select",
         "importPath": "sqlalchemy",
         "description": "sqlalchemy",
         "isExtraImport": true,
@@ -178,6 +274,70 @@
     },
     {
         "label": "ForeignKey",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Column",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Integer",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "String",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Boolean",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "DateTime",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "ForeignKey",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "select",
+        "importPath": "sqlalchemy",
+        "description": "sqlalchemy",
+        "isExtraImport": true,
+        "detail": "sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "delete",
         "importPath": "sqlalchemy",
         "description": "sqlalchemy",
         "isExtraImport": true,
@@ -199,6 +359,22 @@
         "importPath": "sqlmodel",
         "description": "sqlmodel",
         "detail": "sqlmodel",
+        "documentation": {}
+    },
+    {
+        "label": "postgresql",
+        "importPath": "sqlalchemy.dialects",
+        "description": "sqlalchemy.dialects",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.dialects",
+        "documentation": {}
+    },
+    {
+        "label": "postgresql",
+        "importPath": "sqlalchemy.dialects",
+        "description": "sqlalchemy.dialects",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.dialects",
         "documentation": {}
     },
     {
@@ -228,6 +404,22 @@
     },
     {
         "label": "async_engine_from_config",
+        "importPath": "sqlalchemy.ext.asyncio",
+        "description": "sqlalchemy.ext.asyncio",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.ext.asyncio",
+        "documentation": {}
+    },
+    {
+        "label": "AsyncSession",
+        "importPath": "sqlalchemy.ext.asyncio",
+        "description": "sqlalchemy.ext.asyncio",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.ext.asyncio",
+        "documentation": {}
+    },
+    {
+        "label": "AsyncSession",
         "importPath": "sqlalchemy.ext.asyncio",
         "description": "sqlalchemy.ext.asyncio",
         "isExtraImport": true,
@@ -323,6 +515,22 @@
         "documentation": {}
     },
     {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
         "label": "HTTPException",
         "importPath": "fastapi",
         "description": "fastapi",
@@ -347,6 +555,14 @@
         "documentation": {}
     },
     {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
         "label": "FastAPI",
         "importPath": "fastapi",
         "description": "fastapi",
@@ -355,15 +571,31 @@
         "documentation": {}
     },
     {
-        "label": "AsyncSession",
-        "importPath": "sqlmodel.ext.asyncio.session",
-        "description": "sqlmodel.ext.asyncio.session",
+        "label": "get_session",
+        "importPath": "app.core.db",
+        "description": "app.core.db",
         "isExtraImport": true,
-        "detail": "sqlmodel.ext.asyncio.session",
+        "detail": "app.core.db",
         "documentation": {}
     },
     {
         "label": "get_session",
+        "importPath": "app.core.db",
+        "description": "app.core.db",
+        "isExtraImport": true,
+        "detail": "app.core.db",
+        "documentation": {}
+    },
+    {
+        "label": "get_session",
+        "importPath": "app.core.db",
+        "description": "app.core.db",
+        "isExtraImport": true,
+        "detail": "app.core.db",
+        "documentation": {}
+    },
+    {
+        "label": "SessionLocal",
         "importPath": "app.core.db",
         "description": "app.core.db",
         "isExtraImport": true,
@@ -416,6 +648,63 @@
         "description": "app.schemas.user",
         "isExtraImport": true,
         "detail": "app.schemas.user",
+        "documentation": {}
+    },
+    {
+        "label": "get_current_user",
+        "importPath": "app.middleware.auth_middleware",
+        "description": "app.middleware.auth_middleware",
+        "isExtraImport": true,
+        "detail": "app.middleware.auth_middleware",
+        "documentation": {}
+    },
+    {
+        "label": "ValidDomainSchema",
+        "importPath": "app.schemas.site",
+        "description": "app.schemas.site",
+        "isExtraImport": true,
+        "detail": "app.schemas.site",
+        "documentation": {}
+    },
+    {
+        "label": "domain_registry_crud",
+        "importPath": "app.crud.site",
+        "description": "app.crud.site",
+        "isExtraImport": true,
+        "detail": "app.crud.site",
+        "documentation": {}
+    },
+    {
+        "label": "domain_verification_crud",
+        "importPath": "app.crud.site",
+        "description": "app.crud.site",
+        "isExtraImport": true,
+        "detail": "app.crud.site",
+        "documentation": {}
+    },
+    {
+        "label": "get_domain_status_crud",
+        "importPath": "app.crud.site",
+        "description": "app.crud.site",
+        "isExtraImport": true,
+        "detail": "app.crud.site",
+        "documentation": {}
+    },
+    {
+        "label": "Celery",
+        "importPath": "celery",
+        "description": "celery",
+        "isExtraImport": true,
+        "detail": "celery",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
         "documentation": {}
     },
     {
@@ -523,51 +812,19 @@
         "documentation": {}
     },
     {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
+        "label": "logger",
+        "importPath": "app.utils.logger",
+        "description": "app.utils.logger",
         "isExtraImport": true,
-        "detail": "datetime",
+        "detail": "app.utils.logger",
         "documentation": {}
     },
     {
-        "label": "timedelta",
-        "importPath": "datetime",
-        "description": "datetime",
+        "label": "logger",
+        "importPath": "app.utils.logger",
+        "description": "app.utils.logger",
         "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
-        "documentation": {}
-    },
-    {
-        "label": "timedelta",
-        "importPath": "datetime",
-        "description": "datetime",
-        "isExtraImport": true,
-        "detail": "datetime",
+        "detail": "app.utils.logger",
         "documentation": {}
     },
     {
@@ -576,6 +833,110 @@
         "description": "fastapi.responses",
         "isExtraImport": true,
         "detail": "fastapi.responses",
+        "documentation": {}
+    },
+    {
+        "label": "JSONResponse",
+        "importPath": "fastapi.responses",
+        "description": "fastapi.responses",
+        "isExtraImport": true,
+        "detail": "fastapi.responses",
+        "documentation": {}
+    },
+    {
+        "label": "Site",
+        "importPath": "app.models.site",
+        "description": "app.models.site",
+        "isExtraImport": true,
+        "detail": "app.models.site",
+        "documentation": {}
+    },
+    {
+        "label": "Site",
+        "importPath": "app.models.site",
+        "description": "app.models.site",
+        "isExtraImport": true,
+        "detail": "app.models.site",
+        "documentation": {}
+    },
+    {
+        "label": "generate_domain_verification_token",
+        "importPath": "app.utils.generate_tokens",
+        "description": "app.utils.generate_tokens",
+        "isExtraImport": true,
+        "detail": "app.utils.generate_tokens",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "verify_domain_task",
+        "importPath": "app.tasks.domain_verification",
+        "description": "app.tasks.domain_verification",
+        "isExtraImport": true,
+        "detail": "app.tasks.domain_verification",
         "documentation": {}
     },
     {
@@ -602,6 +963,14 @@
         "importPath": "jwt",
         "description": "jwt",
         "detail": "jwt",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "importPath": "app.models.user",
+        "description": "app.models.user",
+        "isExtraImport": true,
+        "detail": "app.models.user",
         "documentation": {}
     },
     {
@@ -645,11 +1014,62 @@
         "documentation": {}
     },
     {
+        "label": "validator",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "Field",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
         "label": "EmailStr",
         "importPath": "pydantic",
         "description": "pydantic",
         "isExtraImport": true,
         "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "dns.resolver",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "dns.resolver",
+        "description": "dns.resolver",
+        "detail": "dns.resolver",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
         "documentation": {}
     },
     {
@@ -688,6 +1108,32 @@
         "documentation": {}
     },
     {
+        "label": "site_router",
+        "importPath": "app.api.v1.site",
+        "description": "app.api.v1.site",
+        "isExtraImport": true,
+        "detail": "app.api.v1.site",
+        "documentation": {}
+    },
+    {
+        "label": "upgrade",
+        "kind": 2,
+        "importPath": "backend.alembic.versions.0ce8051e6c15_remove_the_unique_constraint_from_the_",
+        "description": "backend.alembic.versions.0ce8051e6c15_remove_the_unique_constraint_from_the_",
+        "peekOfCode": "def upgrade() -> None:\n    \"\"\"Upgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_index(op.f('ix_sites_domain'), table_name='sites')\n    op.create_index(op.f('ix_sites_domain'), 'sites', ['domain'], unique=False)\n    # ### end Alembic commands ###\ndef downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_index(op.f('ix_sites_domain'), table_name='sites')",
+        "detail": "backend.alembic.versions.0ce8051e6c15_remove_the_unique_constraint_from_the_",
+        "documentation": {}
+    },
+    {
+        "label": "downgrade",
+        "kind": 2,
+        "importPath": "backend.alembic.versions.0ce8051e6c15_remove_the_unique_constraint_from_the_",
+        "description": "backend.alembic.versions.0ce8051e6c15_remove_the_unique_constraint_from_the_",
+        "peekOfCode": "def downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_index(op.f('ix_sites_domain'), table_name='sites')\n    op.create_index(op.f('ix_sites_domain'), 'sites', ['domain'], unique=True)\n    # ### end Alembic commands ###",
+        "detail": "backend.alembic.versions.0ce8051e6c15_remove_the_unique_constraint_from_the_",
+        "documentation": {}
+    },
+    {
         "label": "upgrade",
         "kind": 2,
         "importPath": "backend.alembic.versions.4e45bd14838d_fix_and_initial_migration_after_",
@@ -703,6 +1149,78 @@
         "description": "backend.alembic.versions.4e45bd14838d_fix_and_initial_migration_after_",
         "peekOfCode": "def downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_index(op.f('ix_sites_id'), table_name='sites')\n    op.drop_index(op.f('ix_sites_domain'), table_name='sites')\n    op.drop_table('sites')\n    op.drop_index(op.f('ix_refresh_tokens_token'), table_name='refresh_tokens')\n    op.drop_index(op.f('ix_refresh_tokens_id'), table_name='refresh_tokens')\n    op.drop_table('refresh_tokens')\n    op.drop_index(op.f('ix_users_id'), table_name='users')",
         "detail": "backend.alembic.versions.4e45bd14838d_fix_and_initial_migration_after_",
+        "documentation": {}
+    },
+    {
+        "label": "upgrade",
+        "kind": 2,
+        "importPath": "backend.alembic.versions.70c0a6dde6e5_remove_the_site_verification_token_",
+        "description": "backend.alembic.versions.70c0a6dde6e5_remove_the_site_verification_token_",
+        "peekOfCode": "def upgrade() -> None:\n    \"\"\"Upgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_column('sites', 'verification_token_expires_at')\n    # ### end Alembic commands ###\ndef downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.add_column('sites', sa.Column('verification_token_expires_at', postgresql.TIMESTAMP(), autoincrement=False, nullable=False))\n    # ### end Alembic commands ###",
+        "detail": "backend.alembic.versions.70c0a6dde6e5_remove_the_site_verification_token_",
+        "documentation": {}
+    },
+    {
+        "label": "downgrade",
+        "kind": 2,
+        "importPath": "backend.alembic.versions.70c0a6dde6e5_remove_the_site_verification_token_",
+        "description": "backend.alembic.versions.70c0a6dde6e5_remove_the_site_verification_token_",
+        "peekOfCode": "def downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.add_column('sites', sa.Column('verification_token_expires_at', postgresql.TIMESTAMP(), autoincrement=False, nullable=False))\n    # ### end Alembic commands ###",
+        "detail": "backend.alembic.versions.70c0a6dde6e5_remove_the_site_verification_token_",
+        "documentation": {}
+    },
+    {
+        "label": "upgrade",
+        "kind": 2,
+        "importPath": "backend.alembic.versions.853d7848e551_add_the_default_none_constraint_to_the_",
+        "description": "backend.alembic.versions.853d7848e551_add_the_default_none_constraint_to_the_",
+        "peekOfCode": "def upgrade() -> None:\n    \"\"\"Upgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    pass\n    # ### end Alembic commands ###\ndef downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    pass\n    # ### end Alembic commands ###",
+        "detail": "backend.alembic.versions.853d7848e551_add_the_default_none_constraint_to_the_",
+        "documentation": {}
+    },
+    {
+        "label": "downgrade",
+        "kind": 2,
+        "importPath": "backend.alembic.versions.853d7848e551_add_the_default_none_constraint_to_the_",
+        "description": "backend.alembic.versions.853d7848e551_add_the_default_none_constraint_to_the_",
+        "peekOfCode": "def downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    pass\n    # ### end Alembic commands ###",
+        "detail": "backend.alembic.versions.853d7848e551_add_the_default_none_constraint_to_the_",
+        "documentation": {}
+    },
+    {
+        "label": "upgrade",
+        "kind": 2,
+        "importPath": "backend.alembic.versions.b1c158fa34e3_make_the_site_verified_at_as_nullable",
+        "description": "backend.alembic.versions.b1c158fa34e3_make_the_site_verified_at_as_nullable",
+        "peekOfCode": "def upgrade() -> None:\n    \"\"\"Upgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.alter_column('sites', 'verified_at',\n               existing_type=postgresql.TIMESTAMP(),\n               nullable=True)\n    # ### end Alembic commands ###\ndef downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###",
+        "detail": "backend.alembic.versions.b1c158fa34e3_make_the_site_verified_at_as_nullable",
+        "documentation": {}
+    },
+    {
+        "label": "downgrade",
+        "kind": 2,
+        "importPath": "backend.alembic.versions.b1c158fa34e3_make_the_site_verified_at_as_nullable",
+        "description": "backend.alembic.versions.b1c158fa34e3_make_the_site_verified_at_as_nullable",
+        "peekOfCode": "def downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.alter_column('sites', 'verified_at',\n               existing_type=postgresql.TIMESTAMP(),\n               nullable=False)\n    # ### end Alembic commands ###",
+        "detail": "backend.alembic.versions.b1c158fa34e3_make_the_site_verified_at_as_nullable",
+        "documentation": {}
+    },
+    {
+        "label": "upgrade",
+        "kind": 2,
+        "importPath": "backend.alembic.versions.b4563434b572_add_verification_token_expires_at_to_",
+        "description": "backend.alembic.versions.b4563434b572_add_verification_token_expires_at_to_",
+        "peekOfCode": "def upgrade() -> None:\n    \"\"\"Upgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.add_column('sites', sa.Column('verification_token_expires_at', sa.DateTime(), nullable=False))\n    # ### end Alembic commands ###\ndef downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_column('sites', 'verification_token_expires_at')\n    # ### end Alembic commands ###",
+        "detail": "backend.alembic.versions.b4563434b572_add_verification_token_expires_at_to_",
+        "documentation": {}
+    },
+    {
+        "label": "downgrade",
+        "kind": 2,
+        "importPath": "backend.alembic.versions.b4563434b572_add_verification_token_expires_at_to_",
+        "description": "backend.alembic.versions.b4563434b572_add_verification_token_expires_at_to_",
+        "peekOfCode": "def downgrade() -> None:\n    \"\"\"Downgrade schema.\"\"\"\n    # ### commands auto generated by Alembic - please adjust! ###\n    op.drop_column('sites', 'verification_token_expires_at')\n    # ### end Alembic commands ###",
+        "detail": "backend.alembic.versions.b4563434b572_add_verification_token_expires_at_to_",
         "documentation": {}
     },
     {
@@ -764,7 +1282,7 @@
         "kind": 2,
         "importPath": "backend.app.api.v1.auth",
         "description": "backend.app.api.v1.auth",
-        "peekOfCode": "def get_profile(user = Depends(get_current_user)):\n    return user\nauth_router = router\n# from fastapi import FastAPI, Header\n# from typing import Optional\n# from pydantic import BaseModel\n# app = FastAPI()\n# @app.get(\"/\")\n# async def read_root():\n#     return {",
+        "peekOfCode": "def get_profile(user = Depends(get_current_user)):\n    return {\"userId\": user.id}\n# from fastapi import FastAPI, Header\n# from typing import Optional\n# from pydantic import BaseModel\n# app = FastAPI()\n# @app.get(\"/\")\n# async def read_root():\n#     return {\n#         \"message\": \"Hello, World!\"",
         "detail": "backend.app.api.v1.auth",
         "documentation": {}
     },
@@ -773,7 +1291,7 @@
         "kind": 5,
         "importPath": "backend.app.api.v1.auth",
         "description": "backend.app.api.v1.auth",
-        "peekOfCode": "router = APIRouter()\n@router.get(\"/ping\")\nasync def ping():\n    return {\n        \"message\": \"pong\"\n    }\n@router.post(\"/sign-up\", status_code=status.HTTP_201_CREATED)\nasync def sign_up(data: UserSignUpRequest, response: Response, session: AsyncSession = Depends(get_session)):\n    return await sign_up_crud(data, response, session)\n@router.post(\"/verify\", status_code=status.HTTP_200_OK)",
+        "peekOfCode": "router = APIRouter()\nauth_router = router\n@router.get(\"/ping\")\nasync def ping():\n    return {\n        \"message\": \"pong\"\n    }\n@router.post(\"/sign-up\", status_code=status.HTTP_201_CREATED)\nasync def sign_up(data: UserSignUpRequest, response: Response, session: AsyncSession = Depends(get_session)):\n    return await sign_up_crud(data, response, session)",
         "detail": "backend.app.api.v1.auth",
         "documentation": {}
     },
@@ -782,8 +1300,44 @@
         "kind": 5,
         "importPath": "backend.app.api.v1.auth",
         "description": "backend.app.api.v1.auth",
-        "peekOfCode": "auth_router = router\n# from fastapi import FastAPI, Header\n# from typing import Optional\n# from pydantic import BaseModel\n# app = FastAPI()\n# @app.get(\"/\")\n# async def read_root():\n#     return {\n#         \"message\": \"Hello, World!\"\n#     }",
+        "peekOfCode": "auth_router = router\n@router.get(\"/ping\")\nasync def ping():\n    return {\n        \"message\": \"pong\"\n    }\n@router.post(\"/sign-up\", status_code=status.HTTP_201_CREATED)\nasync def sign_up(data: UserSignUpRequest, response: Response, session: AsyncSession = Depends(get_session)):\n    return await sign_up_crud(data, response, session)\n@router.post(\"/verify\", status_code=status.HTTP_200_OK)",
         "detail": "backend.app.api.v1.auth",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "kind": 5,
+        "importPath": "backend.app.api.v1.site",
+        "description": "backend.app.api.v1.site",
+        "peekOfCode": "router = APIRouter()\nsite_router = router\n@router.post(\"/\")\nasync def register_domain(data: ValidDomainSchema, user = Depends(get_current_user), session: AsyncSession = Depends(get_session)):\n    return await domain_registry_crud(data, user, session)\n@router.get(\"/status\")\nasync def get_domain_status(domain: ValidDomainSchema, user = Depends(get_current_user), session: AsyncSession = Depends(get_session)):\n    return await get_domain_status_crud(domain, user, session)\n@router.post(\"/verify\")\nasync def verify_domain(domain: ValidDomainSchema, user = Depends(get_current_user), session: AsyncSession = Depends(get_session)):",
+        "detail": "backend.app.api.v1.site",
+        "documentation": {}
+    },
+    {
+        "label": "site_router",
+        "kind": 5,
+        "importPath": "backend.app.api.v1.site",
+        "description": "backend.app.api.v1.site",
+        "peekOfCode": "site_router = router\n@router.post(\"/\")\nasync def register_domain(data: ValidDomainSchema, user = Depends(get_current_user), session: AsyncSession = Depends(get_session)):\n    return await domain_registry_crud(data, user, session)\n@router.get(\"/status\")\nasync def get_domain_status(domain: ValidDomainSchema, user = Depends(get_current_user), session: AsyncSession = Depends(get_session)):\n    return await get_domain_status_crud(domain, user, session)\n@router.post(\"/verify\")\nasync def verify_domain(domain: ValidDomainSchema, user = Depends(get_current_user), session: AsyncSession = Depends(get_session)):\n    return await domain_verification_crud(domain, user, session)",
+        "detail": "backend.app.api.v1.site",
+        "documentation": {}
+    },
+    {
+        "label": "celery_app",
+        "kind": 5,
+        "importPath": "backend.app.core.celery_app",
+        "description": "backend.app.core.celery_app",
+        "peekOfCode": "celery_app = Celery(\n    \"backend_tasks\",\n    broker=Config.CELERY_BROKER_URL,\n    backend=Config.CELERY_RESULT_BACKEND,\n    include=[\"app.tasks.domain_verification\", \"app.tasks.scan\"]\n)\ncelery_app.conf.update(\n    task_track_started=True,\n    task_time_limit=30 * 60, #30 min max runtime\n    task_soft_time_limit=25 * 60, #25 min warning",
+        "detail": "backend.app.core.celery_app",
+        "documentation": {}
+    },
+    {
+        "label": "celery_app.conf.task_routes",
+        "kind": 5,
+        "importPath": "backend.app.core.celery_app",
+        "description": "backend.app.core.celery_app",
+        "peekOfCode": "celery_app.conf.task_routes = {\n    'app.tasks.domain_verification.*': {'queue': 'domain_verification_queue'},\n    'app.tasks.scan.*': {'queue': 'scan_queue'},\n}",
+        "detail": "backend.app.core.celery_app",
         "documentation": {}
     },
     {
@@ -791,7 +1345,7 @@
         "kind": 6,
         "importPath": "backend.app.core.config",
         "description": "backend.app.core.config",
-        "peekOfCode": "class Settings(BaseSettings):\n    ENV: str\n    DATABASE_URL: str\n    JWT_SECRET: str\n    JWT_ALGORITHM: str\n    ACCESS_TOKEN_EXPIRE_MINUTES: int\n    REFRESH_TOKEN_EXPIRE_DAYS: int\n    model_config = SettingsConfigDict(\n        env_file=\".env\",\n        extra=\"ignore\",",
+        "peekOfCode": "class Settings(BaseSettings):\n    ENV: str = \"development\"\n    DEBUG: bool = True\n    DATABASE_URL: str\n    CELERY_BROKER_URL: str\n    CELERY_RESULT_BACKEND: str\n    JWT_SECRET: str\n    JWT_ALGORITHM: str\n    ACCESS_TOKEN_EXPIRE_MINUTES: int\n    REFRESH_TOKEN_EXPIRE_DAYS: int",
         "detail": "backend.app.core.config",
         "documentation": {}
     },
@@ -800,7 +1354,7 @@
         "kind": 6,
         "importPath": "backend.app.core.config",
         "description": "backend.app.core.config",
-        "peekOfCode": "class AppSettings(BaseSettings):\n    APP_NAME: str\n    model_config = SettingsConfigDict(\n        env_file=\".env\",\n        extra=\"ignore\",\n    )\nclass MailSettings(BaseSettings):\n    MAIL_USERNAME: str\n    MAIL_PASSWORD: str\n    MAIL_FROM: str",
+        "peekOfCode": "class AppSettings(BaseSettings):\n    APP_NAME: str\n    model_config = SettingsConfigDict(\n        env_file=ENV_FILE,\n        extra=\"ignore\",\n    )\nclass MailSettings(BaseSettings):\n    MAIL_USERNAME: str\n    MAIL_PASSWORD: str\n    MAIL_FROM: str",
         "detail": "backend.app.core.config",
         "documentation": {}
     },
@@ -810,6 +1364,15 @@
         "importPath": "backend.app.core.config",
         "description": "backend.app.core.config",
         "peekOfCode": "class MailSettings(BaseSettings):\n    MAIL_USERNAME: str\n    MAIL_PASSWORD: str\n    MAIL_FROM: str\n    MAIL_FROM_NAME: str\n    MAIL_PORT: str\n    MAIL_SERVER: str\n    MAIL_STARTTLS: bool\n    MAIL_SSL_TLS: bool\n    MAIL_DEBUG: bool",
+        "detail": "backend.app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "ENV_FILE",
+        "kind": 5,
+        "importPath": "backend.app.core.config",
+        "description": "backend.app.core.config",
+        "peekOfCode": "ENV_FILE = os.getenv(\"ENV_FILE\", \".env.prod\")\nclass Settings(BaseSettings):\n    ENV: str = \"development\"\n    DEBUG: bool = True\n    DATABASE_URL: str\n    CELERY_BROKER_URL: str\n    CELERY_RESULT_BACKEND: str\n    JWT_SECRET: str\n    JWT_ALGORITHM: str\n    ACCESS_TOKEN_EXPIRE_MINUTES: int",
         "detail": "backend.app.core.config",
         "documentation": {}
     },
@@ -854,7 +1417,34 @@
         "kind": 5,
         "importPath": "backend.app.core.db",
         "description": "backend.app.core.db",
-        "peekOfCode": "AsyncSessionLocal = sessionmaker(\n    bind=async_engine,\n    class_=AsyncSession,\n    expire_on_commit=False\n)\n# Dependency for FastAPI\nasync def get_session() -> AsyncGenerator[AsyncSession, None]:\n    async with AsyncSessionLocal() as session:\n        yield session",
+        "peekOfCode": "AsyncSessionLocal = sessionmaker(\n    bind=async_engine,\n    class_=AsyncSession,\n    expire_on_commit=False\n)\n# Dependency for FastAPI\nasync def get_session() -> AsyncGenerator[AsyncSession, None]:\n    async with AsyncSessionLocal() as session:\n        yield session\n# Convert the async URL to a sync one automatically",
+        "detail": "backend.app.core.db",
+        "documentation": {}
+    },
+    {
+        "label": "SYNC_DATABASE_URL",
+        "kind": 5,
+        "importPath": "backend.app.core.db",
+        "description": "backend.app.core.db",
+        "peekOfCode": "SYNC_DATABASE_URL = Config.DATABASE_URL.replace(\"+asyncpg\", \"\")\nsync_engine = create_engine(\n    SYNC_DATABASE_URL,\n    echo=False,\n)\nSessionLocal = sessionmaker(\n    autocommit=False,\n    autoflush=False,\n    bind=sync_engine\n)",
+        "detail": "backend.app.core.db",
+        "documentation": {}
+    },
+    {
+        "label": "sync_engine",
+        "kind": 5,
+        "importPath": "backend.app.core.db",
+        "description": "backend.app.core.db",
+        "peekOfCode": "sync_engine = create_engine(\n    SYNC_DATABASE_URL,\n    echo=False,\n)\nSessionLocal = sessionmaker(\n    autocommit=False,\n    autoflush=False,\n    bind=sync_engine\n)",
+        "detail": "backend.app.core.db",
+        "documentation": {}
+    },
+    {
+        "label": "SessionLocal",
+        "kind": 5,
+        "importPath": "backend.app.core.db",
+        "description": "backend.app.core.db",
+        "peekOfCode": "SessionLocal = sessionmaker(\n    autocommit=False,\n    autoflush=False,\n    bind=sync_engine\n)",
         "detail": "backend.app.core.db",
         "documentation": {}
     },
@@ -886,6 +1476,15 @@
         "documentation": {}
     },
     {
+        "label": "PREFIX",
+        "kind": 5,
+        "importPath": "backend.app.crud.site",
+        "description": "backend.app.crud.site",
+        "peekOfCode": "PREFIX = \"hackyourownweb-verify=\"\nasync def domain_registry_crud(data, user, session):\n    logger.info(f\"Domain registration endpoint hit\")\n    try:\n        result = await session.execute(select(Site).where(Site.domain == data.domain))\n        existingDomains = result.scalars().all()\n        # Domain is verified by this same user\n        verified_by_user = next((d for d in existingDomains if d.user_id == user.id and d.is_verified), None)\n        if verified_by_user:\n            logger.warning(f\"User {user.id} already verified domain {data.domain}.\")",
+        "detail": "backend.app.crud.site",
+        "documentation": {}
+    },
+    {
         "label": "verify_verification",
         "kind": 2,
         "importPath": "backend.app.middleware.auth_middleware",
@@ -908,7 +1507,7 @@
         "kind": 6,
         "importPath": "backend.app.models.site",
         "description": "backend.app.models.site",
-        "peekOfCode": "class Site(Base):\n    __tablename__ = \"sites\"\n    id = Column(Integer, primary_key=True, index=True)\n    domain = Column(String, nullable=False, unique=True, index=True)\n    verification_token = Column(String, nullable=False, unique=True)\n    is_verified = Column(Boolean, default=False)\n    verified_at = Column(DateTime, nullable=False)\n    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)\n    user_id = Column(Integer, ForeignKey(\"users.id\"), nullable=False)\n    # relationships",
+        "peekOfCode": "class Site(Base):\n    __tablename__ = \"sites\"\n    id = Column(Integer, primary_key=True, index=True)\n    domain = Column(String, nullable=False, index=True)\n    verification_token = Column(String, nullable=False, unique=True)\n    # verification_token_expires_at = Column(DateTime, nullable=False)\n    is_verified = Column(Boolean, default=False)\n    verified_at = Column(DateTime, nullable=True)\n    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)\n    user_id = Column(Integer, ForeignKey(\"users.id\"), nullable=False)",
         "detail": "backend.app.models.site",
         "documentation": {}
     },
@@ -946,6 +1545,15 @@
         "description": "backend.app.responses.user",
         "peekOfCode": "class UserResponse(BaseResponse):\n    first_name: str\n    last_name: Optional[str] = None\n    email: EmailStr",
         "detail": "backend.app.responses.user",
+        "documentation": {}
+    },
+    {
+        "label": "ValidDomainSchema",
+        "kind": 6,
+        "importPath": "backend.app.schemas.site",
+        "description": "backend.app.schemas.site",
+        "peekOfCode": "class ValidDomainSchema(BaseModel):\n    domain: str = Field(..., description=\"The URL of the site to scan\")\n    @validator('domain')\n    def validate_domain(cls, v):\n        # Basic domain regex: allows subdomains, letters, numbers, hyphens, and TLDs\n        pattern = r\"^(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,}$\"\n        if not re.match(pattern, v):\n            raise ValueError(\"Invalid domain format\")\n        return v",
+        "detail": "backend.app.schemas.site",
         "documentation": {}
     },
     {
@@ -991,6 +1599,24 @@
         "description": "backend.app.schemas.user",
         "peekOfCode": "class UserPasswordResetRequest(BaseModel):\n    new_password: str = Field(..., min_length=6, description=\"The new password for the user account\")",
         "detail": "backend.app.schemas.user",
+        "documentation": {}
+    },
+    {
+        "label": "verify_domain_task",
+        "kind": 2,
+        "importPath": "backend.app.tasks.domain_verification",
+        "description": "backend.app.tasks.domain_verification",
+        "peekOfCode": "def verify_domain_task(domain: str, user_id: int, PREFIX: str):\n    logger.info(f\"Starting domain verification task for domain: {domain}, user_id: {user_id}\")\n    try:\n        # Create a fresh resolver instance (no cache, no stale data)\n        resolver = dns.resolver.Resolver()\n        resolver.cache = None\n        resolver.nameservers = [\"1.1.1.1\", \"8.8.8.8\"]  # Use reliable public DNS servers\n        resolver.timeout = 3 # Per DNS server timeout {seconds}\n        resolver.lifetime = 5 # Overall query timeout {seconds}\n        # Fetch fresh TXT records",
+        "detail": "backend.app.tasks.domain_verification",
+        "documentation": {}
+    },
+    {
+        "label": "scan_website_task",
+        "kind": 2,
+        "importPath": "backend.app.tasks.scan",
+        "description": "backend.app.tasks.scan",
+        "peekOfCode": "def scan_website_task(url: str):\n    print(f\"Scanning URL: {url}\")\n    print(f\"Simulating scan for 4 seconds...\")\n    time.sleep()  # Simulate a time-consuming scan\n    print(f\"Completed scanning URL: {url}\")",
+        "detail": "backend.app.tasks.scan",
         "documentation": {}
     },
     {
@@ -1050,19 +1676,28 @@
     {
         "label": "version",
         "kind": 5,
-        "importPath": "backend.main",
-        "description": "backend.main",
+        "importPath": "backend.app.main",
+        "description": "backend.app.main",
         "peekOfCode": "version = \"v1\"\napp = FastAPI(\n    version=version,\n)\n# origins = [\n#     \"http://localhost:8000\",  # your frontend\n#     \"http://127.0.0.1:8000\",\n# ]\n# app.add_middleware(\n#     CORSMiddleware,",
-        "detail": "backend.main",
+        "detail": "backend.app.main",
         "documentation": {}
     },
     {
         "label": "app",
         "kind": 5,
-        "importPath": "backend.main",
-        "description": "backend.main",
+        "importPath": "backend.app.main",
+        "description": "backend.app.main",
         "peekOfCode": "app = FastAPI(\n    version=version,\n)\n# origins = [\n#     \"http://localhost:8000\",  # your frontend\n#     \"http://127.0.0.1:8000\",\n# ]\n# app.add_middleware(\n#     CORSMiddleware,\n#     allow_origins=origins,",
-        "detail": "backend.main",
+        "detail": "backend.app.main",
+        "documentation": {}
+    },
+    {
+        "label": "celery",
+        "kind": 5,
+        "importPath": "backend.app.worker",
+        "description": "backend.app.worker",
+        "peekOfCode": "celery = celery_app",
+        "detail": "backend.app.worker",
         "documentation": {}
     }
 ]

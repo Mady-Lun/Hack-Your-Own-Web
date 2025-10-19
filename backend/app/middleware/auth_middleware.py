@@ -1,6 +1,9 @@
 import jwt
+from sqlalchemy import select
+from app.models.user import User
 from ..utils.logger import logger
-from fastapi import HTTPException, status, Request
+from fastapi import HTTPException, status, Request, Depends
+from app.core.db import get_session
 from ..core.config import Config
 
 
@@ -25,14 +28,35 @@ async def validation_token(token: str):
         return {"error": "Invalid token"}
 
 
-async def get_current_user(request: Request):
+async def get_current_user(request: Request, session = Depends(get_session)):
     token = request.cookies.get("accessToken")
     if not token:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Not authenticated"
         )
-    return await validation_token(token)
+    payload = await validation_token(token)
+    if "error" in payload:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED, 
+            detail=payload["error"])
+    
+    user_id = payload.get("user", {}).get("id")
+    if not user_id:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid token payload"
+        )
+    
+    result = await session.execute(select(User).where(User.id == int(user_id)))
+    user = result.scalar_one_or_none()
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User not found"
+        )
+
+    return user
 
 
 def verify_verification(cookie_name: str = "verificationToken"):

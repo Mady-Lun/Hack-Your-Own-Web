@@ -430,10 +430,10 @@ async def reset_password_crud(data, response, user_cookie, session):
         )
 
 
-async def logout_crud(response, user_cookie, session):
+async def logout_crud(response, user, session):
     logger.info("Account logout endpoint hit")
     try:
-        user_id = int(user_cookie['user']['id'])
+        user_id = user.id
 
         # Delete refresh tokens directly
         await session.execute(

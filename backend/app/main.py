@@ -5,6 +5,7 @@ sys.path.append(str(Path(__file__).parent))
 
 from fastapi import FastAPI
 from app.api.v1.auth import auth_router
+from app.api.v1.site import site_router
 from app.core.db import async_engine
 from sqlalchemy import text
 # from fastapi.middleware.cors import CORSMiddleware
@@ -29,6 +30,7 @@ app = FastAPI(
 # )
 
 app.include_router(auth_router, prefix=f"/api/{version}/auth", tags=["auth"])
+app.include_router(site_router, prefix=f"/api/{version}/site", tags=["site"])
 
 
 @app.on_event("startup")

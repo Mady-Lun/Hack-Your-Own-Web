@@ -1,14 +1,13 @@
 from fastapi import APIRouter, status, Depends, Response
-from sqlmodel.ext.asyncio.session import AsyncSession
+from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.db import get_session
 from app.schemas.user import UserSignUpRequest, UserVerifyRequest, UserLoginRequest, UserPasswordResetRequest, RequestUserPasswordResetRequest
-from ...responses.user import UserResponse
 from ...crud.user import sign_up_crud, verify_email_crud, login_crud, reset_password_request_crud, reset_password_verify_crud, reset_password_crud, logout_crud, resend_verification_code_crud, resend_reset_password_request_crud
 from ...middleware.auth_middleware import get_current_user, verify_verification
 
 
 router = APIRouter()
-
+auth_router = router
 
 @router.get("/ping")
 async def ping():
@@ -57,16 +56,13 @@ async def reset_password(data: UserPasswordResetRequest, response: Response, use
 
 
 @router.post("/logout", status_code=status.HTTP_200_OK)
-async def logout(response: Response, user_cookie=Depends(get_current_user), session: AsyncSession = Depends(get_session)):
-    return await logout_crud(response, user_cookie, session)
+async def logout(response: Response, user=Depends(get_current_user), session: AsyncSession = Depends(get_session)):
+    return await logout_crud(response, user, session)
 
 
 @router.get("/profile", status_code=status.HTTP_200_OK)
 def get_profile(user = Depends(get_current_user)):
-    return user
-
-
-auth_router = router
+    return {"userId": user.id}
 
 # from fastapi import FastAPI, Header
 # from typing import Optional

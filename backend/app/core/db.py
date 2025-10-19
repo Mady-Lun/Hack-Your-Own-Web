@@ -1,4 +1,5 @@
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
+from sqlalchemy import create_engine
 from typing import AsyncGenerator
 from app.core.config import Config
 from sqlalchemy.orm import sessionmaker
@@ -20,3 +21,18 @@ AsyncSessionLocal = sessionmaker(
 async def get_session() -> AsyncGenerator[AsyncSession, None]:
     async with AsyncSessionLocal() as session:
         yield session
+
+
+# Convert the async URL to a sync one automatically
+SYNC_DATABASE_URL = Config.DATABASE_URL.replace("+asyncpg", "")
+
+sync_engine = create_engine(
+    SYNC_DATABASE_URL,
+    echo=False,
+)
+
+SessionLocal = sessionmaker(
+    autocommit=False,
+    autoflush=False,
+    bind=sync_engine
+)
