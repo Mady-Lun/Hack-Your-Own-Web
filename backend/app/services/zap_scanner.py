@@ -1,4 +1,5 @@
 import time
+import sys
 from typing import Dict, Any, Optional, List, Callable, TYPE_CHECKING
 from zapv2 import ZAPv2
 import docker

@@ -66,7 +66,7 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     container_name: hyow-celery-worker
-    command: celery -A app.core.celery_app worker --loglevel=info --concurrency=11 -E -Q celery,scans
+    command: celery -A app.core.celery_app worker --loglevel=info --concurrency=3 -E -Q celery,scans
     volumes:
       - ./backend:/app
     env_file:

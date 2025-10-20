@@ -1,13 +1,15 @@
 from celery import Task
 from datetime import datetime
-from typing import Dict, Any, Optional
+from typing import Dict, Any
 from app.core.celery_app import celery_app
-from app.services.zap_scanner import ZAPScanner
 from app.models.scan import Scan, ScanAlert, ScanStatus, ScanType, RiskLevel
 from app.core.db import AsyncSessionLocal
 from app.utils.logger import logger
 from sqlalchemy import select
 import asyncio
+
+# Import the scanner instance manager
+from app.services.scanner_manager import scanner_manager
 
 
 class ScanTask(Task):
@@ -74,8 +76,9 @@ async def _run_scan_async(scan_id: int, task: Task) -> Dict[str, Any]:
         logger.info(f"Scan {scan_id} marked as IN_PROGRESS")
 
         try:
-            # Initialize ZAP scanner
-            scanner = ZAPScanner()
+            # Get the shared scanner instance from the manager
+            scanner = scanner_manager.get_scanner()
+            logger.info(f"Using shared scanner instance for scan {scan_id}")
 
             # Progress callback - just log for now to avoid DB connection conflicts
             def update_progress(percentage: int, step: str):
