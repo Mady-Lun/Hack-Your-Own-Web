@@ -1,5 +1,5 @@
 from fastapi import APIRouter, status, Depends, Query
-from sqlmodel.ext.asyncio.session import AsyncSession
+from sqlalchemy.ext.asyncio import AsyncSession
 from typing import Optional
 from app.core.db import get_session
 from app.schemas.scan import (
@@ -11,6 +11,7 @@ from app.schemas.scan import (
     ScanStatsResponse,
 )
 from app.models.scan import ScanStatus, ScanType
+from app.models.user import User
 from app.crud.scan import (
     create_scan_crud,
     get_scan_by_id_crud,
@@ -29,7 +30,7 @@ router = APIRouter()
 @router.post("/", status_code=status.HTTP_201_CREATED)
 async def create_scan(
     data: ScanCreate,
-    user_data=Depends(get_current_user),
+    user: User = Depends(get_current_user),
     session: AsyncSession = Depends(get_session)
 ):
     """
@@ -47,8 +48,7 @@ async def create_scan(
     - **401**: Unauthorized
     - **500**: Internal server error
     """
-    user_id = int(user_data['user']['id'])
-    return await create_scan_crud(data, user_id, session)
+    return await create_scan_crud(data, user.id, session)  # type: ignore[arg-type]
 
 
 @router.get("/", response_model=ScanListResponse)
@@ -57,7 +57,7 @@ async def get_scans(
     scan_type: Optional[ScanType] = Query(None, alias="type"),
     page: int = Query(1, ge=1),
     page_size: int = Query(20, ge=1, le=100),
-    user_data=Depends(get_current_user),
+    user: User = Depends(get_current_user),
     session: AsyncSession = Depends(get_session)
 ):
     """
@@ -68,9 +68,8 @@ async def get_scans(
     - **page**: Page number (default: 1)
     - **page_size**: Number of results per page (default: 20, max: 100)
     """
-    user_id = int(user_data['user']['id'])
     scans, total = await get_user_scans_crud(
-        user_id, session, status_filter, scan_type, page, page_size
+        user.id, session, status_filter, scan_type, page, page_size  # type: ignore[arg-type]
     )
 
     return ScanListResponse(
@@ -83,7 +82,7 @@ async def get_scans(
 
 @router.get("/stats", response_model=ScanStatsResponse)
 async def get_scan_stats(
-    user_data=Depends(get_current_user),
+    user: User = Depends(get_current_user),
     session: AsyncSession = Depends(get_session)
 ):
     """
@@ -94,8 +93,7 @@ async def get_scan_stats(
     - Total vulnerabilities found
     - Vulnerabilities by risk level
     """
-    user_id = int(user_data['user']['id'])
-    stats = await get_scan_stats_crud(user_id, session)
+    stats = await get_scan_stats_crud(user.id, session)  # type: ignore[arg-type]
     return ScanStatsResponse(**stats)
 
 
@@ -103,7 +101,7 @@ async def get_scan_stats(
 async def get_scan(
     scan_id: int,
     detailed: bool = Query(False, description="Include full alert details (default: false for summary only)"),
-    user_data=Depends(get_current_user),
+    user: User = Depends(get_current_user),
     session: AsyncSession = Depends(get_session)
 ):
     """
@@ -115,8 +113,7 @@ async def get_scan(
     Default response includes lightweight alert summaries (id, alert_name, risk_level, confidence, url, method, cwe_id, created_at).
     Use detailed=true to get full alert information including description, solution, references, etc.
     """
-    user_id = int(user_data['user']['id'])
-    scan = await get_scan_by_id_crud(scan_id, user_id, session, include_alerts=True)
+    scan = await get_scan_by_id_crud(scan_id, user.id, session, include_alerts=True)  # type: ignore[arg-type]
 
     if not scan:
         return JSONResponse(
@@ -133,7 +130,7 @@ async def get_scan(
 @router.delete("/{scan_id}", status_code=status.HTTP_200_OK)
 async def delete_scan(
     scan_id: int,
-    user_data=Depends(get_current_user),
+    user: User = Depends(get_current_user),
     session: AsyncSession = Depends(get_session)
 ):
     """
@@ -142,14 +139,13 @@ async def delete_scan(
     - **scan_id**: The ID of the scan
     - Cannot delete scans that are currently in progress (cancel first)
     """
-    user_id = int(user_data['user']['id'])
-    return await delete_scan_crud(scan_id, user_id, session)
+    return await delete_scan_crud(scan_id, user.id, session)  # type: ignore[arg-type]
 
 
 @router.post("/{scan_id}/cancel", status_code=status.HTTP_200_OK)
 async def cancel_scan(
     scan_id: int,
-    user_data=Depends(get_current_user),
+    user: User = Depends(get_current_user),
     session: AsyncSession = Depends(get_session)
 ):
     """
@@ -158,8 +154,7 @@ async def cancel_scan(
     - **scan_id**: The ID of the scan
     - Only pending or in-progress scans can be cancelled
     """
-    user_id = int(user_data['user']['id'])
-    return await cancel_scan_crud(scan_id, user_id, session)
+    return await cancel_scan_crud(scan_id, user.id, session)  # type: ignore[arg-type]
 
 
 scan_router = router

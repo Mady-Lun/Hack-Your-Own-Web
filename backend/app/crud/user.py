@@ -1,7 +1,7 @@
 from datetime import datetime, timedelta
 from ..models.user import User, RefreshToken
 from ..core.security import get_password_hash, verify_password, revoke_token, revoke_session_token
-from sqlmodel import select, delete
+from sqlalchemy import select, delete
 from ..utils.logger import logger
 from fastapi.responses import JSONResponse
 import random

@@ -5,6 +5,7 @@ anyio==4.11.0
 argon2-cffi==25.1.0
 argon2-cffi-bindings==25.1.0
 asyncpg==0.30.0
+psycopg2-binary==2.9.10
 bcrypt==5.0.0
 blinker==1.9.0
 celery==5.4.0

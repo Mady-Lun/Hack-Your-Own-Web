@@ -1,11 +1,16 @@
 import os
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-ENV_FILE = os.getenv("ENV_FILE", ".env.prod")
+# Determine environment file based on ENV variable
+ENV_FILE = os.getenv("ENV_FILE", ".env")
 
 class Settings(BaseSettings):
-    ENV: str
+    ENV: str = "development"
+    DEBUG: bool = True
     DATABASE_URL: str
+    CELERY_BROKER_URL: str
+    CELERY_RESULT_BACKEND: str
+
     JWT_SECRET: str
     JWT_ALGORITHM: str
     ACCESS_TOKEN_EXPIRE_MINUTES: int
@@ -28,17 +33,16 @@ class AppSettings(BaseSettings):
 
 
 class MailSettings(BaseSettings):
-    MAIL_USERNAME: str = ""
-    MAIL_PASSWORD: str = ""
-    MAIL_FROM: str = "noreply@example.com"
-    MAIL_FROM_NAME: str = "Hack Your Own Web"
-    MAIL_PORT: str = "587"
-    MAIL_SERVER: str = "smtp.example.com"
-    MAIL_STARTTLS: bool = True
-    MAIL_SSL_TLS: bool = False
-    MAIL_DEBUG: bool = False
-    USE_CREDENTIALS: bool = True
-
+    MAIL_USERNAME: str
+    MAIL_PASSWORD: str
+    MAIL_FROM: str
+    MAIL_FROM_NAME: str
+    MAIL_PORT: str
+    MAIL_SERVER: str
+    MAIL_STARTTLS: bool
+    MAIL_SSL_TLS: bool
+    MAIL_DEBUG: bool
+    USE_CREDENTIALS: bool
 
     model_config = SettingsConfigDict(
         env_file=ENV_FILE,
@@ -47,24 +51,24 @@ class MailSettings(BaseSettings):
 
 
 class CelerySettings(BaseSettings):
-    CELERY_BROKER_URL: str = "redis://localhost:6379/0"
-    CELERY_RESULT_BACKEND: str = "redis://localhost:6379/1"
+    CELERY_BROKER_URL: str
+    CELERY_RESULT_BACKEND: str
 
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=ENV_FILE,
         extra="ignore",
     )
 
 
 class ZAPSettings(BaseSettings):
-    ZAP_HOST: str = "localhost"
-    ZAP_PORT: int = 8090
-    ZAP_API_KEY: str = "changeme"
-    USE_DOCKER_ZAP: bool = True
-    ZAP_DOCKER_IMAGE: str = "ghcr.io/zaproxy/zaproxy:stable"
+    ZAP_HOST: str
+    ZAP_PORT: int
+    ZAP_API_KEY: str
+    USE_DOCKER_ZAP: bool
+    ZAP_DOCKER_IMAGE: str
 
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=ENV_FILE,
         extra="ignore",
     )
 

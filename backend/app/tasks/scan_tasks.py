@@ -67,8 +67,8 @@ async def _run_scan_async(scan_id: int, task: Task) -> Dict[str, Any]:
             raise ValueError(error_msg)
 
         # Update scan status to in_progress
-        scan.status = ScanStatus.IN_PROGRESS
-        scan.started_at = datetime.utcnow()
+        scan.status = ScanStatus.IN_PROGRESS  # type: ignore[assignment]
+        scan.started_at = datetime.utcnow()  # type: ignore[assignment]
         scan.celery_task_id = task.request.id
         session.add(scan)
         await session.commit()
@@ -88,12 +88,12 @@ async def _run_scan_async(scan_id: int, task: Task) -> Dict[str, Any]:
 
             # Run appropriate scan type
             alerts = []
-            if scan.scan_type == ScanType.BASIC:
+            if scan.scan_type == ScanType.BASIC:  # type: ignore[comparison-overlap]
                 logger.info(f"Running BASIC scan for scan {scan_id}")
-                alerts = scanner.run_basic_scan(scan.target_url, progress_callback=update_progress)
-            elif scan.scan_type == ScanType.FULL:
+                alerts = scanner.run_basic_scan(str(scan.target_url), progress_callback=update_progress)
+            elif scan.scan_type == ScanType.FULL:  # type: ignore[comparison-overlap]
                 logger.info(f"Running FULL scan for scan {scan_id}")
-                alerts = scanner.run_full_scan(scan.target_url, progress_callback=update_progress)
+                alerts = scanner.run_full_scan(str(scan.target_url), progress_callback=update_progress)
             else:
                 error_msg = f"Invalid scan type: {scan.scan_type}"
                 logger.error(error_msg)
@@ -111,11 +111,11 @@ async def _run_scan_async(scan_id: int, task: Task) -> Dict[str, Any]:
             logger.debug(f"Cleaned up scan context for scan {scan_id}")
 
             # Update scan completion (separate transaction for faster write)
-            scan.status = ScanStatus.COMPLETED
-            scan.completed_at = datetime.utcnow()
-            scan.progress_percentage = 100
-            scan.current_step = "Completed"
-            scan.updated_at = datetime.utcnow()
+            scan.status = ScanStatus.COMPLETED  # type: ignore[assignment]
+            scan.completed_at = datetime.utcnow()  # type: ignore[assignment]
+            scan.progress_percentage = 100  # type: ignore[assignment]
+            scan.current_step = "Completed"  # type: ignore[assignment]
+            scan.updated_at = datetime.utcnow()  # type: ignore[assignment]
             session.add(scan)
             await session.commit()  # Quick final commit for scan status
 
@@ -141,10 +141,10 @@ async def _run_scan_async(scan_id: int, task: Task) -> Dict[str, Any]:
 
             # Refresh the scan object to avoid detached instance errors
             await session.refresh(scan)
-            scan.status = ScanStatus.FAILED
-            scan.error_message = str(e)
-            scan.completed_at = datetime.utcnow()
-            scan.updated_at = datetime.utcnow()
+            scan.status = ScanStatus.FAILED  # type: ignore[assignment]
+            scan.error_message = str(e)  # type: ignore[assignment]
+            scan.completed_at = datetime.utcnow()  # type: ignore[assignment]
+            scan.updated_at = datetime.utcnow()  # type: ignore[assignment]
             session.add(scan)
             await session.commit()
             raise
@@ -211,11 +211,11 @@ async def _process_alerts(session, scan: Scan, alerts: list):
         logger.info(f"Bulk inserting {len(alert_objects)} alerts for scan {scan.id}")
 
     # Update scan summary
-    scan.total_alerts = len(alerts)
-    scan.high_risk_count = risk_counts["high"]
-    scan.medium_risk_count = risk_counts["medium"]
-    scan.low_risk_count = risk_counts["low"]
-    scan.info_count = risk_counts["informational"]
+    scan.total_alerts = len(alerts)  # type: ignore[assignment]
+    scan.high_risk_count = risk_counts["high"]  # type: ignore[assignment]
+    scan.medium_risk_count = risk_counts["medium"]  # type: ignore[assignment]
+    scan.low_risk_count = risk_counts["low"]  # type: ignore[assignment]
+    scan.info_count = risk_counts["informational"]  # type: ignore[assignment]
     session.add(scan)
 
 
@@ -251,7 +251,7 @@ async def _cancel_scan_async(scan_id: int) -> Dict[str, Any]:
         if not scan:
             raise ValueError(f"Scan with id {scan_id} not found")
 
-        if scan.status not in [ScanStatus.PENDING, ScanStatus.IN_PROGRESS]:
+        if scan.status not in [ScanStatus.PENDING, ScanStatus.IN_PROGRESS]:  # type: ignore[comparison-overlap]
             return {
                 "scan_id": scan_id,
                 "status": "not_cancellable",
@@ -259,14 +259,14 @@ async def _cancel_scan_async(scan_id: int) -> Dict[str, Any]:
             }
 
         # Revoke Celery task if it exists
-        if scan.celery_task_id:
+        if scan.celery_task_id:  # type: ignore[truthy-bool]
             celery_app.control.revoke(scan.celery_task_id, terminate=True)
 
         # Update scan status
-        scan.status = ScanStatus.CANCELLED
-        scan.completed_at = datetime.utcnow()
-        scan.updated_at = datetime.utcnow()
-        scan.error_message = "Scan cancelled by user"
+        scan.status = ScanStatus.CANCELLED  # type: ignore[assignment]
+        scan.completed_at = datetime.utcnow()  # type: ignore[assignment]
+        scan.updated_at = datetime.utcnow()  # type: ignore[assignment]
+        scan.error_message = "Scan cancelled by user"  # type: ignore[assignment]
         session.add(scan)
         await session.commit()
 

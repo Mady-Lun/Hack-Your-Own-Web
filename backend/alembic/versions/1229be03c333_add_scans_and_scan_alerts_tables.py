@@ -1,7 +1,7 @@
 """add_scans_and_scan_alerts_tables
 
 Revision ID: 1229be03c333
-Revises: 5ae0550c18b4
+Revises: 4e45bd14838d
 Create Date: 2025-10-16 16:04:56.672099
 
 """
@@ -15,7 +15,7 @@ from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
 revision: str = '1229be03c333'
-down_revision: Union[str, Sequence[str], None] = '5ae0550c18b4'
+down_revision: Union[str, Sequence[str], None] = '4e45bd14838d'
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
 

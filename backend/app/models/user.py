@@ -1,7 +1,12 @@
 from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 from datetime import datetime
+from typing import TYPE_CHECKING
 from .base import Base
+
+if TYPE_CHECKING:
+    from .scan import Scan
+    from .site import Site
 
 
 class RefreshToken(Base):

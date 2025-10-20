@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Optional, List, Tuple
-from sqlmodel import select, func, and_, or_, col
-from sqlmodel.ext.asyncio.session import AsyncSession
+from sqlalchemy import select, func, and_, or_, desc
+from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 from fastapi.responses import JSONResponse
 from app.models.scan import Scan, ScanAlert, ScanStatus, ScanType
@@ -25,6 +25,26 @@ async def create_scan_crud(
             return JSONResponse(
                 status_code=400,
                 content={"success": False, "message": "Invalid scan type. Must be 'basic' or 'full'"}
+            )
+
+        # Check concurrent scan limit (max 5 active scans per user)
+        active_scans_query = select(func.count()).select_from(Scan).where(
+            and_(
+                Scan.user_id == user_id,
+                Scan.status.in_([ScanStatus.PENDING.value, ScanStatus.IN_PROGRESS.value])
+            )
+        )
+        active_scans_result = await session.execute(active_scans_query)
+        active_scans_count = active_scans_result.scalar() or 0
+
+        if active_scans_count >= 5:
+            logger.warning(f"User {user_id} has reached max concurrent scans limit ({active_scans_count}/5)")
+            return JSONResponse(
+                status_code=429,
+                content={
+                    "success": False,
+                    "message": "Maximum concurrent scans limit reached (5). Please wait for existing scans to complete."
+                }
             )
 
         # Create scan record
@@ -57,8 +77,8 @@ async def create_scan_crud(
                 "data": {
                     "scan_id": scan.id,
                     "task_id": task.id,
-                    "status": scan.status,
-                    "scan_type": scan.scan_type
+                    "status": scan.status.value if hasattr(scan.status, 'value') else scan.status,
+                    "scan_type": scan.scan_type.value if hasattr(scan.scan_type, 'value') else scan.scan_type
                 }
             }
         )
@@ -135,7 +155,7 @@ async def get_user_scans_crud(
         total = total_result.scalar()
 
         # Apply pagination and ordering
-        query = query.order_by(col(Scan.created_at).desc())
+        query = query.order_by(desc(Scan.created_at))
         query = query.offset((page - 1) * page_size).limit(page_size)
 
         result = await session.execute(query)
@@ -169,15 +189,15 @@ async def update_scan_crud(
 
         # Update fields
         if data.status is not None:
-            scan.status = data.status
+            scan.status = data.status  # type: ignore[assignment]
         if data.progress_percentage is not None:
-            scan.progress_percentage = data.progress_percentage
+            scan.progress_percentage = data.progress_percentage  # type: ignore[assignment]
         if data.current_step is not None:
-            scan.current_step = data.current_step
+            scan.current_step = data.current_step  # type: ignore[assignment]
         if data.error_message is not None:
-            scan.error_message = data.error_message
+            scan.error_message = data.error_message  # type: ignore[assignment]
 
-        scan.updated_at = datetime.utcnow()
+        scan.updated_at = datetime.utcnow()  # type: ignore[assignment]
         session.add(scan)
         await session.commit()
 
@@ -216,7 +236,7 @@ async def delete_scan_crud(
             )
 
         # Cannot delete in-progress scans
-        if scan.status == ScanStatus.IN_PROGRESS:
+        if scan.status == ScanStatus.IN_PROGRESS:  # type: ignore[comparison-overlap]
             logger.warning(f"Attempt to delete in-progress scan {scan_id}")
             return JSONResponse(
                 status_code=400,

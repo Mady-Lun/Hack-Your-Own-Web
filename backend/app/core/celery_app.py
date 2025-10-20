@@ -5,7 +5,7 @@ celery_app = Celery(
     "hack_your_own_web",
     broker=CeleryConfig.CELERY_BROKER_URL,
     backend=CeleryConfig.CELERY_RESULT_BACKEND,
-    include=["app.tasks.scan_tasks"]
+    include=["app.tasks.scan_tasks", "app.tasks.domain_verification"]
 )
 
 # Celery configuration
@@ -23,8 +23,8 @@ celery_app.conf.update(
     broker_connection_retry_on_startup=True,
 )
 
-# Optional: Task routes for different queues
+# Task routes for different queues (must match docker-compose worker -Q flag)
 celery_app.conf.task_routes = {
-    "app.tasks.scan_tasks.run_scan": {"queue": "scans"},
-    "app.tasks.scan_tasks.cancel_scan": {"queue": "scans"},
+    "app.tasks.scan_tasks.run_scan": {"queue": "scan_queue"},
+    "app.tasks.scan_tasks.cancel_scan": {"queue": "scan_queue"},
 }

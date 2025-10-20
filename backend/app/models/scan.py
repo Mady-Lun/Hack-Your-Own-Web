@@ -1,14 +1,15 @@
-from sqlmodel import SQLModel, Field, Relationship, Column, JSON
-from sqlalchemy.dialects.postgresql import ENUM as PgEnum
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, JSON, Enum as SQLEnum
+from sqlalchemy.orm import relationship
 from datetime import datetime
-from typing import Optional, Dict, Any, List, TYPE_CHECKING
+from typing import Optional, TYPE_CHECKING
 from enum import Enum
+from .base import Base
 
 if TYPE_CHECKING:
     from app.models.user import User
 
 
-class ScanStatus(str, Enum):
+class ScanStatus(Enum):
     PENDING = "pending"
     IN_PROGRESS = "in_progress"
     COMPLETED = "completed"
@@ -16,102 +17,93 @@ class ScanStatus(str, Enum):
     CANCELLED = "cancelled"
 
 
-class ScanType(str, Enum):
+class ScanType(Enum):
     BASIC = "basic"           # Basic passive scan (spider + passive) - No verification required
     FULL = "full"             # Full active scan - Requires domain ownership verification
 
 
-class Scan(SQLModel, table=True):
-    __tablename__ = "scans" # type: ignore
+class Scan(Base):
+    __tablename__ = "scans"
 
-    id: int = Field(default=None, primary_key=True)
-    user_id: int = Field(foreign_key="users.id", nullable=False, index=True)
-    target_url: str = Field(nullable=False, index=True)
-    scan_type: ScanType = Field(
-        default=ScanType.BASIC,
-        sa_column=Column(PgEnum(ScanType, name="scantype", create_type=False, values_callable=lambda x: [e.value for e in x]), nullable=False)
-    )
-    status: ScanStatus = Field(
-        default=ScanStatus.PENDING,
-        sa_column=Column(PgEnum(ScanStatus, name="scanstatus", create_type=False, values_callable=lambda x: [e.value for e in x]), nullable=False, index=True)
-    )
+    id = Column(Integer, primary_key=True, index=True)
+    user_id = Column(Integer, ForeignKey("users.id"), nullable=False, index=True)
+    target_url = Column(String, nullable=False, index=True)
+    scan_type = Column(SQLEnum(ScanType, values_callable=lambda obj: [e.value for e in obj], name="scantype"), nullable=False, default=ScanType.BASIC)
+    status = Column(SQLEnum(ScanStatus, values_callable=lambda obj: [e.value for e in obj], name="scanstatus"), nullable=False, default=ScanStatus.PENDING, index=True)
 
     # Celery task tracking
-    celery_task_id: Optional[str] = Field(default=None, nullable=True, index=True)
+    celery_task_id = Column(String, nullable=True, index=True)
 
     # Scan configuration
-    scan_config: Optional[Dict[str, Any]] = Field(default=None, sa_column=Column(JSON))
+    scan_config = Column(JSON, nullable=True)
 
     # Progress tracking
-    progress_percentage: int = Field(default=0, nullable=False)
-    current_step: Optional[str] = Field(default=None, nullable=True)
+    progress_percentage = Column(Integer, nullable=False, default=0)
+    current_step = Column(String, nullable=True)
 
     # Results summary
-    total_alerts: int = Field(default=0, nullable=False)
-    high_risk_count: int = Field(default=0, nullable=False)
-    medium_risk_count: int = Field(default=0, nullable=False)
-    low_risk_count: int = Field(default=0, nullable=False)
-    info_count: int = Field(default=0, nullable=False)
+    total_alerts = Column(Integer, nullable=False, default=0)
+    high_risk_count = Column(Integer, nullable=False, default=0)
+    medium_risk_count = Column(Integer, nullable=False, default=0)
+    low_risk_count = Column(Integer, nullable=False, default=0)
+    info_count = Column(Integer, nullable=False, default=0)
 
     # Error tracking
-    error_message: Optional[str] = Field(default=None, nullable=True)
+    error_message = Column(String, nullable=True)
 
     # Timestamps
-    created_at: datetime = Field(default_factory=datetime.utcnow, nullable=False)
-    started_at: Optional[datetime] = Field(default=None, nullable=True)
-    completed_at: Optional[datetime] = Field(default=None, nullable=True)
-    updated_at: datetime = Field(default_factory=datetime.utcnow, nullable=False)
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+    started_at = Column(DateTime, nullable=True)
+    completed_at = Column(DateTime, nullable=True)
+    updated_at = Column(DateTime, default=datetime.utcnow, nullable=False)
 
     # Relationships
-    user: "User" = Relationship(back_populates="scans")
-    alerts: List["ScanAlert"] = Relationship(
+    user = relationship("User", back_populates="scans")
+    alerts = relationship(
+        "ScanAlert",
         back_populates="scan",
-        sa_relationship_kwargs={
-            "cascade": "all, delete-orphan",
-            "passive_deletes": True,
-        }
+        cascade="all, delete-orphan",
+        passive_deletes=True,
     )
 
 
-class RiskLevel(str, Enum):
+class RiskLevel(Enum):
     HIGH = "high"
     MEDIUM = "medium"
     LOW = "low"
     INFORMATIONAL = "informational"
 
 
-class ScanAlert(SQLModel, table=True):
-    __tablename__ = "scan_alerts" # type: ignore
+class ScanAlert(Base):
+    __tablename__ = "scan_alerts"
 
-    id: int = Field(default=None, primary_key=True)
-    scan_id: int = Field(foreign_key="scans.id", nullable=False, index=True)
+    id = Column(Integer, primary_key=True, index=True)
+    scan_id = Column(Integer, ForeignKey("scans.id"), nullable=False, index=True)
 
     # Alert details
-    alert_name: str = Field(nullable=False, index=True)
-    risk_level: RiskLevel = Field(
-        sa_column=Column(PgEnum(RiskLevel, name="risklevel", create_type=False, values_callable=lambda x: [e.value for e in x]), nullable=False, index=True)
-    )
-    confidence: str = Field(nullable=False)  # High, Medium, Low
+    alert_name = Column(String, nullable=False, index=True)
+    risk_level = Column(SQLEnum(RiskLevel, values_callable=lambda obj: [e.value for e in obj], name="risklevel"), nullable=False, index=True)
+    confidence = Column(String, nullable=False)  # High, Medium, Low
 
     # Vulnerability details
-    description: Optional[str] = Field(default=None, nullable=True)
-    solution: Optional[str] = Field(default=None, nullable=True)
-    reference: Optional[str] = Field(default=None, nullable=True)
-    cwe_id: Optional[str] = Field(default=None, nullable=True)
-    wasc_id: Optional[str] = Field(default=None, nullable=True)
+    description = Column(String, nullable=True)
+    solution = Column(String, nullable=True)
+    reference = Column(String, nullable=True)
+    cwe_id = Column(String, nullable=True)
+    wasc_id = Column(String, nullable=True)
 
     # Location
-    url: str = Field(nullable=False)
-    method: Optional[str] = Field(default=None, nullable=True)
-    param: Optional[str] = Field(default=None, nullable=True)
-    attack: Optional[str] = Field(default=None, nullable=True)
-    evidence: Optional[str] = Field(default=None, nullable=True)
+    url = Column(String, nullable=False)
+    method = Column(String, nullable=True)
+    param = Column(String, nullable=True)
+    attack = Column(String, nullable=True)
+    evidence = Column(String, nullable=True)
 
     # Additional data
-    other_info: Optional[str] = Field(default=None, nullable=True)
-    alert_tags: Optional[Dict[str, Any]] = Field(default=None, sa_column=Column(JSON))
+    other_info = Column(String, nullable=True)
+    alert_tags = Column(JSON, nullable=True)
 
-    created_at: datetime = Field(default_factory=datetime.utcnow, nullable=False)
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
 
     # Relationships
-    scan: Scan = Relationship(back_populates="alerts")
+    scan = relationship("Scan", back_populates="alerts")
