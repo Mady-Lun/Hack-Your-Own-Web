@@ -5,9 +5,10 @@ from ..core.celery_app import celery_app
 from sqlalchemy import select, delete
 import dns.resolver
 from datetime import datetime
+from app.core.config import AppConfig
 
 @celery_app.task
-def verify_domain_task(domain: str, user_id: int, PREFIX: str):
+def verify_domain_task(domain: str, user_id: int, PREFIX: str = AppConfig.DOMAIN_VERIFICATION_TOKEN_PREFIX):
     logger.info(f"Starting domain verification task for domain: {domain}, user_id: {user_id}")
     try:
         # Create a fresh resolver instance (no cache, no stale data)
@@ -35,7 +36,7 @@ def verify_domain_task(domain: str, user_id: int, PREFIX: str):
             found = False
             for rdata in answers:
                 txt = "".join([s.decode() if isinstance(s, bytes) else str(s) for s in rdata.strings]).strip().strip('"')
-                logger.info(f"Found TXT record: {txt}")
+                # logger.info(f"Found TXT record: {txt}")
                 token_candidate = txt
                 if token_candidate.startswith(PREFIX):
                     token_candidate = token_candidate[len(PREFIX):]

@@ -5,9 +5,8 @@ from app.models.site import Site
 from app.utils.generate_tokens import generate_domain_verification_token
 from datetime import datetime
 from app.tasks.domain_verification import verify_domain_task
+from app.core.config import AppConfig
 
-
-PREFIX = "hackyourownweb-verify="
 
 async def domain_registry_crud(data, user, session):
     logger.info(f"Domain registration endpoint hit")
@@ -56,7 +55,7 @@ async def domain_registry_crud(data, user, session):
 
         return JSONResponse(
             status_code=201,
-            content={"success": True, "message": "Domain registered successfully.", "verificationToken": f"{PREFIX}{new_domain.verification_token}"}
+            content={"success": True, "message": "Domain registered successfully.", "verificationToken": f"{AppConfig.DOMAIN_VERIFICATION_TOKEN_PREFIX}{new_domain.verification_token}"}
         )
 
     except Exception as e:
@@ -127,7 +126,7 @@ async def domain_verification_crud(data, user, session):
         #         content={"success": False, "message": "verification token expired — please regenerate"}
         #     )
         
-        verify_domain_task.delay(data.domain, user.id, PREFIX)
+        verify_domain_task.delay(data.domain, user.id)
 
         return JSONResponse(
             status_code=202,
@@ -136,6 +135,69 @@ async def domain_verification_crud(data, user, session):
 
     except Exception as e:
         logger.error(f"Error verifying domain: {e}")
+        return JSONResponse(
+            status_code=500,
+            content={"success": False, "message": "Internal server error"}
+        )
+    
+
+async def get_list_user_domains_crud(user, session):
+    logger.info(f"List user domains endpoint hit")
+    try:
+        result = await session.execute(select(Site).where(Site.user_id == user.id))
+        user_domains = result.scalars().all()
+
+        domains_list = [
+            { 
+                "id": domain.id,
+                "domain": domain.domain,
+                "isVerified": domain.is_verified,
+            }
+            for domain in user_domains
+        ]
+
+        return JSONResponse(
+            status_code=200,
+            content={"success": True, "domains": domains_list}
+        )
+
+    except Exception as e:
+        logger.error(f"Error listing user domains: {e}")
+        return JSONResponse(
+            status_code=500,
+            content={"success": False, "message": "Internal server error"}
+        )
+
+
+async def remove_domain_crud(data, user, session):
+    logger.info(f"Domain removal endpoint hit")
+    try:
+        domain_entry = (await session.execute(
+            select(Site).where(
+                Site.domain == data.domain,
+                Site.user_id == user.id
+            )
+        )).scalars().first()
+
+        if not domain_entry:
+            logger.warning(f"User {user.id} is not authorized to remove domain {data.domain}.")
+            return JSONResponse(
+                status_code=403,
+                content={"success": False, "message": "Not authorized to remove this domain."}
+            )
+
+        await session.delete(domain_entry)
+        await session.commit()
+
+        logger.info(f"Domain {data.domain} removed successfully.")
+
+        return JSONResponse(
+            status_code=204,
+            content=None
+        )
+
+    except Exception as e:
+        logger.error(f"Error removing domain: {e}")
         return JSONResponse(
             status_code=500,
             content={"success": False, "message": "Internal server error"}

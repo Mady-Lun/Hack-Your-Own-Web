@@ -88,6 +88,7 @@ USE_CREDENTIALS=True
 
 # APP
 APP_NAME="Hack Your Own Web"
+DOMAIN_VERIFICATION_TOKEN_PREFIX="hackyourownweb-verify="
 ```
 
 ### Local Development

@@ -435,6 +435,14 @@
         "documentation": {}
     },
     {
+        "label": "AsyncSession",
+        "importPath": "sqlalchemy.ext.asyncio",
+        "description": "sqlalchemy.ext.asyncio",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.ext.asyncio",
+        "documentation": {}
+    },
+    {
         "label": "create_async_engine",
         "importPath": "sqlalchemy.ext.asyncio",
         "description": "sqlalchemy.ext.asyncio",
@@ -460,6 +468,30 @@
     },
     {
         "label": "MailConfig",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
+        "importPath": "app.core.config",
+        "description": "app.core.config",
+        "isExtraImport": true,
+        "detail": "app.core.config",
+        "documentation": {}
+    },
+    {
+        "label": "AppConfig",
         "importPath": "app.core.config",
         "description": "app.core.config",
         "isExtraImport": true,
@@ -531,6 +563,22 @@
         "documentation": {}
     },
     {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
         "label": "HTTPException",
         "importPath": "fastapi",
         "description": "fastapi",
@@ -563,11 +611,59 @@
         "documentation": {}
     },
     {
+        "label": "Request",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Depends",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "HTTPException",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "status",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
         "label": "FastAPI",
         "importPath": "fastapi",
         "description": "fastapi",
         "isExtraImport": true,
         "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "get_session",
+        "importPath": "app.core.db",
+        "description": "app.core.db",
+        "isExtraImport": true,
+        "detail": "app.core.db",
+        "documentation": {}
+    },
+    {
+        "label": "get_session",
+        "importPath": "app.core.db",
+        "description": "app.core.db",
+        "isExtraImport": true,
+        "detail": "app.core.db",
         "documentation": {}
     },
     {
@@ -651,11 +747,19 @@
         "documentation": {}
     },
     {
-        "label": "get_current_user",
-        "importPath": "app.middleware.auth_middleware",
-        "description": "app.middleware.auth_middleware",
+        "label": "verify_site_ownership",
+        "importPath": "app.middleware.site_middleware",
+        "description": "app.middleware.site_middleware",
         "isExtraImport": true,
-        "detail": "app.middleware.auth_middleware",
+        "detail": "app.middleware.site_middleware",
+        "documentation": {}
+    },
+    {
+        "label": "verify_site_ownership",
+        "importPath": "app.middleware.site_middleware",
+        "description": "app.middleware.site_middleware",
+        "isExtraImport": true,
+        "detail": "app.middleware.site_middleware",
         "documentation": {}
     },
     {
@@ -664,6 +768,30 @@
         "description": "app.schemas.site",
         "isExtraImport": true,
         "detail": "app.schemas.site",
+        "documentation": {}
+    },
+    {
+        "label": "ValidDomainSchema",
+        "importPath": "app.schemas.site",
+        "description": "app.schemas.site",
+        "isExtraImport": true,
+        "detail": "app.schemas.site",
+        "documentation": {}
+    },
+    {
+        "label": "get_current_user",
+        "importPath": "app.middleware.auth_middleware",
+        "description": "app.middleware.auth_middleware",
+        "isExtraImport": true,
+        "detail": "app.middleware.auth_middleware",
+        "documentation": {}
+    },
+    {
+        "label": "get_current_user",
+        "importPath": "app.middleware.auth_middleware",
+        "description": "app.middleware.auth_middleware",
+        "isExtraImport": true,
+        "detail": "app.middleware.auth_middleware",
         "documentation": {}
     },
     {
@@ -684,6 +812,22 @@
     },
     {
         "label": "get_domain_status_crud",
+        "importPath": "app.crud.site",
+        "description": "app.crud.site",
+        "isExtraImport": true,
+        "detail": "app.crud.site",
+        "documentation": {}
+    },
+    {
+        "label": "get_list_user_domains_crud",
+        "importPath": "app.crud.site",
+        "description": "app.crud.site",
+        "isExtraImport": true,
+        "detail": "app.crud.site",
+        "documentation": {}
+    },
+    {
+        "label": "remove_domain_crud",
         "importPath": "app.crud.site",
         "description": "app.crud.site",
         "isExtraImport": true,
@@ -828,6 +972,14 @@
         "documentation": {}
     },
     {
+        "label": "logger",
+        "importPath": "app.utils.logger",
+        "description": "app.utils.logger",
+        "isExtraImport": true,
+        "detail": "app.utils.logger",
+        "documentation": {}
+    },
+    {
         "label": "JSONResponse",
         "importPath": "fastapi.responses",
         "description": "fastapi.responses",
@@ -841,6 +993,14 @@
         "description": "fastapi.responses",
         "isExtraImport": true,
         "detail": "fastapi.responses",
+        "documentation": {}
+    },
+    {
+        "label": "Site",
+        "importPath": "app.models.site",
+        "description": "app.models.site",
+        "isExtraImport": true,
+        "detail": "app.models.site",
         "documentation": {}
     },
     {
@@ -974,6 +1134,23 @@
         "documentation": {}
     },
     {
+        "label": "select",
+        "importPath": "sqlalchemy.future",
+        "description": "sqlalchemy.future",
+        "isExtraImport": true,
+        "detail": "sqlalchemy.future",
+        "documentation": {}
+    },
+    {
+        "label": "dns.resolver",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "dns.resolver",
+        "description": "dns.resolver",
+        "detail": "dns.resolver",
+        "documentation": {}
+    },
+    {
         "label": "BaseModel",
         "importPath": "pydantic",
         "description": "pydantic",
@@ -1055,15 +1232,6 @@
         "documentation": {}
     },
     {
-        "label": "dns.resolver",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "dns.resolver",
-        "description": "dns.resolver",
-        "detail": "dns.resolver",
-        "documentation": {}
-    },
-    {
         "label": "time",
         "kind": 6,
         "isExtraImport": true,
@@ -1101,18 +1269,26 @@
     },
     {
         "label": "auth_router",
-        "importPath": "app.api.v1.auth",
-        "description": "app.api.v1.auth",
+        "importPath": "app.api.v1",
+        "description": "app.api.v1",
         "isExtraImport": true,
-        "detail": "app.api.v1.auth",
+        "detail": "app.api.v1",
         "documentation": {}
     },
     {
         "label": "site_router",
-        "importPath": "app.api.v1.site",
-        "description": "app.api.v1.site",
+        "importPath": "app.api.v1",
+        "description": "app.api.v1",
         "isExtraImport": true,
-        "detail": "app.api.v1.site",
+        "detail": "app.api.v1",
+        "documentation": {}
+    },
+    {
+        "label": "scan_router",
+        "importPath": "app.api.v1",
+        "description": "app.api.v1",
+        "isExtraImport": true,
+        "detail": "app.api.v1",
         "documentation": {}
     },
     {
@@ -1307,9 +1483,27 @@
     {
         "label": "router",
         "kind": 5,
+        "importPath": "backend.app.api.v1.scan",
+        "description": "backend.app.api.v1.scan",
+        "peekOfCode": "router = APIRouter()\nscan_router = router\n@router.post(\"/test\")\nasync def test_scan_domain(domain: ValidDomainSchema, user = Depends(get_current_user), session: AsyncSession = Depends(get_session)):\n    await verify_site_ownership(domain, user, session)\n    return {\"success\": True, \"message\": \"Test scan endpoint hit.\", \"domain\": domain.domain}",
+        "detail": "backend.app.api.v1.scan",
+        "documentation": {}
+    },
+    {
+        "label": "scan_router",
+        "kind": 5,
+        "importPath": "backend.app.api.v1.scan",
+        "description": "backend.app.api.v1.scan",
+        "peekOfCode": "scan_router = router\n@router.post(\"/test\")\nasync def test_scan_domain(domain: ValidDomainSchema, user = Depends(get_current_user), session: AsyncSession = Depends(get_session)):\n    await verify_site_ownership(domain, user, session)\n    return {\"success\": True, \"message\": \"Test scan endpoint hit.\", \"domain\": domain.domain}",
+        "detail": "backend.app.api.v1.scan",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "kind": 5,
         "importPath": "backend.app.api.v1.site",
         "description": "backend.app.api.v1.site",
-        "peekOfCode": "router = APIRouter()\nsite_router = router\n@router.post(\"/\")\nasync def register_domain(data: ValidDomainSchema, user = Depends(get_current_user), session: AsyncSession = Depends(get_session)):\n    return await domain_registry_crud(data, user, session)\n@router.get(\"/status\")\nasync def get_domain_status(domain: ValidDomainSchema, user = Depends(get_current_user), session: AsyncSession = Depends(get_session)):\n    return await get_domain_status_crud(domain, user, session)\n@router.post(\"/verify\")\nasync def verify_domain(domain: ValidDomainSchema, user = Depends(get_current_user), session: AsyncSession = Depends(get_session)):",
+        "peekOfCode": "router = APIRouter()\nsite_router = router\n@router.get(\"/\")\nasync def get_list_user_domains(user = Depends(get_current_user), session: AsyncSession = Depends(get_session)):\n    return await get_list_user_domains_crud(user, session)\n@router.post(\"/\")\nasync def register_domain(data: ValidDomainSchema, user = Depends(get_current_user), session: AsyncSession = Depends(get_session)):\n    return await domain_registry_crud(data, user, session)\n@router.get(\"/status\")\nasync def get_domain_status(domain: ValidDomainSchema, user = Depends(get_current_user), session: AsyncSession = Depends(get_session)):",
         "detail": "backend.app.api.v1.site",
         "documentation": {}
     },
@@ -1318,7 +1512,7 @@
         "kind": 5,
         "importPath": "backend.app.api.v1.site",
         "description": "backend.app.api.v1.site",
-        "peekOfCode": "site_router = router\n@router.post(\"/\")\nasync def register_domain(data: ValidDomainSchema, user = Depends(get_current_user), session: AsyncSession = Depends(get_session)):\n    return await domain_registry_crud(data, user, session)\n@router.get(\"/status\")\nasync def get_domain_status(domain: ValidDomainSchema, user = Depends(get_current_user), session: AsyncSession = Depends(get_session)):\n    return await get_domain_status_crud(domain, user, session)\n@router.post(\"/verify\")\nasync def verify_domain(domain: ValidDomainSchema, user = Depends(get_current_user), session: AsyncSession = Depends(get_session)):\n    return await domain_verification_crud(domain, user, session)",
+        "peekOfCode": "site_router = router\n@router.get(\"/\")\nasync def get_list_user_domains(user = Depends(get_current_user), session: AsyncSession = Depends(get_session)):\n    return await get_list_user_domains_crud(user, session)\n@router.post(\"/\")\nasync def register_domain(data: ValidDomainSchema, user = Depends(get_current_user), session: AsyncSession = Depends(get_session)):\n    return await domain_registry_crud(data, user, session)\n@router.get(\"/status\")\nasync def get_domain_status(domain: ValidDomainSchema, user = Depends(get_current_user), session: AsyncSession = Depends(get_session)):\n    return await get_domain_status_crud(domain, user, session)",
         "detail": "backend.app.api.v1.site",
         "documentation": {}
     },
@@ -1354,7 +1548,7 @@
         "kind": 6,
         "importPath": "backend.app.core.config",
         "description": "backend.app.core.config",
-        "peekOfCode": "class AppSettings(BaseSettings):\n    APP_NAME: str\n    model_config = SettingsConfigDict(\n        env_file=ENV_FILE,\n        extra=\"ignore\",\n    )\nclass MailSettings(BaseSettings):\n    MAIL_USERNAME: str\n    MAIL_PASSWORD: str\n    MAIL_FROM: str",
+        "peekOfCode": "class AppSettings(BaseSettings):\n    APP_NAME: str\n    DOMAIN_VERIFICATION_TOKEN_PREFIX: str\n    model_config = SettingsConfigDict(\n        env_file=ENV_FILE,\n        extra=\"ignore\",\n    )\nclass MailSettings(BaseSettings):\n    MAIL_USERNAME: str\n    MAIL_PASSWORD: str",
         "detail": "backend.app.core.config",
         "documentation": {}
     },
@@ -1473,15 +1667,6 @@
         "description": "backend.app.core.security",
         "peekOfCode": "pwd_context = CryptContext(\n    schemes=[\"argon2\"],\n    deprecated=\"auto\"\n)\nasync def get_password_hash(password: str) -> str:\n    return pwd_context.hash(password) \nasync def verify_password(plain_password: str, hashed_password: str) -> bool:\n    return pwd_context.verify(plain_password, hashed_password)\nasync def revoke_session_token(response):\n    response.set_cookie(",
         "detail": "backend.app.core.security",
-        "documentation": {}
-    },
-    {
-        "label": "PREFIX",
-        "kind": 5,
-        "importPath": "backend.app.crud.site",
-        "description": "backend.app.crud.site",
-        "peekOfCode": "PREFIX = \"hackyourownweb-verify=\"\nasync def domain_registry_crud(data, user, session):\n    logger.info(f\"Domain registration endpoint hit\")\n    try:\n        result = await session.execute(select(Site).where(Site.domain == data.domain))\n        existingDomains = result.scalars().all()\n        # Domain is verified by this same user\n        verified_by_user = next((d for d in existingDomains if d.user_id == user.id and d.is_verified), None)\n        if verified_by_user:\n            logger.warning(f\"User {user.id} already verified domain {data.domain}.\")",
-        "detail": "backend.app.crud.site",
         "documentation": {}
     },
     {
@@ -1606,7 +1791,7 @@
         "kind": 2,
         "importPath": "backend.app.tasks.domain_verification",
         "description": "backend.app.tasks.domain_verification",
-        "peekOfCode": "def verify_domain_task(domain: str, user_id: int, PREFIX: str):\n    logger.info(f\"Starting domain verification task for domain: {domain}, user_id: {user_id}\")\n    try:\n        # Create a fresh resolver instance (no cache, no stale data)\n        resolver = dns.resolver.Resolver()\n        resolver.cache = None\n        resolver.nameservers = [\"1.1.1.1\", \"8.8.8.8\"]  # Use reliable public DNS servers\n        resolver.timeout = 3 # Per DNS server timeout {seconds}\n        resolver.lifetime = 5 # Overall query timeout {seconds}\n        # Fetch fresh TXT records",
+        "peekOfCode": "def verify_domain_task(domain: str, user_id: int, PREFIX: str = AppConfig.DOMAIN_VERIFICATION_TOKEN_PREFIX):\n    logger.info(f\"Starting domain verification task for domain: {domain}, user_id: {user_id}\")\n    try:\n        # Create a fresh resolver instance (no cache, no stale data)\n        resolver = dns.resolver.Resolver()\n        resolver.cache = None\n        resolver.nameservers = [\"1.1.1.1\", \"8.8.8.8\"]  # Use reliable public DNS servers\n        resolver.timeout = 3 # Per DNS server timeout {seconds}\n        resolver.lifetime = 5 # Overall query timeout {seconds}\n        # Fetch fresh TXT records",
         "detail": "backend.app.tasks.domain_verification",
         "documentation": {}
     },
