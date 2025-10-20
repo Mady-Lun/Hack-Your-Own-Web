@@ -6,6 +6,7 @@ sys.path.append(str(Path(__file__).parent))
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.v1.auth import auth_router
+from app.api.v1.site import site_router
 from app.api.v1.scan import scan_router
 from app.core.db import async_engine
 from sqlalchemy import text
@@ -36,6 +37,7 @@ app.add_middleware(
 
 # Include routers
 app.include_router(auth_router, prefix=f"/api/{version}/auth", tags=["Authentication"])
+app.include_router(site_router, prefix=f"/api/{version}/site", tags=["Site Management"])
 app.include_router(scan_router, prefix=f"/api/{version}/scans", tags=["Security Scans"])
 
 

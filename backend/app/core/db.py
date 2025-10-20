@@ -1,7 +1,9 @@
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncEngine
+from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.pool import NullPool
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
 from app.core.config import Config
-from sqlmodel.ext.asyncio.session import AsyncSession
 from typing import AsyncGenerator
 
 # async engine object with NullPool to avoid event loop conflicts in Celery workers
@@ -20,6 +22,22 @@ AsyncSessionLocal = async_sessionmaker(
     autoflush=False,
 )
 
+# Dependency for FastAPI
 async def get_session() -> AsyncGenerator[AsyncSession, None]:
     async with AsyncSessionLocal() as session:
         yield session
+
+
+# Convert the async URL to a sync one automatically for Celery tasks
+SYNC_DATABASE_URL = Config.DATABASE_URL.replace("+asyncpg", "")
+
+sync_engine = create_engine(
+    SYNC_DATABASE_URL,
+    echo=False,
+)
+
+SessionLocal = sessionmaker(
+    autocommit=False,
+    autoflush=False,
+    bind=sync_engine
+)

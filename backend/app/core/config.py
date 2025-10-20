@@ -1,25 +1,28 @@
+import os
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+ENV_FILE = os.getenv("ENV_FILE", ".env.prod")
+
 class Settings(BaseSettings):
-    ENV: str = "development"
-    DATABASE_URL: str = "sqlite+aiosqlite:///./app.db"
-    JWT_SECRET: str = "changeme"
-    JWT_ALGORITHM: str = "HS256"
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = 15
-    REFRESH_TOKEN_EXPIRE_DAYS: int = 7
+    ENV: str
+    DATABASE_URL: str
+    JWT_SECRET: str
+    JWT_ALGORITHM: str
+    ACCESS_TOKEN_EXPIRE_MINUTES: int
+    REFRESH_TOKEN_EXPIRE_DAYS: int
 
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=ENV_FILE,
         extra="ignore",
     )
 
 
 class AppSettings(BaseSettings):
-    APP_NAME: str = "Hack Your Own Web"
-
+    APP_NAME: str
+    DOMAIN_VERIFICATION_TOKEN_PREFIX: str
 
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=ENV_FILE,
         extra="ignore",
     )
 
@@ -38,7 +41,7 @@ class MailSettings(BaseSettings):
 
 
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=ENV_FILE,
         extra="ignore",
     )
 
