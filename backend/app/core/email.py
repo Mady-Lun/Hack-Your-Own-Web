@@ -14,7 +14,7 @@ conf = ConnectionConfig(
     MAIL_SSL_TLS=MailConfig.MAIL_SSL_TLS,
     MAIL_DEBUG=MailConfig.MAIL_DEBUG,
     USE_CREDENTIALS=MailConfig.USE_CREDENTIALS,
-    TEMPLATE_FOLDER=Path(__file__).parent.parent / "email/mail_templates",
+    TEMPLATE_FOLDER=Path(__file__).parent / "mail_templates",
 )
 
 fm = FastMail(conf)

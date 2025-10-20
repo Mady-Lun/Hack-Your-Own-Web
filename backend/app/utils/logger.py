@@ -1,5 +1,6 @@
 import logging
 import sys
+from pathlib import Path
 
 logger = logging.getLogger()
 
@@ -8,9 +9,13 @@ formatter = logging.Formatter(
     fmt="%(asctime)s - %(levelname)s - %(message)s",
 )
 
+# Ensure logs directory exists
+log_dir = Path("logs")
+log_dir.mkdir(exist_ok=True)
+
 # create handlers
 stream_handler = logging.StreamHandler(sys.stdout)
-file_handler = logging.FileHandler("app.log")
+file_handler = logging.FileHandler(log_dir / "app.log")
 
 # set formatters
 stream_handler.setFormatter(formatter)

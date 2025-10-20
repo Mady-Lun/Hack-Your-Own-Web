@@ -2,10 +2,11 @@ from datetime import datetime, timedelta
 from ..models.user import User, RefreshToken
 from ..core.security import get_password_hash, verify_password, revoke_token, revoke_session_token
 from sqlmodel import select, delete
-from  ..utils.logger import logger
+from ..utils.logger import logger
 from fastapi.responses import JSONResponse
-import random, string
-from ..email.email import send_email_verification, send_email_verification_success, send_email_password_reset
+import random
+import string
+from ..core.email_helpers import send_email_verification, send_email_verification_success, send_email_password_reset
 from ..utils.generate_tokens import generate_tokens, generate_verification_token
 
 async def sign_up_crud(data, response, session):

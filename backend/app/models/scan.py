@@ -1,7 +1,11 @@
 from sqlmodel import SQLModel, Field, Relationship, Column, JSON
+from sqlalchemy.dialects.postgresql import ENUM as PgEnum
 from datetime import datetime
-from typing import Optional, Dict, Any, List
+from typing import Optional, Dict, Any, List, TYPE_CHECKING
 from enum import Enum
+
+if TYPE_CHECKING:
+    from app.models.user import User
 
 
 class ScanStatus(str, Enum):
@@ -18,13 +22,19 @@ class ScanType(str, Enum):
 
 
 class Scan(SQLModel, table=True):
-    __tablename__ = "scans"
+    __tablename__ = "scans" # type: ignore
 
     id: int = Field(default=None, primary_key=True)
     user_id: int = Field(foreign_key="users.id", nullable=False, index=True)
     target_url: str = Field(nullable=False, index=True)
-    scan_type: ScanType = Field(default=ScanType.BASIC, nullable=False)
-    status: ScanStatus = Field(default=ScanStatus.PENDING, nullable=False, index=True)
+    scan_type: ScanType = Field(
+        default=ScanType.BASIC,
+        sa_column=Column(PgEnum(ScanType, name="scantype", create_type=False, values_callable=lambda x: [e.value for e in x]), nullable=False)
+    )
+    status: ScanStatus = Field(
+        default=ScanStatus.PENDING,
+        sa_column=Column(PgEnum(ScanStatus, name="scanstatus", create_type=False, values_callable=lambda x: [e.value for e in x]), nullable=False, index=True)
+    )
 
     # Celery task tracking
     celery_task_id: Optional[str] = Field(default=None, nullable=True, index=True)
@@ -71,14 +81,16 @@ class RiskLevel(str, Enum):
 
 
 class ScanAlert(SQLModel, table=True):
-    __tablename__ = "scan_alerts"
+    __tablename__ = "scan_alerts" # type: ignore
 
     id: int = Field(default=None, primary_key=True)
     scan_id: int = Field(foreign_key="scans.id", nullable=False, index=True)
 
     # Alert details
     alert_name: str = Field(nullable=False, index=True)
-    risk_level: RiskLevel = Field(nullable=False, index=True)
+    risk_level: RiskLevel = Field(
+        sa_column=Column(PgEnum(RiskLevel, name="risklevel", create_type=False, values_callable=lambda x: [e.value for e in x]), nullable=False, index=True)
+    )
     confidence: str = Field(nullable=False)  # High, Medium, Low
 
     # Vulnerability details

@@ -14,26 +14,10 @@ class ScanTask(Task):
     """Base task with error handling and cleanup"""
 
     def on_failure(self, exc, task_id, args, kwargs, einfo):
-        """Handle task failure"""
+        """Handle task failure - just log, don't try to update DB"""
         logger.error(f"Task {task_id} failed: {exc}")
-        scan_id = kwargs.get("scan_id") or (args[0] if args else None)
-        if scan_id:
-            asyncio.run(self._update_scan_status(scan_id, ScanStatus.FAILED, str(exc)))
-
-    @staticmethod
-    async def _update_scan_status(scan_id: int, status: ScanStatus, error_message: Optional[str] = None):
-        """Update scan status in database"""
-        async with AsyncSessionLocal() as session:
-            result = await session.execute(select(Scan).filter_by(id=scan_id))
-            scan = result.scalar_one_or_none()
-            if scan:
-                scan.status = status
-                scan.error_message = error_message
-                scan.updated_at = datetime.utcnow()
-                if status == ScanStatus.FAILED:
-                    scan.completed_at = datetime.utcnow()
-                session.add(scan)
-                await session.commit()
+        # Don't try to update DB here as it causes connection conflicts
+        # The scan will remain in IN_PROGRESS state and can be cleaned up separately
 
 
 @celery_app.task(bind=True, base=ScanTask, name="app.tasks.scan_tasks.run_scan")
@@ -63,6 +47,7 @@ async def _run_scan_async(scan_id: int, task: Task) -> Dict[str, Any]:
     """Async implementation of scan execution"""
     logger.info(f"Starting async scan execution for scan {scan_id}")
 
+    # Use a single session for the entire scan to avoid connection conflicts
     async with AsyncSessionLocal() as session:
         # Get scan details
         result = await session.execute(select(Scan).filter_by(id=scan_id))
@@ -92,27 +77,10 @@ async def _run_scan_async(scan_id: int, task: Task) -> Dict[str, Any]:
             # Initialize ZAP scanner
             scanner = ZAPScanner()
 
-            # Progress callback
+            # Progress callback - just log for now to avoid DB connection conflicts
             def update_progress(percentage: int, step: str):
-                async def _update():
-                    async with AsyncSessionLocal() as update_session:
-                        result = await update_session.execute(
-                            select(Scan).filter_by(id=scan_id)
-                        )
-                        scan_obj = result.scalar_one_or_none()
-                        if scan_obj:
-                            scan_obj.progress_percentage = percentage
-                            scan_obj.current_step = step
-                            scan_obj.updated_at = datetime.utcnow()
-                            update_session.add(scan_obj)
-                            await update_session.commit()
-
-                # Run in new event loop
-                try:
-                    asyncio.run(_update())
-                except RuntimeError:
-                    # If event loop is already running, schedule as a task
-                    pass
+                """Log scan progress - called from sync context within async execution"""
+                logger.info(f"Scan {scan_id} progress: {percentage}% - {step}")
 
             # Run appropriate scan type
             alerts = []
@@ -152,6 +120,8 @@ async def _run_scan_async(scan_id: int, task: Task) -> Dict[str, Any]:
 
         except Exception as e:
             logger.error(f"Scan {scan_id} failed: {e}")
+            # Refresh the scan object to avoid detached instance errors
+            await session.refresh(scan)
             scan.status = ScanStatus.FAILED
             scan.error_message = str(e)
             scan.completed_at = datetime.utcnow()

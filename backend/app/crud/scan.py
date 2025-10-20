@@ -2,6 +2,7 @@ from datetime import datetime
 from typing import Optional, List, Tuple
 from sqlmodel import select, func, and_, or_, col
 from sqlmodel.ext.asyncio.session import AsyncSession
+from sqlalchemy.orm import selectinload
 from fastapi.responses import JSONResponse
 from app.models.scan import Scan, ScanAlert, ScanStatus, ScanType
 from app.schemas.scan import ScanCreate, ScanUpdate
@@ -83,6 +84,11 @@ async def get_scan_by_id_crud(
         query = select(Scan).where(
             and_(Scan.id == scan_id, Scan.user_id == user_id)
         )
+
+        # Eagerly load alerts if requested
+        if include_alerts:
+            query = query.options(selectinload(Scan.alerts))
+
         result = await session.execute(query)
         scan = result.scalar_one_or_none()
 
@@ -91,10 +97,6 @@ async def get_scan_by_id_crud(
             return None
 
         if scan and include_alerts:
-            # Load alerts
-            alerts_query = select(ScanAlert).where(ScanAlert.scan_id == scan_id)
-            alerts_result = await session.execute(alerts_query)
-            scan.alerts = alerts_result.scalars().all()
             logger.info(f"Loaded {len(scan.alerts)} alerts for scan {scan_id}")
 
         return scan

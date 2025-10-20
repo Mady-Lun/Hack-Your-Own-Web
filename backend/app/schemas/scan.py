@@ -36,7 +36,23 @@ class ScanUpdate(BaseModel):
     error_message: Optional[str] = None
 
 
+class ScanAlertSummaryResponse(BaseModel):
+    """Lightweight alert response for listing"""
+    id: int
+    alert_name: str
+    risk_level: RiskLevel
+    confidence: str
+    url: str
+    method: Optional[str] = None
+    cwe_id: Optional[str] = None
+    created_at: datetime
+
+    class Config:
+        from_attributes = True
+
+
 class ScanAlertResponse(BaseModel):
+    """Detailed alert response with full information"""
     id: int
     alert_name: str
     risk_level: RiskLevel
@@ -54,6 +70,9 @@ class ScanAlertResponse(BaseModel):
     other_info: Optional[str] = None
     alert_tags: Optional[Dict[str, Any]] = None
     created_at: datetime
+
+    class Config:
+        from_attributes = True
 
 
 class ScanResponse(BaseModel):
@@ -76,9 +95,24 @@ class ScanResponse(BaseModel):
     completed_at: Optional[datetime] = None
     updated_at: datetime
 
+    class Config:
+        from_attributes = True
+
 
 class ScanDetailResponse(ScanResponse):
+    """Scan details with summary alerts (lightweight)"""
+    alerts: List[ScanAlertSummaryResponse] = []
+
+    class Config:
+        from_attributes = True
+
+
+class ScanFullDetailResponse(ScanResponse):
+    """Scan details with full alert information (detailed)"""
     alerts: List[ScanAlertResponse] = []
+
+    class Config:
+        from_attributes = True
 
 
 class ScanListResponse(BaseModel):

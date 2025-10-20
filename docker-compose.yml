@@ -66,10 +66,9 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     container_name: hyow-celery-worker
-    command: celery -A app.core.celery_app worker --loglevel=info --concurrency=11 -E
+    command: celery -A app.core.celery_app worker --loglevel=info --concurrency=11 -E -Q celery,scans
     volumes:
       - ./backend:/app
-      - /var/run/docker.sock:/var/run/docker.sock  # For Docker-in-Docker (ZAP)
     env_file:
       - ./backend/.env
     depends_on:
@@ -77,6 +76,8 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
+      zap:
+        condition: service_started
     networks:
       - hyow-network
     restart: unless-stopped
@@ -101,7 +102,7 @@ services:
       - hyow-network
     restart: unless-stopped
 
-  # Flower - Celery monitoring 
+  # Flower - Celery monitoring
   flower:
     build:
       context: ./backend
@@ -118,6 +119,23 @@ services:
     networks:
       - hyow-network
     restart: unless-stopped
+
+  # OWASP ZAP - Security Scanner (Persistent Service)
+  zap:
+    image: ghcr.io/zaproxy/zaproxy:stable
+    container_name: hyow-zap
+    command: zap.sh -daemon -host 0.0.0.0 -port 8090 -config api.key=15d12de6-553b-4af7-bd5c-22599f8876f2 -config api.addrs.addr.name=.* -config api.addrs.addr.regex=true
+    ports:
+      - "8090:8090"
+    networks:
+      - hyow-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8090"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
 
 networks:
   hyow-network:

@@ -4,12 +4,11 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parent))
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from app.api.v1.auth import auth_router
 from app.api.v1.scan import scan_router
-from app.api.v1.test_celery import router as test_celery_router
 from app.core.db import async_engine
 from sqlalchemy import text
-# from fastapi.middleware.cors import CORSMiddleware
 
 
 version = "v1"
@@ -19,23 +18,25 @@ app = FastAPI(
     version=version,
 )
 
-# origins = [
-#     "http://localhost:8000",  # your frontend
-#     "http://127.0.0.1:8000",
-# ]
+# CORS Configuration
+origins = [
+    "http://localhost:3000",  # React frontend
+    "http://127.0.0.1:3000",
+    "http://localhost:8000",  # API docs
+    "http://127.0.0.1:8000",
+]
 
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=origins,
-#     allow_credentials=True,  # important for cookies
-#     allow_methods=["*"],
-#     allow_headers=["*"],
-# )
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Include routers
 app.include_router(auth_router, prefix=f"/api/{version}/auth", tags=["Authentication"])
 app.include_router(scan_router, prefix=f"/api/{version}/scans", tags=["Security Scans"])
-app.include_router(test_celery_router, prefix=f"/api/{version}/test-celery", tags=["Celery Testing"])
 
 
 @app.get("/")

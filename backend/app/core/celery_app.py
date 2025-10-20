@@ -5,7 +5,7 @@ celery_app = Celery(
     "hack_your_own_web",
     broker=CeleryConfig.CELERY_BROKER_URL,
     backend=CeleryConfig.CELERY_RESULT_BACKEND,
-    include=["app.tasks.scan_tasks", "app.tasks.test_tasks"]
+    include=["app.tasks.scan_tasks"]
 )
 
 # Celery configuration

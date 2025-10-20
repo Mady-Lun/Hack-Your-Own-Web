@@ -6,6 +6,7 @@ from app.schemas.scan import (
     ScanCreate,
     ScanResponse,
     ScanDetailResponse,
+    ScanFullDetailResponse,
     ScanListResponse,
     ScanStatsResponse,
 )
@@ -98,16 +99,21 @@ async def get_scan_stats(
     return ScanStatsResponse(**stats)
 
 
-@router.get("/{scan_id}", response_model=ScanDetailResponse)
+@router.get("/{scan_id}")
 async def get_scan(
     scan_id: int,
+    detailed: bool = Query(False, description="Include full alert details (default: false for summary only)"),
     user_data=Depends(get_current_user),
     session: AsyncSession = Depends(get_session)
 ):
     """
-    Get detailed information about a specific scan including all alerts
+    Get detailed information about a specific scan including alerts
 
     - **scan_id**: The ID of the scan
+    - **detailed**: If true, returns full alert details. If false (default), returns summary alerts only.
+
+    Default response includes lightweight alert summaries (id, alert_name, risk_level, confidence, url, method, cwe_id, created_at).
+    Use detailed=true to get full alert information including description, solution, references, etc.
     """
     user_id = int(user_data['user']['id'])
     scan = await get_scan_by_id_crud(scan_id, user_id, session, include_alerts=True)
@@ -118,7 +124,10 @@ async def get_scan(
             content={"success": False, "message": "Scan not found"}
         )
 
-    return ScanDetailResponse.model_validate(scan)
+    if detailed:
+        return ScanFullDetailResponse.model_validate(scan)
+    else:
+        return ScanDetailResponse.model_validate(scan)
 
 
 @router.delete("/{scan_id}", status_code=status.HTTP_200_OK)
