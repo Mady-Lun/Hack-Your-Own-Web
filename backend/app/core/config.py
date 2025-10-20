@@ -23,6 +23,7 @@ class Settings(BaseSettings):
 
 class AppSettings(BaseSettings):
     APP_NAME: str
+    DOMAIN_VERIFICATION_TOKEN_PREFIX: str
 
 
     model_config = SettingsConfigDict(
