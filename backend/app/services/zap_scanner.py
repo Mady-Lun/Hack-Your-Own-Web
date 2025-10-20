@@ -31,6 +31,10 @@ class ZAPScanner:
         self.docker_container: Optional["Container"] = None
         self.zap: Optional[ZAPv2] = None
 
+        # Scanner manager optimization flags
+        self._scanner_manager_initialized: bool = False
+        self._scan_context: str = ""
+
     def _ensure_zap_initialized(self) -> ZAPv2:
         """Ensure ZAP instance is initialized, raise exception if not."""
         if self.zap is None:
@@ -224,8 +228,15 @@ class ZAPScanner:
         This is a non-intrusive scan that only observes and doesn't actively test the target
         """
         logger.info(f"Starting BASIC scan for {target_url}")
-        if not self.start_zap_instance():
-            raise Exception("Failed to start ZAP instance")
+
+        # Only start ZAP if not managed by scanner manager
+        needs_cleanup = False
+        if not self._scanner_manager_initialized:
+            if not self.start_zap_instance():
+                raise Exception("Failed to start ZAP instance")
+            needs_cleanup = True
+        else:
+            logger.info(f"Using pooled ZAP connection (context: {self._scan_context})")
 
         try:
             # Spider - discover URLs
@@ -245,7 +256,9 @@ class ZAPScanner:
             logger.info(f"BASIC scan completed for {target_url}. Found {len(alerts)} alerts")
             return alerts
         finally:
-            self.stop_zap_instance()
+            # Only cleanup if we started ZAP ourselves
+            if needs_cleanup:
+                self.stop_zap_instance()
 
     def run_full_scan(
         self,
@@ -257,8 +270,15 @@ class ZAPScanner:
         This is an intrusive scan that actively tests the target for vulnerabilities
         """
         logger.info(f"Starting FULL scan for {target_url}")
-        if not self.start_zap_instance():
-            raise Exception("Failed to start ZAP instance")
+
+        # Only start ZAP if not managed by scanner manager
+        needs_cleanup = False
+        if not self._scanner_manager_initialized:
+            if not self.start_zap_instance():
+                raise Exception("Failed to start ZAP instance")
+            needs_cleanup = True
+        else:
+            logger.info(f"Using pooled ZAP connection (context: {self._scan_context})")
 
         try:
             # Spider - discover URLs
@@ -283,4 +303,6 @@ class ZAPScanner:
             logger.info(f"FULL scan completed for {target_url}. Found {len(alerts)} alerts")
             return alerts
         finally:
-            self.stop_zap_instance()
+            # Only cleanup if we started ZAP ourselves
+            if needs_cleanup:
+                self.stop_zap_instance()
