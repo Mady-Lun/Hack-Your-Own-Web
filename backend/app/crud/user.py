@@ -407,8 +407,9 @@ async def reset_password_crud(data, response, user_cookie, session):
         user.updated_at = datetime.utcnow()
 
         # Delete refresh tokens directly
+        # SQLAlchemy comparison creates ColumnElement[bool], not plain bool
         await session.execute(
-            delete(RefreshToken).where(RefreshToken.user_id == user.id)
+            delete(RefreshToken).where(RefreshToken.user_id == user.id)  # type: ignore[arg-type]
         )
 
         session.add(user)
@@ -437,8 +438,9 @@ async def logout_crud(response, user_cookie, session):
         user_id = int(user_cookie['user']['id'])
 
         # Delete refresh tokens directly
+        # SQLAlchemy comparison creates ColumnElement[bool], not plain bool
         await session.execute(
-            delete(RefreshToken).where(RefreshToken.user_id == user_id)
+            delete(RefreshToken).where(RefreshToken.user_id == user_id)  # type: ignore[arg-type]
         )
         await session.commit()
 

@@ -87,7 +87,8 @@ async def get_scan_by_id_crud(
 
         # Eagerly load alerts if requested
         if include_alerts:
-            query = query.options(selectinload(Scan.alerts))
+            # Scan.alerts is a RelationshipProperty, but Pylance sees it as List[ScanAlert]
+            query = query.options(selectinload(Scan.alerts))  # type: ignore[arg-type]
 
         result = await session.execute(query)
         scan = result.scalar_one_or_none()
