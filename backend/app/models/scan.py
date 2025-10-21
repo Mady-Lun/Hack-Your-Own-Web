@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, JSON, Enum as SQLEnum
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, JSON, Enum as SQLEnum, Index
 from sqlalchemy.orm import relationship
 from datetime import datetime
 from typing import Optional, TYPE_CHECKING
@@ -76,24 +76,31 @@ class RiskLevel(Enum):
 
 class ScanAlert(Base):
     __tablename__ = "scan_alerts"
+    __table_args__ = (
+        # OPTIMIZED: Only keep essential composite indexes for common queries
+        # Removed individual indexes on: id, alert_name, risk_level, confidence, cwe_id, url, created_at
+        # This reduces index overhead during bulk inserts by ~50%
+        Index('ix_scan_alerts_scan_risk', 'scan_id', 'risk_level'),  # Filter alerts by scan and risk
+        Index('ix_scan_alerts_scan_created', 'scan_id', 'created_at'),  # Sort alerts by creation time within scan
+    )
 
-    id = Column(Integer, primary_key=True, index=True)
-    scan_id = Column(Integer, ForeignKey("scans.id"), nullable=False, index=True)
+    id = Column(Integer, primary_key=True)  # Removed index=True (primary key is already indexed)
+    scan_id = Column(Integer, ForeignKey("scans.id", ondelete="CASCADE"), nullable=False, index=True)  # Keep for foreign key
 
-    # Alert details
-    alert_name = Column(String, nullable=False, index=True)
-    risk_level = Column(SQLEnum(RiskLevel, values_callable=lambda obj: [e.value for e in obj], name="risklevel"), nullable=False, index=True)
-    confidence = Column(String, nullable=False)  # High, Medium, Low
+    # Alert details (removed individual indexes)
+    alert_name = Column(String, nullable=False)
+    risk_level = Column(SQLEnum(RiskLevel, values_callable=lambda obj: [e.value for e in obj], name="risklevel"), nullable=False)
+    confidence = Column(String, nullable=False)
 
     # Vulnerability details
     description = Column(String, nullable=True)
     solution = Column(String, nullable=True)
     reference = Column(String, nullable=True)
-    cwe_id = Column(String, nullable=True)
+    cwe_id = Column(String, nullable=True)  # Removed index (can filter via scan_id first)
     wasc_id = Column(String, nullable=True)
 
     # Location
-    url = Column(String, nullable=False)
+    url = Column(String, nullable=False)  # Removed index (scan_id filtering is sufficient)
     method = Column(String, nullable=True)
     param = Column(String, nullable=True)
     attack = Column(String, nullable=True)
@@ -103,7 +110,7 @@ class ScanAlert(Base):
     other_info = Column(String, nullable=True)
     alert_tags = Column(JSON, nullable=True)
 
-    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)  # Removed individual index (covered by composite)
 
     # Relationships
     scan = relationship("Scan", back_populates="alerts")

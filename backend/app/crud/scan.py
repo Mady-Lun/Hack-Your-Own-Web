@@ -60,7 +60,9 @@ async def create_scan_crud(
         await session.refresh(scan)
 
         # Queue scan task (include target_url for display in Flower)
-        task = run_scan_task.apply_async(kwargs={"scan_id": scan.id, "target_url": str(data.target_url)})
+        task = run_scan_task.apply_async(
+            kwargs={"scan_id": scan.id, "target_url": str(data.target_url)}
+        )
 
         # Update scan with task ID
         scan.celery_task_id = task.id

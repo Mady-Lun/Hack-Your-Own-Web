@@ -8,6 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.api.v1.auth import auth_router
 from app.api.v1.site import site_router
 from app.api.v1.scan import scan_router
+from app.api.v1.health import health_router
 from app.core.db import async_engine
 from sqlalchemy import text
 
@@ -39,6 +40,7 @@ app.add_middleware(
 app.include_router(auth_router, prefix=f"/api/{version}/auth", tags=["Authentication"])
 app.include_router(site_router, prefix=f"/api/{version}/site", tags=["Site Management"])
 app.include_router(scan_router, prefix=f"/api/{version}/scans", tags=["Security Scans"])
+app.include_router(health_router, prefix=f"/api/{version}", tags=["Health"])
 
 
 @app.get("/")
@@ -47,13 +49,9 @@ async def root():
         "message": "Hack Your Own Web API",
         "version": version,
         "docs": "/docs",
-        "health": "/health"
+        "health": f"/api/{version}/health",
+        "metrics": f"/api/{version}/metrics"
     }
-
-
-@app.get("/health")
-async def health_check():
-    return {"status": "healthy"}
 
 
 @app.on_event("startup")

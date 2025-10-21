@@ -1,4 +1,5 @@
 from celery import Celery
+from kombu import Queue, Exchange
 from app.core.config import CeleryConfig
 
 celery_app = Celery(
@@ -7,6 +8,9 @@ celery_app = Celery(
     backend=CeleryConfig.CELERY_RESULT_BACKEND,
     include=["app.tasks.scan_tasks", "app.tasks.domain_verification"]
 )
+
+# Define priority queues for scans
+default_exchange = Exchange('default', type='direct')
 
 # Celery configuration
 celery_app.conf.update(
@@ -21,6 +25,12 @@ celery_app.conf.update(
     worker_prefetch_multiplier=1,
     worker_max_tasks_per_child=100,
     broker_connection_retry_on_startup=True,
+
+    # Define queues (FIFO - First In First Out)
+    task_queues=(
+        Queue('scan_queue', exchange=default_exchange, routing_key='scan_queue'),
+        Queue('domain_verification_queue', exchange=default_exchange, routing_key='domain_verification_queue'),
+    ),
 )
 
 # Task routes for different queues (must match docker-compose worker -Q flag)

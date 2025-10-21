@@ -11,6 +11,9 @@ import asyncio
 # Import the scanner instance manager
 from app.services.scanner_manager import scanner_manager
 
+# Import metrics collector
+from app.services.metrics import metrics_collector
+
 
 class ScanTask(Task):
     """Base task with error handling and cleanup"""
@@ -76,6 +79,9 @@ async def _run_scan_async(scan_id: int, task: Task) -> Dict[str, Any]:
 
         logger.info(f"Scan {scan_id} marked as IN_PROGRESS")
 
+        # Start metrics collection
+        metrics_collector.start_scan(scan_id)
+
         try:
             # Get an optimized scanner instance with pooled connection
             # This reuses the persistent ZAP instance and creates an isolated context
@@ -132,6 +138,16 @@ async def _run_scan_async(scan_id: int, task: Task) -> Dict[str, Any]:
 
             logger.info(f"Scan {scan_id} completed successfully with {scan.total_alerts} alerts")
 
+            # Record metrics for successful completion
+            metrics_collector.complete_scan(
+                scan_id=scan_id,
+                total_alerts=scan.total_alerts or 0,  # type: ignore[arg-type]
+                high_risk=scan.high_risk_count or 0,  # type: ignore[arg-type]
+                medium_risk=scan.medium_risk_count or 0,  # type: ignore[arg-type]
+                low_risk=scan.low_risk_count or 0,  # type: ignore[arg-type]
+                status="completed"
+            )
+
             return {
                 "scan_id": scan_id,
                 "status": "completed",
@@ -143,6 +159,13 @@ async def _run_scan_async(scan_id: int, task: Task) -> Dict[str, Any]:
 
         except Exception as e:
             logger.error(f"Scan {scan_id} failed: {e}")
+
+            # Record metrics for failure
+            metrics_collector.complete_scan(
+                scan_id=scan_id,
+                status="failed",
+                error_message=str(e)
+            )
 
             # Clean up the ZAP context even on failure
             try:
@@ -165,7 +188,9 @@ async def _process_alerts(session, scan: Scan, alerts: list):
     """
     Process and store ZAP alerts in database with optimized batch operations.
     Uses bulk insert for much faster performance (5-10x faster than individual adds).
+    Implements deduplication to avoid storing duplicate alerts.
     """
+    import hashlib
 
     risk_counts = {
         "high": 0,
@@ -186,9 +211,23 @@ async def _process_alerts(session, scan: Scan, alerts: list):
         "Informational": RiskLevel.INFORMATIONAL,
     }
 
-    # Build alert objects in memory first (faster than incremental adds)
+    # Deduplication: Track unique alerts by hash
+    seen_hashes = set()
     alert_objects = []
+
     for alert in alerts:
+        # Create a unique hash for this alert based on key identifying fields
+        # This prevents duplicate alerts for the same issue on the same URL
+        alert_key = f"{alert.get('alert')}|{alert.get('url')}|{alert.get('param')}|{alert.get('evidence')}"
+        alert_hash = hashlib.sha256(alert_key.encode()).hexdigest()
+
+        # Skip if we've already seen this exact alert
+        if alert_hash in seen_hashes:
+            logger.debug(f"Skipping duplicate alert: {alert.get('alert')} on {alert.get('url')}")
+            continue
+
+        seen_hashes.add(alert_hash)
+
         risk_str = str(alert.get("risk", "0"))
         risk_level = risk_mapping.get(risk_str, RiskLevel.INFORMATIONAL)
 
@@ -216,13 +255,19 @@ async def _process_alerts(session, scan: Scan, alerts: list):
         )
         alert_objects.append(scan_alert)
 
+    # Log deduplication stats
+    original_count = len(alerts)
+    deduplicated_count = len(alert_objects)
+    if original_count > deduplicated_count:
+        logger.info(f"Deduplication: {original_count} alerts -> {deduplicated_count} unique alerts (removed {original_count - deduplicated_count} duplicates)")
+
     # Bulk insert all alerts at once (single DB roundtrip instead of N roundtrips)
     if alert_objects:
         session.add_all(alert_objects)
-        logger.info(f"Bulk inserting {len(alert_objects)} alerts for scan {scan.id}")
+        logger.info(f"Bulk inserting {len(alert_objects)} unique alerts for scan {scan.id}")
 
     # Update scan summary
-    scan.total_alerts = len(alerts)  # type: ignore[assignment]
+    scan.total_alerts = len(alert_objects)  # type: ignore[assignment]
     scan.high_risk_count = risk_counts["high"]  # type: ignore[assignment]
     scan.medium_risk_count = risk_counts["medium"]  # type: ignore[assignment]
     scan.low_risk_count = risk_counts["low"]  # type: ignore[assignment]

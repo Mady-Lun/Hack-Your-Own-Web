@@ -67,6 +67,12 @@ class ZAPSettings(BaseSettings):
     USE_DOCKER_ZAP: bool
     ZAP_DOCKER_IMAGE: str
 
+    # Timeout configurations (in seconds)
+    ZAP_PASSIVE_SCAN_TIMEOUT: int = 600  # 10 minutes
+    ZAP_SPIDER_TIMEOUT: int = 300  # 5 minutes
+    ZAP_SPIDER_MAX_DURATION: int = 5  # 5 minutes max duration
+    ZAP_ACTIVE_SCAN_TIMEOUT: int = 1800  # 30 minutes (future use)
+
     model_config = SettingsConfigDict(
         env_file=ENV_FILE,
         extra="ignore",
