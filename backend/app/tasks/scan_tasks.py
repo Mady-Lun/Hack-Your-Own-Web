@@ -1,6 +1,6 @@
 from celery import Task
 from datetime import datetime
-from typing import Dict, Any
+from typing import Dict, Any, Optional
 from app.core.celery_app import celery_app
 from app.models.scan import Scan, ScanAlert, ScanStatus, ScanType, RiskLevel
 from app.core.db import AsyncSessionLocal
@@ -23,17 +23,18 @@ class ScanTask(Task):
 
 
 @celery_app.task(bind=True, base=ScanTask, name="app.tasks.scan_tasks.run_scan")
-def run_scan(self, scan_id: int) -> Dict[str, Any]:
+def run_scan(self, scan_id: int, target_url: Optional[str] = None) -> Dict[str, Any]:
     """
     Execute a security scan using OWASP ZAP
 
     Args:
         scan_id: Database ID of the scan
+        target_url: Target URL being scanned (displayed in Flower kwargs)
 
     Returns:
         Dictionary with scan results summary
     """
-    logger.info(f"Starting scan task for scan_id: {scan_id}")
+    logger.info(f"Starting scan task for scan_id: {scan_id}, target: {target_url or 'Unknown'}")
 
     # Run async function in sync context
     loop = asyncio.new_event_loop()
@@ -81,10 +82,20 @@ async def _run_scan_async(scan_id: int, task: Task) -> Dict[str, Any]:
             scanner = scanner_manager.get_scanner(scan_id)
             logger.info(f"Using optimized scanner with connection pooling for scan {scan_id}")
 
-            # Progress callback - just log for now to avoid DB connection conflicts
+            # Progress callback - update Celery task state for Flower monitoring
             def update_progress(percentage: int, step: str):
-                """Log scan progress - called from sync context within async execution"""
+                """Update scan progress - called from sync context within async execution"""
                 logger.info(f"Scan {scan_id} progress: {percentage}% - {step}")
+                # Update Celery task state so Flower can display real-time progress
+                task.update_state(
+                    state='PROGRESS',
+                    meta={
+                        'current': percentage,
+                        'total': 100,
+                        'status': step,
+                        'scan_id': scan_id
+                    }
+                )
 
             # Run appropriate scan type
             alerts = []

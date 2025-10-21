@@ -27,4 +27,5 @@ celery_app.conf.update(
 celery_app.conf.task_routes = {
     "app.tasks.scan_tasks.run_scan": {"queue": "scan_queue"},
     "app.tasks.scan_tasks.cancel_scan": {"queue": "scan_queue"},
+    "app.tasks.domain_verification.verify_domain_task": {"queue": "domain_verification_queue"},
 }

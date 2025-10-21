@@ -24,6 +24,7 @@ services:
       - ZAP_API_KEY=${ZAP_API_KEY:-15d12de6-553b-4af7-bd5c-22599f8876f2}
     command: >
       zap.sh -daemon -host 0.0.0.0 -port 8090
+      -Xmx6g
       -config api.key=${ZAP_API_KEY:-15d12de6-553b-4af7-bd5c-22599f8876f2}
       -config api.addrs.addr.name=.*
       -config api.addrs.addr.regex=true
@@ -42,9 +43,9 @@ services:
       resources:
         limits:
           cpus: '2.0'
-          memory: 4G
+          memory: 8G
         reservations:
-          memory: 2G
+          memory: 3G
 
   # Backend API Server
   api:
@@ -117,7 +118,7 @@ services:
     env_file: .env
     environment:
       - FLOWER_UNAUTHENTICATED_API=true
-    command: celery -A app.core.celery_app flower --port=5555 --persistent=True --broker_api=redis://redis:6379/0
+    command: celery -A app.core.celery_app flower --port=5555 --persistent=True --broker_api=redis://redis:6379/0 --auto_refresh=True --refresh_interval=5000
     ports:
       - "5555:5555"
     volumes:
