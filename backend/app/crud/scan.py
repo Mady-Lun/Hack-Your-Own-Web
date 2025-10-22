@@ -1,12 +1,14 @@
 from datetime import datetime
-from typing import Optional, List, Tuple
+from typing import Optional, List, Tuple, Dict, Any
 from sqlalchemy import select, func, and_, or_, desc
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 from fastapi.responses import JSONResponse
 from app.models.scan import Scan, ScanAlert, ScanStatus, ScanType
+from app.models.site import Site
 from app.schemas.scan import ScanCreate, ScanUpdate
 from app.utils.logger import logger
+from app.utils.domain_utils import extract_domain_from_url
 from app.tasks.scan_tasks import run_scan as run_scan_task
 
 
@@ -26,6 +28,54 @@ async def create_scan_crud(
                 status_code=400,
                 content={"success": False, "message": "Invalid scan type. Must be 'basic' or 'full'"}
             )
+
+        # FULL scan requires domain verification (active scanning)
+        if data.scan_type == ScanType.FULL:
+            logger.info(f"FULL scan requested for {data.target_url}, checking domain ownership")
+
+            # Extract domain from target URL
+            domain = extract_domain_from_url(str(data.target_url))
+            if not domain:
+                logger.error(f"Could not extract domain from URL: {data.target_url}")
+                return JSONResponse(
+                    status_code=400,
+                    content={
+                        "success": False,
+                        "message": "Invalid URL format. Could not extract domain."
+                    }
+                )
+
+            # Check if user owns and has verified this domain
+            site_result = await session.execute(
+                select(Site).where(
+                    and_(
+                        Site.domain == domain,
+                        Site.user_id == user_id,
+                        Site.is_verified == True
+                    )
+                )
+            )
+            verified_site = site_result.scalar_one_or_none()
+
+            if not verified_site:
+                logger.warning(
+                    f"User {user_id} attempted FULL scan on unverified domain: {domain}"
+                )
+                return JSONResponse(
+                    status_code=403,
+                    content={
+                        "success": False,
+                        "message": (
+                            f"Domain verification required for FULL scans. "
+                            f"Please verify ownership of '{domain}' before running active security tests. "
+                            f"Visit /api/v1/sites to register and verify your domain."
+                        ),
+                        "domain": domain,
+                        "verified": False
+                    }
+                )
+
+            logger.info(f"Domain {domain} verified for user {user_id}, proceeding with FULL scan")
 
         # Check concurrent scan limit (max 5 active scans per user)
         active_scans_query = select(func.count()).select_from(Scan).where(
@@ -383,3 +433,141 @@ async def get_scan_stats_crud(
             "medium_risk_vulnerabilities": 0,
             "low_risk_vulnerabilities": 0,
         }
+
+
+async def get_scan_report_json_crud(
+    scan_id: int,
+    user_id: int,
+    session: AsyncSession
+) -> Optional[Dict[str, Any]]:
+    """
+    Generate ZAP-compatible JSON report for a scan
+
+    Args:
+        scan_id: Scan ID
+        user_id: User ID (for ownership verification)
+        session: Database session
+
+    Returns:
+        Dictionary in ZAP JSON format, or None if scan not found
+    """
+    from app.utils.report_formatter import ZAPReportFormatter
+
+    logger.info(f"Generating JSON report for scan {scan_id}, user {user_id}")
+
+    try:
+        # Get scan with alerts
+        scan = await get_scan_by_id_crud(scan_id, user_id, session, include_alerts=True)
+
+        if not scan:
+            logger.warning(f"Scan {scan_id} not found for user {user_id}")
+            return None
+
+        # Only generate reports for completed scans
+        if scan.status != ScanStatus.COMPLETED:
+            logger.warning(f"Scan {scan_id} is not completed (status: {scan.status})")
+            return None
+
+        # Format scan to JSON report
+        report = ZAPReportFormatter.format_scan_to_json(scan, scan.alerts)
+
+        logger.info(f"Successfully generated JSON report for scan {scan_id}")
+        return report
+
+    except Exception as e:
+        logger.error(f"Error generating JSON report for scan {scan_id}: {e}")
+        return None
+
+
+async def get_scan_report_frontend_json_crud(
+    scan_id: int,
+    user_id: int,
+    session: AsyncSession
+) -> Optional[Dict[str, Any]]:
+    """
+    Generate frontend-friendly JSON report for a scan
+
+    Args:
+        scan_id: Scan ID
+        user_id: User ID (for ownership verification)
+        session: Database session
+
+    Returns:
+        Dictionary optimized for frontend, or None if scan not found
+    """
+    from app.utils.report_formatter import ZAPReportFormatter
+
+    logger.info(f"Generating frontend JSON report for scan {scan_id}, user {user_id}")
+
+    try:
+        # Get scan with alerts
+        scan = await get_scan_by_id_crud(scan_id, user_id, session, include_alerts=True)
+
+        if not scan:
+            logger.warning(f"Scan {scan_id} not found for user {user_id}")
+            return None
+
+        # Only generate reports for completed scans
+        if scan.status != ScanStatus.COMPLETED:
+            logger.warning(f"Scan {scan_id} is not completed (status: {scan.status})")
+            return None
+
+        # Format scan to frontend JSON report
+        report = ZAPReportFormatter.format_scan_to_frontend_json(scan, scan.alerts)
+
+        logger.info(f"Successfully generated frontend JSON report for scan {scan_id}")
+        return report
+
+    except Exception as e:
+        logger.error(f"Error generating frontend JSON report for scan {scan_id}: {e}")
+        return None
+
+
+async def get_scan_report_categorized_crud(
+    scan_id: int,
+    user_id: int,
+    session: AsyncSession
+) -> Optional[Dict[str, Any]]:
+    """
+    Generate categorized report with pass/fail status for vulnerability types
+
+    This report provides clear pass/fail indicators for:
+    - SQL Injection (SQLi)
+    - Cross-Site Scripting (XSS)
+    - Security Headers
+    - Open Redirects
+
+    Args:
+        scan_id: Scan ID
+        user_id: User ID (for ownership verification)
+        session: Database session
+
+    Returns:
+        Dictionary with categorized vulnerabilities and pass/fail status, or None if scan not found
+    """
+    from app.utils.report_formatter import ZAPReportFormatter
+
+    logger.info(f"Generating categorized report for scan {scan_id}, user {user_id}")
+
+    try:
+        # Get scan with alerts
+        scan = await get_scan_by_id_crud(scan_id, user_id, session, include_alerts=True)
+
+        if not scan:
+            logger.warning(f"Scan {scan_id} not found for user {user_id}")
+            return None
+
+        # Only generate reports for completed scans
+        if scan.status != ScanStatus.COMPLETED:
+            logger.warning(f"Scan {scan_id} is not completed (status: {scan.status})")
+            return None
+
+        # Format scan to categorized report
+        report = ZAPReportFormatter.format_scan_to_categorized_report(scan, scan.alerts)
+
+        logger.info(f"Successfully generated categorized report for scan {scan_id}")
+        return report
+
+    except Exception as e:
+        logger.error(f"Error generating categorized report for scan {scan_id}: {e}")
+        return None

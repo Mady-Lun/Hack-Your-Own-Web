@@ -283,6 +283,130 @@ class ZAPScanner:
         except Exception as e:
             logger.warning(f"Failed to configure passive scan policy: {e}")
 
+    def _configure_active_scan_policy(self) -> None:
+        """
+        Configure ZAP active scan policy for security testing.
+
+        Enables: SQLi, XSS, Path Traversal, Command Injection, CSRF, Security Headers
+        Disables: DoS, Brute Force, Buffer Overflow (too aggressive/destructive)
+
+        Performance optimized with throttling and smart targeting.
+        """
+        zap = self._ensure_zap_initialized()
+
+        try:
+            logger.info("Configuring active scan policy for FULL scan")
+
+            # First, disable all scanners to start fresh
+            zap.ascan.disable_all_scanners()
+
+            # Enable passive scanners (for comprehensive coverage)
+            zap.pscan.enable_all_scanners()
+
+            # === ENABLE CRITICAL VULNERABILITY SCANNERS ===
+
+            # SQL Injection (IDs: 40018, 40019, 40020, 40021, 40022, 90018)
+            sql_injection_scanners = [40018, 40019, 40020, 40021, 40022, 90018]
+
+            # Cross-Site Scripting (IDs: 40012, 40014, 40016, 40017)
+            xss_scanners = [40012, 40014, 40016, 40017]
+
+            # Path Traversal (IDs: 6, 7)
+            path_traversal_scanners = [6, 7]
+
+            # Command Injection (IDs: 90020, 90019)
+            command_injection_scanners = [90020, 90019]
+
+            # CSRF (IDs: 20012, 10202)
+            csrf_scanners = [20012, 10202]
+
+            # Security Misconfiguration (IDs: 10020, 10021, 10023, 10024, 10025, 10026, 10027)
+            security_misc_scanners = [10020, 10021, 10023, 10024, 10025, 10026, 10027]
+
+            # Server-Side Code Injection (IDs: 90019)
+            code_injection_scanners = [90019]
+
+            # External Redirect (IDs: 20019)
+            redirect_scanners = [20019]
+
+            # XXE (XML External Entity) (IDs: 90023)
+            xxe_scanners = [90023]
+
+            # === ALPHA/EXPERIMENTAL SCANNERS (Optional - More Aggressive) ===
+            # Only enabled if ZAP_ENABLE_ALPHA_SCANNERS=True
+            alpha_scanners = []
+            if ZAPConfig.ZAP_ENABLE_ALPHA_SCANNERS:
+                logger.info("Enabling ALPHA/experimental scanners for aggressive testing")
+                # Advanced SQL Injection variants
+                alpha_scanners += [40029, 40030, 40031, 40032, 40033]
+                # Advanced XSS variants
+                alpha_scanners += [40026, 40027, 40028]
+                # Server-side Template Injection
+                alpha_scanners += [90035]
+                # LDAP Injection
+                alpha_scanners += [40015]
+                # XML Injection
+                alpha_scanners += [90021]
+                # Expression Language Injection
+                alpha_scanners += [90025]
+                # NoSQL Injection
+                alpha_scanners += [90036]
+                logger.info(f"Added {len(alpha_scanners)} alpha scanners")
+
+            # Combine all enabled scanners
+            enabled_scanners = (
+                sql_injection_scanners +
+                xss_scanners +
+                path_traversal_scanners +
+                command_injection_scanners +
+                csrf_scanners +
+                security_misc_scanners +
+                code_injection_scanners +
+                redirect_scanners +
+                xxe_scanners +
+                alpha_scanners  # Add alpha scanners if enabled
+            )
+
+            # Enable each scanner
+            for scanner_id in enabled_scanners:
+                try:
+                    zap.ascan.enable_scanners(ids=str(scanner_id))
+                    logger.debug(f"Enabled active scanner: {scanner_id}")
+                except Exception as e:
+                    logger.warning(f"Failed to enable scanner {scanner_id}: {e}")
+
+            logger.info(f"Enabled {len(enabled_scanners)} active scan rules")
+
+            # === CONFIGURE SCAN SETTINGS FOR PERFORMANCE ===
+
+            try:
+                # Set thread count (4 threads = good balance of speed vs server load)
+                zap.ascan.set_option_thread_per_host(4)
+                logger.debug("Set thread per host: 4")
+            except Exception as e:
+                logger.warning(f"Could not set thread per host: {e}")
+
+            try:
+                # Set max scan duration (30 minutes)
+                zap.ascan.set_option_max_scan_duration_in_mins(30)
+                logger.debug("Set max scan duration: 30 minutes")
+            except Exception as e:
+                logger.warning(f"Could not set max scan duration: {e}")
+
+            try:
+                # Set delay between requests (100ms = 10 req/sec max)
+                zap.ascan.set_option_delay_in_ms(100)
+                logger.debug("Set delay between requests: 100ms")
+            except Exception as e:
+                logger.warning(f"Could not set delay: {e}")
+
+            logger.info("Active scan policy configured successfully")
+            logger.info("Settings: Enabled 30+ security scanners for comprehensive testing")
+
+        except Exception as e:
+            logger.error(f"Failed to configure active scan policy: {e}")
+            raise
+
     def run_basic_scan(
         self,
         target_url: str,
@@ -413,8 +537,21 @@ class ZAPScanner:
         """
         Full scan: Spider + Passive + Active scan (Requires domain verification)
         This is an intrusive scan that actively tests the target for vulnerabilities
+
+        OPTIMIZED: Parallel execution of spider, passive, and active scans
+
+        Tests for:
+        - SQL Injection (SQLi)
+        - Cross-Site Scripting (XSS)
+        - Path Traversal
+        - Command Injection
+        - CSRF vulnerabilities
+        - Security Headers
+        - Open Redirects
+        - XXE (XML External Entity)
+        - And more critical vulnerabilities
         """
-        logger.info(f"Starting FULL scan for {target_url}")
+        logger.info(f"Starting FULL scan (active) for {target_url}")
 
         # Only start ZAP if not managed by scanner manager
         needs_cleanup = False
@@ -426,27 +563,170 @@ class ZAPScanner:
             logger.info(f"Using pooled ZAP connection (context: {self._scan_context})")
 
         try:
-            # Spider - discover URLs
+            # Configure active scan policy first
             if progress_callback:
-                progress_callback(0, "Starting spider scan")
-            self.spider_scan(target_url, progress_callback=progress_callback)
+                progress_callback(0, "Configuring security test policy")
+            self._configure_active_scan_policy()
 
-            # Passive scan - analyze discovered URLs
+            # Start spider, passive, and active scans in parallel (OPTIMIZATION)
             if progress_callback:
-                progress_callback(33, "Running passive scan")
-            self.passive_scan(target_url, progress_callback=progress_callback)
+                progress_callback(5, "Starting parallel security testing")
 
-            # Active scan - actively test for vulnerabilities
-            if progress_callback:
-                progress_callback(66, "Starting active scan")
-            self.active_scan(target_url, progress_callback=progress_callback)
+            zap = self._ensure_zap_initialized()
+
+            # Start traditional spider
+            spider_scan_id = zap.spider.scan(target_url, maxchildren=None, recurse=True)
+            logger.info(f"Traditional spider started for {target_url}")
+
+            # Start AJAX Spider for JavaScript-heavy apps (if enabled)
+            ajax_spider_enabled = ZAPConfig.ZAP_ENABLE_AJAX_SPIDER
+            if ajax_spider_enabled:
+                try:
+                    zap.ajaxSpider.set_option_max_duration(str(ZAPConfig.ZAP_AJAX_SPIDER_TIMEOUT // 60))  # Convert to minutes
+                    ajax_spider_result = zap.ajaxSpider.scan(target_url)
+                    logger.info(f"AJAX spider started for {target_url} (for JavaScript apps)")
+                except Exception as e:
+                    logger.warning(f"Could not start AJAX spider: {e}. Continuing with traditional spider only.")
+                    ajax_spider_enabled = False
+
+            # Trigger passive scan immediately
+            zap.core.access_url(target_url, followredirects=True)
+            zap.pscan.enable_all_scanners()
+            logger.info(f"Passive scan triggered for {target_url}")
+
+            # Start active scan immediately (will scan URLs as spider discovers them)
+            active_scan_id = zap.ascan.scan(target_url)
+            logger.info(f"Active scan started for {target_url} with ID: {active_scan_id}")
+
+            # Monitor all three scans together
+            start_time = time.time()
+            spider_timeout = ZAPConfig.ZAP_SPIDER_TIMEOUT
+            passive_timeout = ZAPConfig.ZAP_PASSIVE_SCAN_TIMEOUT
+            active_timeout = 1800  # 30 minutes for active scan
+
+            spider_done = False
+            ajax_spider_done = not ajax_spider_enabled  # If not enabled, consider it done
+            passive_done = False
+            initial_passive_records = None
+
+            while True:
+                elapsed = time.time() - start_time
+
+                # Check traditional spider status
+                spider_progress = int(zap.spider.status(spider_scan_id))
+                if spider_progress >= 100:
+                    if not spider_done:
+                        logger.info(f"Traditional spider completed for {target_url}")
+                        spider_done = True
+
+                # Check spider timeout
+                if not spider_done and elapsed > spider_timeout:
+                    logger.warning(f"Spider timeout after {elapsed:.1f}s, stopping")
+                    zap.spider.stop(spider_scan_id)
+                    spider_done = True
+
+                # Check AJAX spider status (if enabled)
+                if ajax_spider_enabled and not ajax_spider_done:
+                    try:
+                        ajax_status = zap.ajaxSpider.status
+                        if ajax_status == 'stopped':
+                            logger.info(f"AJAX spider completed for {target_url}")
+                            ajax_spider_done = True
+                        # Check AJAX spider timeout
+                        if elapsed > ZAPConfig.ZAP_AJAX_SPIDER_TIMEOUT:
+                            logger.warning(f"AJAX spider timeout, stopping")
+                            zap.ajaxSpider.stop()
+                            ajax_spider_done = True
+                    except Exception as e:
+                        logger.warning(f"Error checking AJAX spider status: {e}")
+                        ajax_spider_done = True
+
+                # Check passive scan status
+                passive_remaining = int(zap.pscan.records_to_scan)
+
+                if initial_passive_records is None and passive_remaining > 0:
+                    initial_passive_records = passive_remaining
+
+                # Calculate passive progress
+                if initial_passive_records and initial_passive_records > 0:
+                    passive_progress = int((1 - passive_remaining / initial_passive_records) * 100)
+                    passive_progress = min(99, max(0, passive_progress))
+                else:
+                    passive_progress = 100 if passive_remaining == 0 else 0
+
+                if passive_remaining == 0 and spider_done and ajax_spider_done:
+                    if not passive_done:
+                        logger.info(f"Passive scan completed for {target_url}")
+                        passive_done = True
+
+                # Check active scan status
+                try:
+                    active_status = zap.ascan.status(active_scan_id)
+                    # Handle cases where scan doesn't exist or isn't started yet
+                    if active_status in ['does_not_exist', '', None]:
+                        active_progress = 0
+                    else:
+                        active_progress = int(active_status)
+                except (ValueError, TypeError) as e:
+                    logger.warning(f"Could not parse active scan status '{active_status}': {e}")
+                    active_progress = 0
+
+                # All completed?
+                all_spiders_done = spider_done and ajax_spider_done
+                if all_spiders_done and passive_done and active_progress >= 100:
+                    spider_type = "spider, AJAX spider, passive, active" if ajax_spider_enabled else "spider, passive, active"
+                    logger.info(f"All scans ({spider_type}) completed")
+                    break
+
+                # Check overall timeout
+                if elapsed > active_timeout:
+                    logger.warning(f"Active scan timeout after {elapsed:.1f}s, stopping")
+                    zap.ascan.stop(active_scan_id)
+                    break
+
+                # Report combined progress
+                if progress_callback:
+                    if ajax_spider_enabled:
+                        # With AJAX: spider 15%, AJAX 15%, passive 15%, active 55%
+                        ajax_progress = 100 if ajax_spider_done else 50  # Approximate AJAX progress
+                        combined_progress = int(
+                            spider_progress * 0.15 +
+                            ajax_progress * 0.15 +
+                            passive_progress * 0.15 +
+                            active_progress * 0.55
+                        )
+                        status_msg = (
+                            f"Spider: {spider_progress}%, "
+                            f"AJAX: {ajax_progress}%, "
+                            f"Passive: {passive_progress}%, "
+                            f"Active: {active_progress}%"
+                        )
+                    else:
+                        # Without AJAX: spider 20%, passive 20%, active 60%
+                        combined_progress = int(
+                            spider_progress * 0.2 +
+                            passive_progress * 0.2 +
+                            active_progress * 0.6
+                        )
+                        status_msg = (
+                            f"Spider: {spider_progress}%, "
+                            f"Passive: {passive_progress}%, "
+                            f"Active: {active_progress}%"
+                        )
+                    progress_callback(combined_progress, status_msg)
+
+                time.sleep(3)  # Check every 3 seconds
+
+            elapsed_time = time.time() - start_time
+            logger.info(f"FULL scan completed for {target_url} in {elapsed_time:.1f}s")
 
             # Get results
             if progress_callback:
-                progress_callback(100, "Collecting results")
+                progress_callback(100, "Collecting security findings")
             alerts = self.get_alerts(target_url)
             logger.info(f"FULL scan completed for {target_url}. Found {len(alerts)} alerts")
             return alerts
+
         finally:
             # Only cleanup if we started ZAP ourselves
             if needs_cleanup:

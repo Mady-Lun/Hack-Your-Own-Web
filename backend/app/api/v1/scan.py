@@ -19,9 +19,13 @@ from app.crud.scan import (
     delete_scan_crud,
     cancel_scan_crud,
     get_scan_stats_crud,
+    get_scan_report_json_crud,
+    get_scan_report_frontend_json_crud,
+    get_scan_report_categorized_crud,
 )
 from app.middleware.auth_middleware import get_current_user
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, Response
+import json
 
 
 router = APIRouter()
@@ -155,6 +159,127 @@ async def cancel_scan(
     - Only pending or in-progress scans can be cancelled
     """
     return await cancel_scan_crud(scan_id, user.id, session)  # type: ignore[arg-type]
+
+
+@router.get("/{scan_id}/report/json")
+async def get_scan_report_json(
+    scan_id: int,
+    user: User = Depends(get_current_user),
+    session: AsyncSession = Depends(get_session)
+):
+    """
+    Download scan report in ZAP JSON format
+
+    - **scan_id**: The ID of the scan
+    - Returns a JSON file in OWASP ZAP report format
+    - Only available for completed scans
+    - Works for both BASIC and FULL scan types
+
+    The JSON format includes:
+    - Program metadata (ZAP version, timestamp)
+    - Site information (target URL, host, port, SSL)
+    - Detailed alerts with instances (vulnerabilities found)
+    - Risk levels, confidence ratings, CWE/WASC IDs
+    - Full descriptions, solutions, and references
+    """
+    report = await get_scan_report_json_crud(scan_id, user.id, session)  # type: ignore[arg-type]
+
+    if not report:
+        return JSONResponse(
+            status_code=404,
+            content={"success": False, "message": "Scan not found or not completed"}
+        )
+
+    # Return as downloadable JSON file
+    json_str = json.dumps(report, indent=2)
+    return Response(
+        content=json_str,
+        media_type="application/json",
+        headers={
+            "Content-Disposition": f"attachment; filename=scan_{scan_id}_report.json"
+        }
+    )
+
+
+@router.get("/{scan_id}/report/frontend")
+async def get_scan_report_frontend(
+    scan_id: int,
+    user: User = Depends(get_current_user),
+    session: AsyncSession = Depends(get_session)
+):
+    """
+    Get scan report in frontend-optimized JSON format (RECOMMENDED for Web UIs)
+
+    - **scan_id**: The ID of the scan
+    - Returns JSON optimized for frontend frameworks (React, Vue, Angular)
+    - Only available for completed scans
+    - Works for both BASIC and FULL scan types
+
+    This format is HIGHLY RECOMMENDED for frontend developers because it provides:
+    - Clean, camelCase field names (JavaScript convention)
+    - Pre-grouped alerts by risk level
+    - Summary statistics ready for dashboards
+    - ISO datetime formats
+    - Flat alert structure (no complex nesting)
+    - Easy filtering and sorting support
+    - All data needed for visualization in one response
+
+    Use this instead of /report/json if you're building a web frontend!
+    """
+    report = await get_scan_report_frontend_json_crud(scan_id, user.id, session)  # type: ignore[arg-type]
+
+    if not report:
+        return JSONResponse(
+            status_code=404,
+            content={"success": False, "message": "Scan not found or not completed"}
+        )
+
+    # Return as JSON (can be downloaded or consumed directly)
+    return JSONResponse(content=report)
+
+
+@router.get("/{scan_id}/report/categorized")
+async def get_scan_report_categorized(
+    scan_id: int,
+    user: User = Depends(get_current_user),
+    session: AsyncSession = Depends(get_session)
+):
+    """
+    Get scan report with categorized vulnerabilities and pass/fail status (BEST for Users)
+
+    - **scan_id**: The ID of the scan
+    - Returns JSON with clear pass/fail status for each vulnerability type
+    - Only available for completed scans
+    - Works for both BASIC and FULL scan types
+
+    This format is HIGHLY RECOMMENDED for users who want to:
+    - Quickly understand if their website passed or failed security tests
+    - See clear categorization of vulnerabilities:
+      * SQL Injection (SQLi)
+      * Cross-Site Scripting (XSS)
+      * Security Headers
+      * Open Redirects
+    - Get actionable security insights with risk levels
+    - Understand overall security posture at a glance
+
+    Each vulnerability test shows:
+    - Pass/Fail status
+    - Number of issues (high/medium/low/informational)
+    - Detailed list of specific vulnerabilities found
+    - Solutions and references for remediation
+
+    Perfect for security dashboards and reporting!
+    """
+    report = await get_scan_report_categorized_crud(scan_id, user.id, session)  # type: ignore[arg-type]
+
+    if not report:
+        return JSONResponse(
+            status_code=404,
+            content={"success": False, "message": "Scan not found or not completed"}
+        )
+
+    # Return as JSON
+    return JSONResponse(content=report)
 
 
 scan_router = router

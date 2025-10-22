@@ -71,7 +71,12 @@ class ZAPSettings(BaseSettings):
     ZAP_PASSIVE_SCAN_TIMEOUT: int = 600  # 10 minutes
     ZAP_SPIDER_TIMEOUT: int = 300  # 5 minutes
     ZAP_SPIDER_MAX_DURATION: int = 5  # 5 minutes max duration
-    ZAP_ACTIVE_SCAN_TIMEOUT: int = 1800  # 30 minutes (future use)
+    ZAP_AJAX_SPIDER_TIMEOUT: int = 300  # 5 minutes for AJAX spider
+    ZAP_ACTIVE_SCAN_TIMEOUT: int = 1800  # 30 minutes
+
+    # Advanced scanning options
+    ZAP_ENABLE_AJAX_SPIDER: bool = True  # Enable AJAX spider for JavaScript apps
+    ZAP_ENABLE_ALPHA_SCANNERS: bool = False  # Enable alpha/experimental scanners (more aggressive)
 
     model_config = SettingsConfigDict(
         env_file=ENV_FILE,

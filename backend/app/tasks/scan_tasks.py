@@ -315,7 +315,7 @@ async def _cancel_scan_async(scan_id: int) -> Dict[str, Any]:
             }
 
         # Revoke Celery task if it exists
-        if scan.celery_task_id:  # type: ignore[truthy-bool]
+        if scan.celery_task_id is not None:
             celery_app.control.revoke(scan.celery_task_id, terminate=True)
 
         # Update scan status
