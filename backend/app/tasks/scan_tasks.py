@@ -88,29 +88,14 @@ async def _run_scan_async(scan_id: int, task: Task) -> Dict[str, Any]:
             scanner = scanner_manager.get_scanner(scan_id)
             logger.info(f"Using optimized scanner with connection pooling for scan {scan_id}")
 
-            # Progress callback - update Celery task state for Flower monitoring
-            def update_progress(percentage: int, step: str):
-                """Update scan progress - called from sync context within async execution"""
-                logger.info(f"Scan {scan_id} progress: {percentage}% - {step}")
-                # Update Celery task state so Flower can display real-time progress
-                task.update_state(
-                    state='PROGRESS',
-                    meta={
-                        'current': percentage,
-                        'total': 100,
-                        'status': step,
-                        'scan_id': scan_id
-                    }
-                )
-
-            # Run appropriate scan type
+            # Run appropriate scan type (no progress tracking for better performance)
             alerts = []
             if scan.scan_type == ScanType.BASIC:  # type: ignore[comparison-overlap]
                 logger.info(f"Running BASIC scan for scan {scan_id}")
-                alerts = scanner.run_basic_scan(str(scan.target_url), progress_callback=update_progress)
+                alerts = scanner.run_basic_scan(str(scan.target_url))
             elif scan.scan_type == ScanType.FULL:  # type: ignore[comparison-overlap]
                 logger.info(f"Running FULL scan for scan {scan_id}")
-                alerts = scanner.run_full_scan(str(scan.target_url), progress_callback=update_progress)
+                alerts = scanner.run_full_scan(str(scan.target_url))
             else:
                 error_msg = f"Invalid scan type: {scan.scan_type}"
                 logger.error(error_msg)

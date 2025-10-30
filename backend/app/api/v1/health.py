@@ -237,8 +237,23 @@ async def check_database_health(session: AsyncSession) -> bool:
 def check_zap_health() -> bool:
     """Check if ZAP service is accessible"""
     try:
-        connection_status = scanner_manager.get_connection_status()
-        return connection_status.get("connected", False)
+        # Force a connection attempt to verify ZAP is actually reachable
+        # This will initialize the connection if it hasn't been initialized yet
+        from zapv2 import ZAPv2
+        from app.core.config import ZAPConfig
+
+        zap_client = ZAPv2(
+            apikey=ZAPConfig.ZAP_API_KEY,
+            proxies={
+                "http": f"http://{ZAPConfig.ZAP_HOST}:{ZAPConfig.ZAP_PORT}",
+                "https": f"http://{ZAPConfig.ZAP_HOST}:{ZAPConfig.ZAP_PORT}",
+            }
+        )
+
+        # Try to get version - this will fail if ZAP is not accessible
+        version = zap_client.core.version
+        logger.debug(f"ZAP health check passed - version: {version}")
+        return True
     except Exception as e:
         logger.error(f"ZAP health check failed: {e}")
         return False

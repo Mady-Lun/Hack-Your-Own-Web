@@ -53,6 +53,77 @@ class ScannerInstanceManager:
                     cls._instance = cls()
         return cls._instance
 
+    def _validate_api_key(self) -> None:
+        """
+        SECURITY: Validate that ZAP API key is properly configured.
+        Prevents running ZAP without authentication which would expose it as a public proxy.
+        """
+        api_key = ZAPConfig.ZAP_API_KEY
+
+        # Check if API key is set
+        if not api_key:
+            raise ValueError(
+                "SECURITY ERROR: ZAP_API_KEY is not set. "
+                "Running ZAP without an API key exposes it as a public proxy for attackers. "
+                "Please set ZAP_API_KEY in your environment configuration."
+            )
+
+        # Check for common insecure defaults
+        insecure_keys = ["changeme", "password", "test", "admin", "12345", "default"]
+        if api_key.lower() in insecure_keys:
+            raise ValueError(
+                f"SECURITY ERROR: ZAP_API_KEY is set to an insecure default value '{api_key}'. "
+                "Please use a strong, unique API key (at least 32 characters recommended)."
+            )
+
+        # Warn if key is too short
+        if len(api_key) < 16:
+            logger.warning(
+                f"SECURITY WARNING: ZAP_API_KEY is short ({len(api_key)} characters). "
+                "Consider using a longer key (32+ characters) for better security."
+            )
+
+        logger.debug("ZAP API key validation passed")
+
+    def _verify_api_key_required(self) -> None:
+        """
+        SECURITY: Verify that ZAP actually requires API key authentication.
+        Tests if an invalid API key is rejected, confirming auth is enabled.
+        """
+        try:
+            # Try to connect with an invalid API key
+            test_client = ZAPv2(
+                apikey="invalid_test_key_should_fail",
+                proxies={
+                    "http": f"http://{ZAPConfig.ZAP_HOST}:{ZAPConfig.ZAP_PORT}",
+                    "https": f"http://{ZAPConfig.ZAP_HOST}:{ZAPConfig.ZAP_PORT}",
+                }
+            )
+
+            # Try to access ZAP with invalid key
+            test_client.core.version
+
+            # If we get here, ZAP accepted an invalid key - SECURITY RISK!
+            logger.error(
+                "SECURITY CRITICAL: ZAP instance is accepting requests without valid API key! "
+                "This means your ZAP instance is running without authentication and can be "
+                "exploited as a public proxy. Please restart ZAP with API key enforcement enabled."
+            )
+            raise RuntimeError(
+                "ZAP instance is running without API key authentication. "
+                "This is a critical security vulnerability."
+            )
+
+        except Exception as e:
+            # If we get an error, that's good - it means auth is working
+            error_msg = str(e).lower()
+            if "unauthorized" in error_msg or "api key" in error_msg or "403" in error_msg:
+                logger.debug("ZAP API key authentication verified - invalid key was rejected")
+            else:
+                # Different error - might be connection issue, log but continue
+                logger.debug(f"ZAP authentication check completed with error: {e}")
+                # Don't raise - the main connection with valid key already worked
+
     def _ensure_connection(self) -> ZAPv2:
         """
         Ensure ZAP connection is healthy and return client.
@@ -67,6 +138,9 @@ class ScannerInstanceManager:
 
         with self._connection_lock:
             try:
+                # SECURITY: Validate API key before attempting connection
+                self._validate_api_key()
+
                 # Try to reuse existing connection
                 if self._zap_client is not None:
                     try:
@@ -92,6 +166,10 @@ class ScannerInstanceManager:
                 # Verify connection
                 version = self._zap_client.core.version
                 logger.info(f"Successfully connected to ZAP version {version}")
+
+                # SECURITY: Verify that API key authentication is actually enforced
+                self._verify_api_key_required()
+
                 self._last_health_check = current_time
                 self._initialized = True
 

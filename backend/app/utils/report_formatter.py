@@ -32,13 +32,16 @@ class ZAPReportFormatter:
         port = str(parsed_url.port or (443 if parsed_url.scheme == 'https' else 80))
         ssl = "true" if parsed_url.scheme == 'https' else "false"
 
+        # Get actual ZAP version
+        zap_version = ZAPReportFormatter._get_zap_version()
+
         # Group alerts by their properties (to match ZAP format)
         grouped_alerts = ZAPReportFormatter._group_alerts(alerts)
 
         # Build the report structure
         report = {
             "@programName": "ZAP",
-            "@version": "2.16",
+            "@version": zap_version,
             "@generated": ZAPReportFormatter._format_datetime(
                 cast(datetime, scan.completed_at) if scan.completed_at is not None else datetime.utcnow()
             ),
@@ -608,3 +611,27 @@ class ZAPReportFormatter:
 
         logger.info(f"Successfully formatted scan {scan.id} to categorized report")
         return report
+
+    @staticmethod
+    def _get_zap_version() -> str:
+        """
+        Get the actual ZAP version from the running instance.
+        Falls back to a default version if connection fails.
+        """
+        try:
+            from zapv2 import ZAPv2
+            from app.core.config import ZAPConfig
+
+            zap_client = ZAPv2(
+                apikey=ZAPConfig.ZAP_API_KEY,
+                proxies={
+                    "http": f"http://{ZAPConfig.ZAP_HOST}:{ZAPConfig.ZAP_PORT}",
+                    "https": f"http://{ZAPConfig.ZAP_HOST}:{ZAPConfig.ZAP_PORT}",
+                }
+            )
+            version = zap_client.core.version
+            logger.debug(f"Retrieved ZAP version: {version}")
+            return version
+        except Exception as e:
+            logger.warning(f"Failed to get ZAP version, using default: {e}")
+            return "2.16.1"  # Fallback version

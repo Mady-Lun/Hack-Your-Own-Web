@@ -28,17 +28,23 @@ services:
       -config api.key=${ZAP_API_KEY:-15d12de6-553b-4af7-bd5c-22599f8876f2}
       -config api.addrs.addr.name=.*
       -config api.addrs.addr.regex=true
+      -config api.disablekey=false
+      -addonupdate
+      -addoninstall pscanrules
+      -addoninstall ascanrules
     ports:
       - "8090:8090"
+    volumes:
+      - zap_data:/home/zap/.ZAP
     networks:
       - hyow-network
     restart: unless-stopped
     healthcheck:
       test: ["CMD-SHELL", "curl -f http://localhost:8090 || exit 1"]
-      interval: 30s
-      timeout: 10s
+      interval: 10s
+      timeout: 5s
       retries: 5
-      start_period: 60s
+      start_period: 30s
     deploy:
       resources:
         limits:
@@ -142,3 +148,4 @@ volumes:
   redis_data:
   postgres_data:
   flower_data:
+  zap_data:
