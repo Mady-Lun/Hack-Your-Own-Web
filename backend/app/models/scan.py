@@ -34,9 +34,6 @@ class Scan(Base):
     # Celery task tracking
     celery_task_id = Column(String, nullable=True, index=True)
 
-    # Scan configuration
-    scan_config = Column(JSON, nullable=True)
-
     # Progress tracking
     progress_percentage = Column(Integer, nullable=False, default=0)
     current_step = Column(String, nullable=True)

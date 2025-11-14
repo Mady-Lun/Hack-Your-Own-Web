@@ -5,78 +5,20 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 from fastapi.responses import JSONResponse
 from app.models.scan import Scan, ScanAlert, ScanStatus, ScanType
-from app.models.site import Site
-from app.schemas.scan import ScanCreate, ScanUpdate
+from app.schemas.scan import BasicScanCreate, FullScanCreate, ScanUpdate
 from app.utils.logger import logger
-from app.utils.domain_utils import extract_domain_from_url
 from app.tasks.scan_tasks import run_scan as run_scan_task
 
 
-async def create_scan_crud(
-    data: ScanCreate,
+async def create_basic_scan_crud(
+    data: BasicScanCreate,
     user_id: int,
     session: AsyncSession
 ) -> JSONResponse:
-    """Create a new scan and queue it for execution"""
-    logger.info(f"Scan creation endpoint hit for user {user_id}")
+    """Create a new basic scan (passive only, no domain verification required)"""
+    logger.info(f"Basic scan creation endpoint hit for user {user_id}")
 
     try:
-        # Validate scan type
-        if data.scan_type not in [ScanType.BASIC, ScanType.FULL]:
-            logger.warning(f"Invalid scan type: {data.scan_type}")
-            return JSONResponse(
-                status_code=400,
-                content={"success": False, "message": "Invalid scan type. Must be 'basic' or 'full'"}
-            )
-
-        # FULL scan requires domain verification (active scanning)
-        if data.scan_type == ScanType.FULL:
-            logger.info(f"FULL scan requested for {data.target_url}, checking domain ownership")
-
-            # Extract domain from target URL
-            domain = extract_domain_from_url(str(data.target_url))
-            if not domain:
-                logger.error(f"Could not extract domain from URL: {data.target_url}")
-                return JSONResponse(
-                    status_code=400,
-                    content={
-                        "success": False,
-                        "message": "Invalid URL format. Could not extract domain."
-                    }
-                )
-
-            # Check if user owns and has verified this domain
-            site_result = await session.execute(
-                select(Site).where(
-                    and_(
-                        Site.domain == domain,
-                        Site.user_id == user_id,
-                        Site.is_verified == True
-                    )
-                )
-            )
-            verified_site = site_result.scalar_one_or_none()
-
-            if not verified_site:
-                logger.warning(
-                    f"User {user_id} attempted FULL scan on unverified domain: {domain}"
-                )
-                return JSONResponse(
-                    status_code=403,
-                    content={
-                        "success": False,
-                        "message": (
-                            f"Domain verification required for FULL scans. "
-                            f"Please verify ownership of '{domain}' before running active security tests. "
-                            f"Visit /api/v1/sites to register and verify your domain."
-                        ),
-                        "domain": domain,
-                        "verified": False
-                    }
-                )
-
-            logger.info(f"Domain {domain} verified for user {user_id}, proceeding with FULL scan")
-
         # Check concurrent scan limit (max 5 active scans per user)
         active_scans_query = select(func.count()).select_from(Scan).where(
             and_(
@@ -97,19 +39,18 @@ async def create_scan_crud(
                 }
             )
 
-        # Create scan record
+        # Create scan record with BASIC type
         scan = Scan(
             user_id=user_id,
             target_url=str(data.target_url),
-            scan_type=data.scan_type,
+            scan_type=ScanType.BASIC,
             status=ScanStatus.PENDING,
-            scan_config=data.scan_config,
         )
         session.add(scan)
         await session.commit()
         await session.refresh(scan)
 
-        # Queue scan task (include target_url for display in Flower)
+        # Queue scan task
         task = run_scan_task.apply_async(
             kwargs={"scan_id": scan.id, "target_url": str(data.target_url)}
         )
@@ -119,13 +60,13 @@ async def create_scan_crud(
         session.add(scan)
         await session.commit()
 
-        logger.info(f"Scan {scan.id} created and queued successfully with task {task.id}")
+        logger.info(f"Basic scan {scan.id} created and queued successfully with task {task.id}")
 
         return JSONResponse(
             status_code=201,
             content={
                 "success": True,
-                "message": "Scan created and queued successfully",
+                "message": "Basic scan created and queued successfully",
                 "data": {
                     "scan_id": scan.id,
                     "task_id": task.id,
@@ -136,7 +77,84 @@ async def create_scan_crud(
         )
 
     except Exception as e:
-        logger.error(f"Error creating scan: {e}")
+        logger.error(f"Error creating basic scan: {e}")
+        return JSONResponse(
+            status_code=500,
+            content={"success": False, "message": "Internal server error"}
+        )
+
+
+async def create_full_scan_crud(
+    data: FullScanCreate,
+    user_id: int,
+    session: AsyncSession
+) -> JSONResponse:
+    """Create a new full scan (active scan, domain verification handled by middleware)"""
+    logger.info(f"Full scan creation endpoint hit for user {user_id}")
+
+    try:
+        # NOTE: Domain verification (DB + DNS checks) is handled by 
+        # verify_site_ownership middleware in the API endpoint.
+        
+        # Check concurrent scan limit (max 5 active scans per user)
+        active_scans_query = select(func.count()).select_from(Scan).where(
+            and_(
+                Scan.user_id == user_id,
+                Scan.status.in_([ScanStatus.PENDING.value, ScanStatus.IN_PROGRESS.value])
+            )
+        )
+        active_scans_result = await session.execute(active_scans_query)
+        active_scans_count = active_scans_result.scalar() or 0
+
+        if active_scans_count >= 5:
+            logger.warning(f"User {user_id} has reached max concurrent scans limit ({active_scans_count}/5)")
+            return JSONResponse(
+                status_code=429,
+                content={
+                    "success": False,
+                    "message": "Maximum concurrent scans limit reached (5). Please wait for existing scans to complete."
+                }
+            )
+
+        # Create scan record with FULL type
+        scan = Scan(
+            user_id=user_id,
+            target_url=str(data.target_url),
+            scan_type=ScanType.FULL,
+            status=ScanStatus.PENDING,
+        )
+        session.add(scan)
+        await session.commit()
+        await session.refresh(scan)
+
+        # Queue scan task
+        task = run_scan_task.apply_async(
+            kwargs={"scan_id": scan.id, "target_url": str(data.target_url)}
+        )
+
+        # Update scan with task ID
+        scan.celery_task_id = task.id
+        session.add(scan)
+        await session.commit()
+
+        logger.info(f"Full scan {scan.id} created and queued successfully with task {task.id}")
+
+        return JSONResponse(
+            status_code=201,
+            content={
+                "success": True,
+                "message": "Full scan created and queued successfully",
+                "data": {
+                    "scan_id": scan.id,
+                    "task_id": task.id,
+                    "status": scan.status.value if hasattr(scan.status, 'value') else scan.status,
+                    "scan_type": scan.scan_type.value if hasattr(scan.scan_type, 'value') else scan.scan_type
+                }
+            }
+        )
+
+    except Exception as e:
+        logger.error(f"Error creating full scan: {e}")
         return JSONResponse(
             status_code=500,
             content={"success": False, "message": "Internal server error"}
@@ -464,7 +482,8 @@ async def get_scan_report_json_crud(
             return None
 
         # Only generate reports for completed scans
-        if scan.status != ScanStatus.COMPLETED:
+        # Type checker note: scan.status is a loaded enum value, not a ColumnElement
+        if scan.status is not ScanStatus.COMPLETED:  # type: ignore[comparison-overlap]
             logger.warning(f"Scan {scan_id} is not completed (status: {scan.status})")
             return None
 
@@ -508,7 +527,8 @@ async def get_scan_report_frontend_json_crud(
             return None
 
         # Only generate reports for completed scans
-        if scan.status != ScanStatus.COMPLETED:
+        # Type checker note: scan.status is a loaded enum value, not a ColumnElement
+        if scan.status is not ScanStatus.COMPLETED:  # type: ignore[comparison-overlap]
             logger.warning(f"Scan {scan_id} is not completed (status: {scan.status})")
             return None
 
@@ -558,7 +578,8 @@ async def get_scan_report_categorized_crud(
             return None
 
         # Only generate reports for completed scans
-        if scan.status != ScanStatus.COMPLETED:
+        # Type checker note: scan.status is a loaded enum value, not a ColumnElement
+        if scan.status is not ScanStatus.COMPLETED:  # type: ignore[comparison-overlap]
             logger.warning(f"Scan {scan_id} is not completed (status: {scan.status})")
             return None
 

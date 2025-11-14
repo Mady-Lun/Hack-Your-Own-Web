@@ -3,17 +3,20 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from typing import Optional
 from app.core.db import get_session
 from app.schemas.scan import (
-    ScanCreate,
+    BasicScanCreate,
+    FullScanCreate,
     ScanResponse,
     ScanDetailResponse,
     ScanFullDetailResponse,
     ScanListResponse,
     ScanStatsResponse,
 )
+from app.schemas.site import ValidDomainSchema
 from app.models.scan import ScanStatus, ScanType
 from app.models.user import User
 from app.crud.scan import (
-    create_scan_crud,
+    create_basic_scan_crud,
+    create_full_scan_crud,
     get_scan_by_id_crud,
     get_user_scans_crud,
     delete_scan_crud,
@@ -24,6 +27,7 @@ from app.crud.scan import (
     get_scan_report_categorized_crud,
 )
 from app.middleware.auth_middleware import get_current_user
+from app.middleware.site_middleware import verify_site_ownership
 from fastapi.responses import JSONResponse, Response
 import json
 
@@ -31,28 +35,80 @@ import json
 router = APIRouter()
 
 
-@router.post("/", status_code=status.HTTP_201_CREATED)
-async def create_scan(
-    data: ScanCreate,
+@router.post("/basic", status_code=status.HTTP_201_CREATED)
+async def create_basic_scan(
+    data: BasicScanCreate,
     user: User = Depends(get_current_user),
     session: AsyncSession = Depends(get_session)
 ):
     """
-    Create a new security scan
+    Create a basic security scan (Spider + Passive scan)
+
+    Basic scans are non-invasive and do NOT require domain verification.
+    They perform:
+    - Spider crawling to discover pages
+    - Passive vulnerability detection (no attacks)
 
     - **target_url**: The URL to scan (must be http:// or https://)
-    - **scan_type**: Type of scan:
-        - **basic**: Passive scan (spider + passive scan) - No domain verification required
-        - **full**: Active scan (spider + passive + active scan) - Requires domain ownership verification
-    - **scan_config**: Optional configuration options
 
     Returns:
     - **201**: Scan created and queued successfully
-    - **400**: Invalid scan type or URL
+    - **400**: Invalid URL format
     - **401**: Unauthorized
+    - **429**: Too many concurrent scans
     - **500**: Internal server error
     """
-    return await create_scan_crud(data, user.id, session)  # type: ignore[arg-type]
+    return await create_basic_scan_crud(data, user.id, session)  # type: ignore[arg-type]
+
+
+@router.post("/full", status_code=status.HTTP_201_CREATED)
+async def create_full_scan(
+    data: FullScanCreate,
+    user: User = Depends(get_current_user),
+    session: AsyncSession = Depends(get_session)
+):
+    """
+    Create a full security scan (Spider + Passive + Active scan)
+
+    Full scans perform active security testing and REQUIRE domain verification.
+    They perform:
+    - Spider crawling to discover pages
+    - Passive vulnerability detection
+    - Active vulnerability scanning (attacks)
+
+    **IMPORTANT**: You must verify domain ownership before running a full scan.
+    Use the /sites endpoints to register and verify your domain.
+
+    - **target_url**: The URL to scan (must be http:// or https://)
+
+    Returns:
+    - **201**: Scan created and queued successfully
+    - **400**: Invalid URL format
+    - **401**: Unauthorized
+    - **403**: Domain not verified or not owned by user
+    - **429**: Too many concurrent scans
+    - **500**: Internal server error
+    """
+    from app.utils.domain_utils import extract_domain_from_url
+    
+    # Extract domain from target URL
+    domain_str = extract_domain_from_url(str(data.target_url))
+    if not domain_str:
+        return JSONResponse(
+            status_code=400,
+            content={
+                "success": False,
+                "message": "Invalid URL format. Could not extract domain."
+            }
+        )
+    
+    # Create domain schema for verification
+    domain = ValidDomainSchema(domain=domain_str)
+    
+    # Verify domain ownership (checks DB + DNS)
+    await verify_site_ownership(domain, user, session)
+    
+    return await create_full_scan_crud(data, user.id, session)  # type: ignore[arg-type]
 
 
 @router.get("/", response_model=ScanListResponse)

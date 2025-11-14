@@ -84,8 +84,10 @@ class ZAPSettings(BaseSettings):
     )
 
 
-Config = Settings()
-AppConfig = AppSettings()
-MailConfig = MailSettings()
-CeleryConfig = CelerySettings()
-ZAPConfig = ZAPSettings()
+# Initialize settings with validation from environment variables
+# These will raise ValidationError if required env vars are missing
+Config = Settings()  # type: ignore[call-arg]
+AppConfig = AppSettings()  # type: ignore[call-arg]
+MailConfig = MailSettings()  # type: ignore[call-arg]
+CeleryConfig = CelerySettings()  # type: ignore[call-arg]
+ZAPConfig = ZAPSettings()  # type: ignore[call-arg]

@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 class ZAPScanner:
     """
     OWASP ZAP Scanner with Docker integration.
-    Supports multiple scan types and provides progress tracking.
+    Supports multiple scan types
     """
 
     def __init__(

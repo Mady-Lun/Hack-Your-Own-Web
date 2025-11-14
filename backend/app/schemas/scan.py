@@ -4,13 +4,8 @@ from typing import Optional, Dict, Any, List
 from app.models.scan import ScanStatus, ScanType, RiskLevel
 
 
-class ScanCreate(BaseModel):
+class BasicScanCreate(BaseModel):
     target_url: HttpUrl = Field(..., description="The target URL to scan")
-    scan_type: ScanType = Field(default=ScanType.BASIC, description="Type of scan to perform (basic or full)")
-    scan_config: Optional[Dict[str, Any]] = Field(
-        default=None,
-        description="Additional scan configuration options"
-    )
 
     @validator('target_url')
     def validate_url(cls, v):
@@ -22,9 +17,25 @@ class ScanCreate(BaseModel):
     class Config:
         json_schema_extra = {
             "example": {
-                "target_url": "https://example.com",
-                "scan_type": "basic",
-                "scan_config": {}
+                "target_url": "https://example.com"
+            }
+        }
+
+
+class FullScanCreate(BaseModel):
+    target_url: HttpUrl = Field(..., description="The target URL to scan (must be a verified domain)")
+
+    @validator('target_url')
+    def validate_url(cls, v):
+        url_str = str(v)
+        if not url_str.startswith(('http://', 'https://')):
+            raise ValueError('URL must start with http:// or https://')
+        return url_str
+
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "target_url": "https://example.com"
             }
         }
 
